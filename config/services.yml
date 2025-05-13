@@ -1,0 +1,10 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+  App\EventListener\ParseFrontendTemplateListener:
+    tags:
+      - { name: contao.hook, hook: parseFrontendTemplate }
+  App\EventListener\GetPageLayoutListener:
+    tags:
+      - { name: contao.hook, hook: getPageLayout }

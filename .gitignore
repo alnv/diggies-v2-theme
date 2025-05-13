@@ -1,0 +1,35 @@
+.idea
+.DS_Store
+.htpasswd
+.env
+.env.local
+
+composer.lock
+
+# Configuration
+/config/parameters.yml
+
+# Composer
+/vendor/
+/_packages/
+
+# Contao Manager
+/contao-manager/
+
+# Generated folders
+/bin/
+/assets/
+/files/
+/public/
+/system/*
+!/system/config/
+/system/config/localconfig.php
+/system/config/tcpdf.php
+/var/
+/web/
+
+# Skip files
+/system/modules/*/.skip
+
+# Vscode Settings
+/.vscode
