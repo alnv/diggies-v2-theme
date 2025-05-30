@@ -30,7 +30,7 @@ return [
             'inputType' => 'select',
             'eval' => [
                 'tl_class' => 'w50',
-                'includeBlancOption' => true
+                'includeBlankOption' => true
             ],
             'options_callback' => function () {
                 $arrForms = [];
