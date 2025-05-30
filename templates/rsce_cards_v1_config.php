@@ -6,12 +6,24 @@ return [
     'contentCategory' => 'DIGGIES',
     'fields' => [
         'cards' => [
-            'label' => ['Links', ''],
+            'label' => ['Cards', ''],
             'inputType' => 'list',
             'minItems' => 1,
             'maxItems' => 3,
             'elementLabel' => '%s. Card',
             'fields' => [
+                'image' => [
+                    'label' => ['Bild', ''],
+                    'inputType' => 'fileTree',
+                    'eval' => [
+                        'mandatory' => false,
+                        'fieldType' => 'radio',
+                        'files' => true,
+                        'filesOnly' => true,
+                        'tl_class' => 'clr',
+                        'extensions' => ($GLOBALS['TL_CONFIG']['validImageTypes'] ?? '')
+                    ]
+                ],
                 'headline' => [
                     'label' => ['Überschrift', ''],
                     'inputType' => 'inputUnit',

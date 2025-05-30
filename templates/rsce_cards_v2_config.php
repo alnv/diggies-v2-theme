@@ -38,6 +38,18 @@ return [
             'minItems' => 1,
             'elementLabel' => '%s. Link',
             'fields' => [
+                'image' => [
+                    'label' => ['Bild', ''],
+                    'inputType' => 'fileTree',
+                    'eval' => [
+                        'mandatory' => false,
+                        'fieldType' => 'radio',
+                        'files' => true,
+                        'filesOnly' => true,
+                        'tl_class' => 'clr',
+                        'extensions' => ($GLOBALS['TL_CONFIG']['validImageTypes'] ?? '')
+                    ]
+                ],
                 'headline' => [
                     'label' => ['Überschrift', ''],
                     'inputType' => 'inputUnit',

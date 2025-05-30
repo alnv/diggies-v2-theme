@@ -72,7 +72,7 @@
                     <p class="section_search-checkbox_text">Zeige nur diggies mit Vorschau</p>
                 </div>
                 -->
-            </div>
+            <!-- </div>
             <?php endif; ?>
             <?php foreach ($this->links as $link): ?>
                 <?php if ($link->link_text && $link->url): ?>
@@ -85,7 +85,7 @@
                         <?php endif; ?>
                     </a>
                 <?php endif; ?>
-            <?php endforeach; ?>
+            <?php endforeach; ?> -->
         </div>
     </div>
 </section>

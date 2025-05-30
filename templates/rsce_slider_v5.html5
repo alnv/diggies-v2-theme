@@ -73,7 +73,7 @@ $uniqueId = uniqid('slider_');
 <script>
     (function () {
         if (document.querySelector('.splide_v5_<?= $uniqueId ?>') != null) {
-            const splide_v4 = new Splide( '.splide_v5_<?= $uniqueId ?>', {
+            const splide_v5 = new Splide( '.splide_v5_<?= $uniqueId ?>', {
                 arrows: false,
                 omitEnd: true,
                 perPage: "<?= $this->columns ?? '2' ?>",
@@ -96,18 +96,13 @@ $uniqueId = uniqid('slider_');
                 nextBtn.disabled = current === total - perPage;
             };
 
-            const prevBtn = document.querySelector('#<?= $uniqueId ?>.desktop .custom_arrow_v2--prev');
-            const nextBtn = document.querySelector('#<?= $uniqueId ?>.desktop .custom_arrow_v2--next');
-            const prevBtnMob = document.querySelector('#<?= $uniqueId ?>.mobile .custom_arrow_v2--prev');
-            const nextBtnMob = document.querySelector('#<?= $uniqueId ?>.mobile .custom_arrow_v2--next');
+            const prevBtn = document.querySelector('#<?= $uniqueId ?> .custom_arrow_v2--prev');
+            const nextBtn = document.querySelector('#<?= $uniqueId ?> .custom_arrow_v2--next');
 
-            prevBtn.addEventListener('click', () => splide_v4.go('-1'));
-            nextBtn.addEventListener('click', () => splide_v4.go('+1'));
-            prevBtnMob.addEventListener('click', () => splide_v4.go('-1'));
-            nextBtnMob.addEventListener('click', () => splide_v4.go('+1'));
+            prevBtn.addEventListener('click', () => splide_v5.go('-1'));
+            nextBtn.addEventListener('click', () => splide_v5.go('+1'));
 
-            splide_v4.on('mounted move', () => updateArrows(splide_v4, prevBtn, nextBtn));
-            splide_v4.on('mounted move', () => updateArrows(splide_v4, prevBtnMob, nextBtnMob));
+            splide_v5.on('mounted move', () => updateArrows(splide_v5, prevBtn, nextBtn));
         }
     })();
 </script>

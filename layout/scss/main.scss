@@ -32,11 +32,27 @@ h1, h2, h3, h4, h5, h6, p, span {
     width: fit-content;
 }
 
+li {
+    list-style-type: none;
+}
+
 a {
     width: fit-content;
     text-decoration: none;
     color: black;
     cursor: pointer;
+}
+
+.mod_navigation a.sibling {
+    padding: 4px 8px;
+    color: var(--Colors-Neutral-neutral-800);
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px; /* 150% */
+
+    &:hover {
+        text-decoration: underline;
+    }
 }
 
 button {
@@ -80,6 +96,16 @@ section {
     @media (min-width: 768px) {
         flex-direction: row;
     }
+}
+
+.invisible {
+    display: none;
+}
+
+.level_1 {
+    display: flex;
+    align-items: center;
+    gap: 16px;
 }
 
 .is-hidden {
@@ -239,6 +265,258 @@ section {
             }
         }
     }
+}
+
+// >>>>>>>>>>>>>> Default Styles for Image, Video, Gallery Sections
+
+.content-text, .content-image, .content-hyperlink, .content-download, .content-downloads, .content-gallery, .content-youtube, .content-table {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 40px 0;
+
+  h2 {
+    color: var(--basics-black);
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 32px; /* 133.333% */
+    letter-spacing: -0.48px;
+  }
+
+  .rte {
+    width: 100%;
+  }
+
+  p {
+    color: var(--basics-black);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px; /* 150% */
+  }
+
+  figure {
+    width: 100%;
+    margin: 0;
+  }
+
+  a {
+    width: 100%;
+    padding-bottom: 10px;
+  }
+
+  ul {
+    li {
+      list-style-type: none
+    }
+  }
+
+  img {
+    object-fit: contain;
+    width: 100%;
+    height: fit-content;
+  }
+
+  iframe {
+    width: 100%;
+    aspect-ratio: 2/1.2;
+  }
+
+  table {
+    border-spacing: 20px 0;
+  }
+
+  th {
+    padding-bottom: 10px;
+    text-align: start;
+    color: var(--Colors-Neutral-Greyscale-Grey-500);
+    font-weight: 600;
+  }
+
+  // th::after {
+  //   content: "";
+  //   display: inline-block;
+  //   width: 25px;
+  //   height: 20px;
+  //   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='25' height='25' viewBox='0 0 25 25' fill='none'><path d='M10.3627 9.65234C9.15111 9.65234 8.54529 9.65234 8.26477 9.89194C8.02136 10.0998 7.89218 10.4117 7.9173 10.7308C7.94624 11.0986 8.37462 11.527 9.23137 12.3837L11.3686 14.521C11.7646 14.917 11.9627 15.115 12.191 15.1892C12.3918 15.2544 12.6082 15.2544 12.809 15.1892C13.0373 15.115 13.2354 14.917 13.6314 14.521L15.7686 12.3837C16.6254 11.527 17.0538 11.0986 17.0827 10.7308C17.1078 10.4117 16.9786 10.0998 16.7352 9.89194C16.4547 9.65234 15.8489 9.65234 14.6373 9.65234H10.3627Z' fill='%2376769E'/></svg>");
+  //   background-size: cover;
+  //   background-repeat: no-repeat;
+  // }
+
+  td {
+    padding: 16px 0;
+    border-top: 1px solid var(--Colors-Neutral-Greyscale-Grey-300);
+    font-weight: 400;
+  }
+
+  th, td {
+    overflow: hidden;
+    color: var(--Colors-Neutral-Black);
+    text-overflow: ellipsis;
+    font-size: 16px;
+    line-height: 24px; /* 150% */
+  }
+}
+
+.content-table {
+  display: none;
+}
+
+.content-hyperlink {
+  figure {
+    display: flex;
+    align-items: center;
+    margin: 0;
+
+    a {
+      width: fit-content;
+      padding: 0;
+    }
+
+    img {
+      width: 30px;
+      height: 30px;
+    }
+  }
+}
+
+.content-downloads {
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  a:focus-visible,
+  a:hover {
+    color: var(--Colors-Colorscales-Orangescale-Orange-500);
+  }
+}
+
+@media (min-width: 768px) {
+  .content-text, .content-image, .content-hyperlink, .content-download, .content-downloads, .content-gallery, .content-youtube, .content-table {
+    padding: 44px 0;
+
+    h2 {
+      font-size: 32px;
+      line-height: 120%; /* 38.4px */
+    }
+
+    figure {
+      margin: auto;
+      width: 60%;
+    }
+
+    .rte {
+        width: 50%;
+    }
+  }
+
+  .content-text, .media {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      width: fit-content;
+    }
+
+    figure {
+      width: calc(50% - 50px);
+      margin: 0;
+    }
+
+    .rte {
+        width: 50%;
+    }
+  }
+
+  .content-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .content-text.media--right {
+    figure {
+      order: 1 !important;
+    }
+  }
+
+  .content-table {
+    display: inherit;
+  }
+
+  .content-youtube {
+    iframe {
+      width: 100%;
+
+      aspect-ratio: 2/1;
+    }
+  }
+
+  .content-hyperlink {
+    figure {
+      display: flex;
+      align-items: center;
+      margin: 0;
+
+      a {
+        width: fit-content;
+        padding: 0;
+      }
+
+      img {
+        width: 30px;
+        height: 30px;
+      }
+    }
+  }
+}
+
+.content-gallery {
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+    gap: 10px;
+
+    li {
+      width: 400px;
+    }
+
+    figure {
+      width: 100%;
+      margin: 0;
+    }
+
+    a {
+      width: 100%;
+    }
+
+    img {
+      width: 100%;
+    }
+  }
+}
+
+.media--below, .media--above {
+  flex-direction: column;
+  align-items: center;
+
+  figure {
+    width: 70%;
+  }
+
+  .rte {
+    width: 100%;
+  }
 }
 
 // >>>>>>>>>>>>>> Slide Custom Arrows

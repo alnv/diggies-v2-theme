@@ -24,14 +24,16 @@
             <?php endif; ?>
             <div class="banner_v2_wrapper-select_school_list">
                 <?php foreach($this->cards as $card): ?>
-                    <div class="banner_v2_wrapper-select_school_item">
-                        <?php if ($card->image): ?>
-                            {{image::<?= $card->image ?>?alt=&class=select_school_item-img}}
-                        <?php endif; ?>
-                        <?php if ($card->text): ?>
-                            <p class="select_school_item-text"><?= $card->text ?></p>
-                        <?php endif; ?>
-                    </div>
+                    <?php if ($card->card_url && $card->text): ?>
+                        <a href="<?= $card->card_url ?>" class="banner_v2_wrapper-select_school_item">
+                            <?php if ($card->image): ?>
+                                {{image::<?= $card->image ?>?alt=&class=select_school_item-img}}
+                            <?php endif; ?>
+                            <?php if ($card->text): ?>
+                                <p class="select_school_item-text"><?= $card->text ?></p>
+                            <?php endif; ?>
+                        </a>
+                    <?php endif; ?>
                 <?php endforeach; ?>
             </div>
             <button class="check_more mobile">

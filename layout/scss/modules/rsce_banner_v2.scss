@@ -52,9 +52,14 @@
 .banner_v2_wrapper-select_school_item {
     display: flex;
     gap: 8px;
-    padding: 8px;
+    padding: 8px 12px;
     border-radius: 80px;
     background: var(--Colors-Neutral-neutral-0);
+}
+
+.select_school_item-img {
+    width: 20px;
+    height: 20px;
 }
 
 .check_more {

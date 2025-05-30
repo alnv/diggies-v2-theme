@@ -1,7 +1,7 @@
 <section class="section_banner">
     <div class="section_banner-banner_wrapper <?= $this->background ?> <?= $this->image ? '' : 'default_img' ?>">
         <div class="banner_wrapper-content">
-             <?php if ($this->image): ?>
+            <?php if ($this->image): ?>
                 {{image::<?= $this->image ?>?alt=&class=section_banner-img desktop}}
             <?php endif; ?>
             <div class="banner_wrapper-info">

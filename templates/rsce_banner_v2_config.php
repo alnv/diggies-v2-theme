@@ -95,6 +95,18 @@ return [
                         'allowHtml' => true
                     ]
                 ],
+                'card_url' => [
+                    'label' => ['Link URL', ''],
+                    'inputType' => 'text',
+                    'eval' => [
+                        'rgxp' => 'url',
+                        'maxlength' => 255,
+                        'dcaPicker' => true,
+                        'mandatory' => false,
+                        'decodeEntities' => true,
+                        'tl_class' => 'w50 wizard'
+                    ]
+                ],
             ]
         ],
         'section_bg' => [

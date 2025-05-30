@@ -23,6 +23,22 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
+
+    .top_wrapper-title {
+        color: var(--Colors-Neutral-neutral-800);
+        font-size: 32px;
+        font-weight: 700;
+        line-height: 40px; /* 125% */
+        letter-spacing: -0.4px;
+    }
+
+    .top_wrapper-description {
+        color: var(--Colors-Neutral-neutral-800);
+        text-align: start;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 24px; /* 150% */
+    }
 }
 
 @media (min-width: 768px) {
