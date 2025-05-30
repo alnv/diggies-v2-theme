@@ -1,0 +1,309 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
+
+:root {
+    --Colors-Neutral-neutral-800: #1A0A03;
+    --Colors-Primary-primary-500: #4660E9;
+    --Colors-Neutral-neutral-0: #FFF;
+    --Colors-Neutral-neutral-100: #EDE8E0;
+    --Colors-Neutral-neutral-200: #D9D4CD;
+    --Colors-Secondary-orange-50: #FFF9F1;
+    --Colors-Neutral-neutral-700: #44403C;
+    --Colors-Supporting-yellow: #FDF300;
+    --Colors-Supporting-pastel-yellow: #FFFDD0;
+    --Colors-Supporting-pastel-deepblue: #D0B2FF;
+    --Colors-Supporting-pastel-purple: #E7D9FF;
+    --Colors-Secondary-orange-700: #CC4E05;
+    --Colors-Neutral-neutral-400: #867F7C;
+    --Colors-Primary-primary-100: #DADFFB;
+    --diggies-colors-functional-true-neon-green-500: #1CD74A;
+    --Colors-Neutral-neutral-600: #57534F;
+    --Colors-Neutral-neutral-50: #F7F2EA;
+    --Colors-Neutral-neutral-300: #A8A29D;
+    --Colors-Supporting-pastel-pink: #FFDEF6;
+    --diggies-colors-functional-false-mustard-300: #FFEC99;
+}
+
+html {
+    font-family: "Manrope", sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6, p, span {
+    margin: 0;
+    width: fit-content;
+}
+
+a {
+    width: fit-content;
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+}
+
+button {
+    cursor: pointer;
+}
+
+#container {
+    margin-top: 64px;
+
+    @media (min-width: 768px) {
+        margin-top: 84px;
+    }
+}
+
+section {
+    background: var(--Colors-Secondary-orange-50);
+}
+
+.white_bg {
+    border-radius: 24px;
+    background: var(--Colors-Neutral-neutral-0);
+}
+
+.rose {
+    background-color: var(--Colors-Supporting-pastel-pink);
+}
+.yellow {
+    background-color: var(--diggies-colors-functional-false-mustard-300);
+}
+.violett {
+    background-color: var(--Colors-Supporting-pastel-purple);
+}
+
+.no-br {
+    border: transparent;
+}
+
+.in-row {
+    flex-direction: column;
+
+    @media (min-width: 768px) {
+        flex-direction: row;
+    }
+}
+
+.is-hidden {
+    display: none !important;
+}
+
+.is-hidden-mobile {
+    display: none !important;
+}
+
+.underline {
+    text-decoration: underline;
+}
+
+// >>>>>>>>>>>>>>>>> Grid Templates
+
+#grid_1,
+#grid_2,
+#grid_3,
+#grid_4,
+#grid_5 {
+    display: grid;
+    grid-template-columns: 1fr;
+}  
+
+@media (min-width: 768px) {
+    #grid_1 {
+        grid-template-columns: repeat(1, 1fr);
+    }
+    #grid_2 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    #grid_3 {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    #grid_4 {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    #grid_5 {
+        grid-template-columns: repeat(5, 1fr);
+    } 
+}
+
+// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Buttons
+
+.link, .primary_link, .secondary_link, .transparent_link {
+    display: flex;
+    padding: 12px 20px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    border-radius: 80px;
+    background: var(--Colors-Primary-primary-500);
+    border: 1px solid transparent;
+
+    .primary_link-text, .secondary_link-text, .-text {
+        color: var(--Colors-Neutral-neutral-0);
+        text-align: center;
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 24px; /* 133.333% */
+        letter-spacing: -0.2px;
+    }
+
+    img {
+        width: 24px;
+        height: 24px;
+    }
+
+    svg {
+        path {
+            fill: #FFF;
+        }
+    }
+
+    &:hover {
+        border: 1px solid var(--Colors-Primary-primary-500);
+        background: #FFFFFF;
+
+        .primary_link-text, .-text {
+            color: var(--Colors-Primary-primary-500);
+        }
+
+        svg {
+            path {
+                fill: var(--Colors-Primary-primary-500);
+            }
+        }
+    }
+}
+
+.secondary_link {
+    border: 1px solid var(--Colors-Primary-primary-500);
+    background: #FFFFFF;
+
+    .secondary_link-text {
+        color: var(--Colors-Primary-primary-500);
+    }
+
+    img {
+        width: 24px;
+        height: 24px;
+    }
+
+    svg {
+        path {
+            fill: var(--Colors-Primary-primary-500);
+        }
+    }
+
+    &:hover {
+        border: 1px solid transparent;
+        background: var(--Colors-Primary-primary-500);
+
+        .secondary_link-text {
+            color: #FFFFFF;
+        }
+
+        svg {
+            path {
+                fill: #FFF;
+            }
+        }
+    }
+}
+
+.transparent_link {
+    background-color: transparent;
+    border: 1px solid var(--Colors-Primary-primary-500);
+
+    .transparent_link-text {
+        color: var(--Colors-Primary-primary-500);
+    }
+
+    img {
+        width: 24px;
+        height: 24px;
+    }
+
+    svg {
+        path {
+            fill: var(--Colors-Primary-primary-500);
+        }
+    }
+
+    &:hover {
+        border: 1px solid transparent;
+        background: var(--Colors-Primary-primary-500);
+
+        .transparent_link-text {
+            color: #FFFFFF;
+        }
+
+        svg {
+            path {
+                fill: #FFF;
+            }
+        }
+    }
+}
+
+// >>>>>>>>>>>>>> Slide Custom Arrows
+
+.custom_arrows {
+    display: flex;
+    gap: 12px;
+}
+
+.custom_arrow {
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50% !important;
+    aspect-ratio: 1 / 1;
+    border: none;
+    outline: none;
+    background: var(--Colors-Primary-primary-500) !important;
+    opacity: 1 !important;
+
+    svg {
+        path {
+            fill: #FFFFFF;
+            transition: 0.6s;
+        }
+    }
+}
+
+.custom_arrow:disabled, .custom_arrow:active {
+    background: var(--Colors-Neutral-neutral-100) !important;
+
+    svg {
+        path {
+            fill: #57534F;
+        }
+    }
+}
+
+// >>>>>>>>>>>>>>>>>>>>>>>>>>> Slider
+
+.splide__slide {
+    .splide-img {
+        width: 100%;
+    }
+}
+
+.desktop {
+    display: none;
+}
+
+@media (min-width: 768px) {
+    .is-hidden-mobile {
+        display: flex !important;
+    }
+
+    .desktop {
+        display: flex;
+    }
+
+    .desktop_block {
+        display: block;
+    }
+
+    .mobile {
+        display: none;
+    }
+}

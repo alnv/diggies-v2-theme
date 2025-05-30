@@ -1,0 +1,66 @@
+<section class="section_text_block">
+    <div class="section_text_block-form_wrapper">
+        <?php if (!empty($this->form_headline) && $this->form_headline['value']): ?>
+            <<?= $this->form_headline['unit'] ?> class="section_text_block-title"><?= $this->form_headline['value'] ?></<?= $this->form_headline['unit'] ?>>
+        <?php endif; ?>
+        <div class="section_text_block-form_inputs">
+            <?php foreach ($this->form_fields as $field): ?>
+                <div class="section_text_block-form_input_wrapper">
+                    <?php if ($field->title): ?>
+                        <p class="form_input_wrapper-input_title"><?= $field->title ?></p>
+                        <input class="form_input_wrapper-input" type="<?= $field->type ? $field->type : 'text' ?>" name="<?= $field->type ?>" id="" placeholder="<?= $field->placeholder ?>">
+                        <?php if ($field->description): ?>
+                            <p class="form_input_wrapper-input_description">$field->description</p>
+                        <?php endif; ?>
+                    <?php endif; ?>
+                </div>
+            <?php endforeach; ?>
+        </div>
+        <div class="section_text_block-links_wrapper">
+            <?php foreach ($this->form_links as $link): ?>
+                <?php if ($link->link_text && $link->url): ?>
+                    <a href="<?= $link->url ?>" class="link <?= $link->link_class === 'secondary_link' ? 'secondary_link' : 'primary_link' ?>">
+                        <p class="<?= $link->link_class === 'secondary_link' ? 'secondary_link' : 'primary_link' ?>-text"><?= $link->link_text ?></p>
+                        <?php if ($link->arrow): ?>
+                            <svg width="13" height="12" viewBox="0 0 13 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12.3516 6.62109L7.97656 10.9961C7.64844 11.3516 7.07422 11.3516 6.74609 10.9961C6.39062 10.668 6.39062 10.0938 6.74609 9.76562L9.61719 6.86719H1.25C0.757812 6.86719 0.375 6.48438 0.375 5.99219C0.375 5.52734 0.757812 5.11719 1.25 5.11719H9.61719L6.74609 2.24609C6.39062 1.91797 6.39062 1.34375 6.74609 1.01562C7.07422 0.660156 7.64844 0.660156 7.97656 1.01562L12.3516 5.39062C12.707 5.71875 12.707 6.29297 12.3516 6.62109Z" fill="#4660E9"/>
+                            </svg>
+                        <?php endif; ?>
+                    </a>
+                <?php endif; ?>
+            <?php endforeach; ?>
+        </div>
+    </div>
+    <div class="section_text_block-content_box">
+        <div class="section_text_block-top_box">
+            <?php if (!empty($this->headline) && $this->headline['value']): ?>
+                <<?= $this->headline['unit'] ?> class="section_text_block-title"><?= $this->headline['value'] ?></<?= $this->headline['unit'] ?>>
+            <?php endif; ?>
+            <?php if ($this->text): ?>
+                <p class="section_text_block-description"><?= \strip_tags($this->text, '<a><br><strong>') ?></p>
+            <?php endif; ?>
+        </div>
+        <div class="section_text_block-info_box">
+            <?php foreach ($this->blocks as $block): ?>
+                <div class="section_text_block-info_item">
+                    <?php if ($block->block_title && $block->text): ?>
+                        <p class="section_text_block-info_item_title"><?= $block->block_title ?></p>
+                        <p class="section_text_block-info_item_description"><?= \strip_tags($block->text, '<a><br><strong>') ?></p>
+                    <?php endif; ?>
+                </div>
+            <?php endforeach; ?>
+        </div>
+        <div class="section_text_block-topics_wrapper">
+            <?php if ($this->topics_title): ?>
+                <p class="section_text_block-topics_title"><?= $this->topics_title ?></p>
+            <?php endif; ?>
+            <div class="section_text_block-topics_container">
+                <?php foreach ($this->topics as $topic): ?>
+                    <?php if ($topic->text): ?>
+                        <p class="section_text_block-topic"><?= $topic->text ?></p>
+                    <?php endif; ?>
+                <?php endforeach; ?>
+            </div>
+        </div>
+    </div>
+</section>

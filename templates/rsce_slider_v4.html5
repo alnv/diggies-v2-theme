@@ -1,0 +1,138 @@
+<script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" rel="stylesheet">
+
+<?php
+$uniqueId = uniqid('slider_');
+?>
+
+<section class="section_slider_v4" <?php if ($this->templateId): ?> id="<?= $this->templateId ?>"<?php endif; ?>>
+    <div class="section_slider_v4-main_wrapper <?= $this->section_bg ? 'white_bg' : '' ?>">
+        <div class="section_slider_v4-top_wrapper <?= $this->top_center ? 'center' : '' ?>">
+            <div class="section_slider_v4-info_box">
+                <?php if (!empty($this->headline) && $this->headline['value']): ?>
+                    <<?= $this->headline['unit'] ?> class="section_slider_v4-title"><?= $this->headline['value'] ?></<?= $this->headline['unit'] ?>>
+                <?php endif; ?>
+                <?php if ($this->text): ?>
+                    <p class="section_slider_v4-description"><?= \strip_tags($this->text, '<a><br><strong>') ?></p>
+                <?php endif; ?>
+            </div>
+            <div class="custom_arrows desktop" id="<?= $uniqueId ?>">
+                <button class="custom_arrow custom_arrow_v2--prev" disabled>
+                    <svg width="17" height="15" viewBox="0 0 17 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1.44141 6.47656L7.06641 0.851562C7.48828 0.394531 8.22656 0.394531 8.64844 0.851562C9.10547 1.27344 9.10547 2.01172 8.64844 2.43359L4.95703 6.125H15.75C16.3477 6.125 16.875 6.65234 16.875 7.25C16.875 7.88281 16.3477 8.375 15.75 8.375H4.95703L8.64844 12.1016C9.10547 12.5234 9.10547 13.2617 8.64844 13.6836C8.22656 14.1406 7.48828 14.1406 7.06641 13.6836L1.44141 8.05859C0.984375 7.63672 0.984375 6.89844 1.44141 6.47656Z" fill="#57534F"/>
+                    </svg> 
+                </button>
+                <button class="custom_arrow custom_arrow_v2--next">
+                    <svg width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M15.5234 8.05859L9.89844 13.6836C9.47656 14.1406 8.73828 14.1406 8.31641 13.6836C7.85938 13.2617 7.85938 12.5234 8.31641 12.1016L12.0078 8.375H1.25C0.617188 8.375 0.125 7.88281 0.125 7.25C0.125 6.65234 0.617188 6.125 1.25 6.125H12.0078L8.31641 2.43359C7.85938 2.01172 7.85938 1.27344 8.31641 0.851562C8.73828 0.394531 9.47656 0.394531 9.89844 0.851562L15.5234 6.47656C15.9805 6.89844 15.9805 7.63672 15.5234 8.05859Z" fill="white"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <div class="section_slider_v4-splide_wrapper">
+            <div class="splide splide_v4_<?= $uniqueId ?>" role="group" aria-label="Splide Basic HTML Example">
+                <div class="splide__track">
+                    <ul class="splide__list">
+                        <?php foreach ($this->cards as $card): ?>
+                            <li class="splide__slide">
+                                <?php if ($card->image): ?>
+                                    {{image::<?= $card->image ?>?alt=&class=splide-img}}
+                                <?php endif; ?>
+                                <div class="slide_info">
+                                    <?php if ($card->category): ?>
+                                        <p class="slide_info-category<?= $card->category_bg ? '_violet' : '' ?>"><?= $card->category ?></p>
+                                    <?php endif; ?>
+                                    <?php if ($card->card_type): ?>
+                                        <p class="slide_info-card_type"><?= $card->card_type ?></p>
+                                    <?php endif; ?>
+                                    <div class="slide_info-text_box">
+                                        <?php if ($card->headline): ?>
+                                            <p class="slide_info-headline"><?= $card->headline ?></p>
+                                        <?php endif; ?>
+                                        <?php if ($card->date): ?>
+                                            <p class="slide_info-date"><?= $card->date ?></p>
+                                        <?php endif; ?>
+                                        <?php if ($card->description): ?>
+                                            <p class="slide_info-description"><?= $card->description ?></p>
+                                        <?php endif; ?>
+                                    </div>
+                                    <div class="slide_info-links_wrapper">
+                                        <?php foreach ($card->links as $link): ?>
+                                            <?php if ($link->text && $link->url): ?>
+                                                <a href="<?= $link->url ?>" class="link <?= $link->class === 'secondary_link' ? 'secondary_link' : 'primary_link' ?>">
+                                                    <p class="<?= $link->class === 'secondary_link' ? 'secondary_link' : 'primary_link' ?>-text"><?= $link->text ?></p>
+                                                    <?php if ($link->image): ?>
+                                                        {{image::<?= $link->image ?>?alt=&class=section_hero-img}}
+                                                    <?php endif; ?>
+                                                </a>
+                                            <?php endif; ?>
+                                        <?php endforeach; ?>
+                                    </div>
+                                </div>
+                            </li>
+                        <?php endforeach; ?>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="custom_arrows mobile" id="<?= $uniqueId ?>">
+            <button class="custom_arrow custom_arrow_v2--prev" disabled>
+                <svg width="17" height="15" viewBox="0 0 17 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1.44141 6.47656L7.06641 0.851562C7.48828 0.394531 8.22656 0.394531 8.64844 0.851562C9.10547 1.27344 9.10547 2.01172 8.64844 2.43359L4.95703 6.125H15.75C16.3477 6.125 16.875 6.65234 16.875 7.25C16.875 7.88281 16.3477 8.375 15.75 8.375H4.95703L8.64844 12.1016C9.10547 12.5234 9.10547 13.2617 8.64844 13.6836C8.22656 14.1406 7.48828 14.1406 7.06641 13.6836L1.44141 8.05859C0.984375 7.63672 0.984375 6.89844 1.44141 6.47656Z" fill="#57534F"/>
+                </svg> 
+            </button>
+            <button class="custom_arrow custom_arrow_v2--next">
+                <svg width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M15.5234 8.05859L9.89844 13.6836C9.47656 14.1406 8.73828 14.1406 8.31641 13.6836C7.85938 13.2617 7.85938 12.5234 8.31641 12.1016L12.0078 8.375H1.25C0.617188 8.375 0.125 7.88281 0.125 7.25C0.125 6.65234 0.617188 6.125 1.25 6.125H12.0078L8.31641 2.43359C7.85938 2.01172 7.85938 1.27344 8.31641 0.851562C8.73828 0.394531 9.47656 0.394531 9.89844 0.851562L15.5234 6.47656C15.9805 6.89844 15.9805 7.63672 15.5234 8.05859Z" fill="white"/>
+                </svg>
+            </button>
+        </div>
+        <?php if ($this->linkText && $this->linkUrl): ?>
+            <a href="<?= $this->linkUrl ?>" class="link <?= $this->linkClass === 'secondary_link' ? 'secondary_link' : 'primary_link' ?>">
+                <p class="<?= $this->linkClass === 'secondary_link' ? 'secondary_link' : 'primary_link' ?>-text"><?= $this->linkText ?></p>
+            </a>
+        <?php endif; ?>
+    </div>
+</section>
+
+<script>
+    (function () {
+        if (document.querySelector('.splide_v4_<?= $uniqueId ?>') != null) {
+            const splide_v4 = new Splide( '.splide_v4_<?= $uniqueId ?>', {
+                arrows: false,
+                omitEnd: true,
+                perPage: "<?= $this->columns ?? '2' ?>",
+                perMove: 1,
+                pagination: false,
+                gap: '20px',
+                breakpoints: {
+                    768: {
+                        perPage: 1,
+                    },
+                },
+            } ).mount();
+
+            const updateArrows = (splide, prevBtn, nextBtn) => {
+                const current = splide.index;
+                const total = splide.length;
+                const perPage = splide.options.perPage || 1;
+
+                prevBtn.disabled = current === 0;
+                nextBtn.disabled = current === total - perPage;
+            };
+
+            const prevBtn = document.querySelector('#<?= $uniqueId ?>.desktop .custom_arrow_v2--prev');
+            const nextBtn = document.querySelector('#<?= $uniqueId ?>.desktop .custom_arrow_v2--next');
+            const prevBtnMob = document.querySelector('#<?= $uniqueId ?>.mobile .custom_arrow_v2--prev');
+            const nextBtnMob = document.querySelector('#<?= $uniqueId ?>.mobile .custom_arrow_v2--next');
+
+            prevBtn.addEventListener('click', () => splide_v4.go('-1'));
+            nextBtn.addEventListener('click', () => splide_v4.go('+1'));
+            prevBtnMob.addEventListener('click', () => splide_v4.go('-1'));
+            nextBtnMob.addEventListener('click', () => splide_v4.go('+1'));
+
+            splide_v4.on('mounted move', () => updateArrows(splide_v4, prevBtn, nextBtn));
+            splide_v4.on('mounted move', () => updateArrows(splide_v4, prevBtnMob, nextBtnMob));
+        }
+    })();
+</script>

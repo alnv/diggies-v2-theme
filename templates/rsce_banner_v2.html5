@@ -1,0 +1,69 @@
+<section class="section_banner_v2">
+    <div class="banner_v2_wrapper">
+        <div class="banner_v2_wrapper-content">
+            <?php if (!empty($this->headline) && $this->headline['value']): ?>
+                <<?= $this->headline['unit'] ?> class="banner_v2_wrapper-title"><?= $this->headline['value'] ?></<?= $this->headline['unit'] ?>>
+            <?php endif; ?>
+            <?php if ($this->text): ?>
+                <p class="banner_v2_wrapper-description"><?= \strip_tags($this->text, '<a><br><strong>') ?></p>
+            <?php endif; ?>
+            <?php if ($this->link_text && $this->url): ?>
+                <a href="<?= $this->url ?>" class="link <?= $this->link_class === 'secondary_link' ? 'secondary_link' : 'primary_link' ?>">
+                    <p class="<?= $this->link_class === 'secondary_link' ? 'secondary_link' : 'primary_link' ?>-text"><?= $this->link_text ?></p>
+                    <?php if ($this->arrow): ?>
+                        <svg width="13" height="12" viewBox="0 0 13 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12.3516 6.62109L7.97656 10.9961C7.64844 11.3516 7.07422 11.3516 6.74609 10.9961C6.39062 10.668 6.39062 10.0938 6.74609 9.76562L9.61719 6.86719H1.25C0.757812 6.86719 0.375 6.48438 0.375 5.99219C0.375 5.52734 0.757812 5.11719 1.25 5.11719H9.61719L6.74609 2.24609C6.39062 1.91797 6.39062 1.34375 6.74609 1.01562C7.07422 0.660156 7.64844 0.660156 7.97656 1.01562L12.3516 5.39062C12.707 5.71875 12.707 6.29297 12.3516 6.62109Z" fill="#4660E9"/>
+                        </svg>
+                    <?php endif; ?>
+                </a>
+            <?php endif; ?>
+        </div>
+        <div class="banner_v2_wrapper-school_wrapper">
+            <?php if ($this->question): ?>
+                <p class="school_wrapper-title"><?= \strip_tags($this->question, '<a><br><strong>') ?></p>
+            <?php endif; ?>
+            <div class="banner_v2_wrapper-select_school_list">
+                <?php foreach($this->cards as $card): ?>
+                    <div class="banner_v2_wrapper-select_school_item">
+                        <?php if ($card->image): ?>
+                            {{image::<?= $card->image ?>?alt=&class=select_school_item-img}}
+                        <?php endif; ?>
+                        <?php if ($card->text): ?>
+                            <p class="select_school_item-text"><?= $card->text ?></p>
+                        <?php endif; ?>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+            <button class="check_more mobile">
+                <p class="check_more-text">Mehr sehen</p>
+                <svg class="arrow_bottom" width="12" height="13" viewBox="0 0 12 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5.37109 12.6289L0.996094 8.25391C0.640625 7.92578 0.640625 7.35156 0.996094 7.02344C1.32422 6.66797 1.89844 6.66797 2.22656 7.02344L5.125 9.89453V1.5C5.125 1.03516 5.50781 0.625 6 0.625C6.46484 0.625 6.875 1.03516 6.875 1.5V9.89453L9.74609 7.02344C10.0742 6.66797 10.6484 6.66797 10.9766 7.02344C11.332 7.35156 11.332 7.92578 10.9766 8.25391L6.60156 12.6289C6.27344 12.9844 5.69922 12.9844 5.37109 12.6289Z" fill="#4660E9"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+</section>
+
+<script>
+    (function () {
+        const mediaQuery = window.matchMedia('(max-width: 768px)').matches;
+        const bundeslandItems = document.querySelectorAll('.banner_v2_wrapper-select_school_item');
+        const checkBtn = document.querySelector('.check_more');
+
+        const updateItems = () => {
+            for (let i = 0; i < bundeslandItems.length; i++) {
+                if (i > 7) {
+                    bundeslandItems[i].classList.toggle('is-hidden');
+                }
+            }
+
+            checkBtn.classList.toggle('active');
+        }
+
+        if (mediaQuery) {
+            updateItems();
+
+            checkBtn.addEventListener('click', updateItems);
+        }
+    })();
+</script>

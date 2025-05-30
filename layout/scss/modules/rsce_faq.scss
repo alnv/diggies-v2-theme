@@ -1,0 +1,133 @@
+.section_faq {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  padding: 80px 20px 40px;
+}
+
+.section_faq-top_wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.top_wrapper-title_wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  img {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+.section_faq-title {
+  color: var(--Colors-Neutral-neutral-800);
+  text-align: center;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 32px; /* 133.333% */
+  letter-spacing: -0.4px;
+}
+
+.section_faq-text {
+  color: var(--Colors-Neutral-neutral-800);
+  text-align: center;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px; /* 150% */
+}
+
+.section_faq-top_wrapper.no-center {
+  .section_faq-title, .section_faq-text {
+    text-align: start;
+  }
+}
+
+.section_faq-links_wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.section_faq-faqs_questions_wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.faqs_questions_wrapper-question_wrapper {
+  padding-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+  border-bottom: 1px solid var(--Colors-Neutral-neutral-200);
+}
+
+.question_wrapper-text_box {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.text_box-question_text {
+  color: var(--Colors-Neutral-neutral-800);
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 28px; /* 140% */
+  letter-spacing: -0.4px;
+}
+
+.text_box-answer {
+  color: var(--Colors-Neutral-neutral-800);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px; /* 150% */
+}
+
+.question_wrapper-check_answer_btn {
+  width: 36px;
+  height: 36px;
+  aspect-ratio: 1/1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+  border: none;
+  padding: 8px;
+  border-radius: 50%;
+  background: var(--Colors-Primary-primary-500);
+}
+
+@media (min-width: 768px) {
+  .section_faq {
+    gap: 64px;
+    padding: 120px 0;
+  }
+
+  .section_faq > * {
+    width: 50%;
+  }
+
+  .section_faq-title {
+    font-size: 32px;
+    line-height: 40px; /* 125% */
+  }
+
+  .top_wrapper-title_wrapper {
+    flex-direction: row;
+
+    img {
+      width: 64px;
+      height: 64px;
+    }
+  }
+
+  .section_faq-links_wrapper {
+    width: 100%;
+    flex-direction: row;
+  }
+}

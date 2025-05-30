@@ -1,0 +1,178 @@
+.section_search {
+    padding: 64px 20px 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    background: var(--Colors-Secondary-orange-100, #FFE9DD);
+}
+
+.section_search-top_box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.section_search-title {
+    color: var(--Colors-Neutral-neutral-800);
+    text-align: center;
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 32px; /* 114.286% */
+    letter-spacing: -0.4px;
+}
+
+.section_search-description {
+    color: var(--Colors-Neutral-neutral-800);
+    text-align: center;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px; /* 150% */
+}
+
+.section_search-search_box {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.section_search-search_input {
+    height: 100%;
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-radius: 40px;
+    border: 1px solid var(--Colors-Neutral-neutral-100);
+    background: #FFF;
+}
+
+.section_search-search_input {
+    outline: none;
+    border: none;
+    width: 100%;
+    height: 100%;
+}
+
+.section_search-filters_box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.filter_btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    aspect-ratio: 1 / 1;
+    border: 1px solid var(--Colors-Neutral-neutral-100);
+    background: var(--Colors-Neutral-neutral-0);
+}
+
+.section_search-filters_wrapper {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+}
+
+.section_search-select {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 12px 16px;
+    border-radius: 40px;
+    border: 1px solid var(--Colors-Neutral-neutral-100);
+    background: #FFF;
+    outline: none;
+
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg width='16' height='10' viewBox='0 0 16 10' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7.28125 8.71875L1.28125 2.71875C0.875 2.34375 0.875 1.6875 1.28125 1.3125C1.65625 0.90625 2.3125 0.90625 2.6875 1.3125L8 6.59375L13.2812 1.3125C13.6562 0.90625 14.3125 0.90625 14.6875 1.3125C15.0938 1.6875 15.0938 2.34375 14.6875 2.71875L8.6875 8.71875C8.3125 9.125 7.65625 9.125 7.28125 8.71875Z' fill='%23867F7C'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 16px 10px;
+    padding-right: 50px;
+
+    color: var(--Colors-Neutral-neutral-600);
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px; /* 150% */
+}
+
+.section_search-checkbox_wrapper {
+    display: flex;
+    gap: 8px;
+}
+
+.section_search-checkbox_container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    padding: 2px;
+    border-radius: 4px;
+    border: 1px solid var(--Colors-Neutral-neutral-100);
+    background: #FFF;
+    position: relative;
+
+    .checkbox {
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        position: absolute;
+        top: 0;
+        left: 0;
+        cursor: pointer;
+        margin: 0;
+        z-index: 2;
+    }
+
+    .check-icon {
+        display: none;
+        z-index: 1;
+    }
+}
+
+.section_search-checkbox_container:has(input:checked) {
+    background: var(--Colors-Primary-primary-500);
+}
+
+.checkbox:checked ~ .check-icon {
+    display: block;
+}
+
+.section_search-checkbox_text {
+    color: var(--Colors-Neutral-neutral-800);
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px; /* 142.857% */
+}
+
+@media (min-width: 768px) {
+    .section_search {
+        padding: 120px 130px;
+        gap: 64px;
+    }
+
+    .section_search-top_box {
+        width: 44%;
+    }
+
+    .section_search-title {
+        font-size: 40px;
+        line-height: 48px; /* 120% */
+    }
+
+    .section_search-search_box {
+        flex-direction: column;
+    }
+
+    .section_search-filters_box {
+        width: 100%;
+    }
+}

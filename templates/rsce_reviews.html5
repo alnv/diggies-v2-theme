@@ -1,0 +1,124 @@
+<script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" rel="stylesheet">
+
+<?php
+$uniqueId = uniqid('slider_');
+?>
+
+<section class="reviews_section" <?php if ($this->templateId): ?> id="<?= $this->templateId ?>"<?php endif; ?>>
+    <div class="reviews_section-reviews_wrapper">
+        <div class="reviews_section-top_wrapper">
+            <div class="top_wrapper-text_box">
+                <?php if (!empty($this->headline) && $this->headline['value']): ?>
+                    <<?= $this->headline['unit'] ?> class="reviews_section-title"><?= $this->headline['value'] ?></<?= $this->headline['unit'] ?>>
+                <?php endif; ?>
+                <?php if ($this->text): ?>
+                    <p class="reviews_section-description"><?= \strip_tags($this->text, '<a><br><strong>') ?></p>
+                <?php endif; ?>
+            </div>
+            <div class="custom_arrows desktop" id="<?= $uniqueId ?>">
+                <button class="custom_arrow custom_arrow_v2--prev" disabled>
+                    <svg width="17" height="15" viewBox="0 0 17 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1.44141 6.47656L7.06641 0.851562C7.48828 0.394531 8.22656 0.394531 8.64844 0.851562C9.10547 1.27344 9.10547 2.01172 8.64844 2.43359L4.95703 6.125H15.75C16.3477 6.125 16.875 6.65234 16.875 7.25C16.875 7.88281 16.3477 8.375 15.75 8.375H4.95703L8.64844 12.1016C9.10547 12.5234 9.10547 13.2617 8.64844 13.6836C8.22656 14.1406 7.48828 14.1406 7.06641 13.6836L1.44141 8.05859C0.984375 7.63672 0.984375 6.89844 1.44141 6.47656Z" fill="#57534F"/>
+                    </svg> 
+                </button>
+                <button class="custom_arrow custom_arrow_v2--next">
+                    <svg width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M15.5234 8.05859L9.89844 13.6836C9.47656 14.1406 8.73828 14.1406 8.31641 13.6836C7.85938 13.2617 7.85938 12.5234 8.31641 12.1016L12.0078 8.375H1.25C0.617188 8.375 0.125 7.88281 0.125 7.25C0.125 6.65234 0.617188 6.125 1.25 6.125H12.0078L8.31641 2.43359C7.85938 2.01172 7.85938 1.27344 8.31641 0.851562C8.73828 0.394531 9.47656 0.394531 9.89844 0.851562L15.5234 6.47656C15.9805 6.89844 15.9805 7.63672 15.5234 8.05859Z" fill="white"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <div class="splide splide_<?= $uniqueId ?>" role="group" aria-label="Splide Basic HTML Example">
+            <div class="splide__track">
+                <ul class="splide__list">
+                    <?php foreach ($this->cards as $card): ?>
+                        <li class="splide__slide reviews_section-card">
+                            <?php if ($card->comp_image): ?>
+                                {{image::<?= $card->comp_image ?>?alt=&class=reviews_section-comp_img}}
+                            <?php endif; ?>
+                            <div class="reviews_section-content">
+                                <?php if ($card->quote): ?>
+                                    <p class="reviews_section-quote"><?= $card->quote ?></p>
+                                <?php endif; ?>
+                                <div class="reviews_section-user_box">
+                                    <?php if ($card->user_image): ?>
+                                        {{image::<?= $card->user_image ?>?alt=&class=reviews_section-user_image}}
+                                    <?php endif; ?>
+                                    <div class="reviews_section-user_info">
+                                        <?php if ($card->user_name): ?>
+                                            <p class="reviews_section-user_name"><?= $card->user_name ?></p>
+                                        <?php endif; ?>
+                                        <?php if ($card->user_position): ?>
+                                            <p class="reviews_section-user_position"><?= $card->user_position ?></p>
+                                        <?php endif; ?>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
+        </div>
+        <div class="custom_arrows mobile" id="<?= $uniqueId ?>">
+            <button class="custom_arrow custom_arrow_v2--prev" disabled>
+                <svg width="17" height="15" viewBox="0 0 17 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1.44141 6.47656L7.06641 0.851562C7.48828 0.394531 8.22656 0.394531 8.64844 0.851562C9.10547 1.27344 9.10547 2.01172 8.64844 2.43359L4.95703 6.125H15.75C16.3477 6.125 16.875 6.65234 16.875 7.25C16.875 7.88281 16.3477 8.375 15.75 8.375H4.95703L8.64844 12.1016C9.10547 12.5234 9.10547 13.2617 8.64844 13.6836C8.22656 14.1406 7.48828 14.1406 7.06641 13.6836L1.44141 8.05859C0.984375 7.63672 0.984375 6.89844 1.44141 6.47656Z" fill="#57534F"/>
+                </svg> 
+            </button>
+            <button class="custom_arrow custom_arrow_v2--next">
+                <svg width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M15.5234 8.05859L9.89844 13.6836C9.47656 14.1406 8.73828 14.1406 8.31641 13.6836C7.85938 13.2617 7.85938 12.5234 8.31641 12.1016L12.0078 8.375H1.25C0.617188 8.375 0.125 7.88281 0.125 7.25C0.125 6.65234 0.617188 6.125 1.25 6.125H12.0078L8.31641 2.43359C7.85938 2.01172 7.85938 1.27344 8.31641 0.851562C8.73828 0.394531 9.47656 0.394531 9.89844 0.851562L15.5234 6.47656C15.9805 6.89844 15.9805 7.63672 15.5234 8.05859Z" fill="white"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+</section>
+
+<script>
+    (function () {
+        if (document.querySelector('.splide_<?= $uniqueId ?>') != null) {
+            const splide_v2 = new Splide( '.splide_<?= $uniqueId ?>', {
+                arrows: false,
+                omitEnd: true,
+                perPage: 2,
+                perMove: 1,
+                pagination: false,
+                gap: '20px',
+                breakpoints: {
+                    768: {
+                        perPage: 1,
+                        gap: '10px',
+                    },
+                },
+            } ).mount();
+
+            const updateArrows = (splide, prevBtn, nextBtn) => {
+                const current = splide.index;
+                const total = splide.length;
+                const perPage = splide.options.perPage || 1;
+
+                prevBtn.disabled = current === 0;
+                nextBtn.disabled = current === total - perPage;
+            };
+
+            const prevBtn = document.querySelector('#<?= $uniqueId ?> .custom_arrow_v2--prev');
+            const nextBtn = document.querySelector('#<?= $uniqueId ?> .custom_arrow_v2--next');
+
+            prevBtn.addEventListener('click', () => splide_v2.go('-1'));
+            nextBtn.addEventListener('click', () => splide_v2.go('+1'));
+
+            updateArrows(splide_v2, prevBtn, nextBtn);
+
+            splide_v2.on('mounted move', () => updateArrows(splide_v2, prevBtn, nextBtn));
+
+            const prevBtnMobile = document.querySelector('#<?= $uniqueId ?>.mobile .custom_arrow_v2--prev');
+            const nextBtnMobile = document.querySelector('#<?= $uniqueId ?>.mobile .custom_arrow_v2--next');
+
+            prevBtnMobile.addEventListener('click', () => splide_v2.go('-1'));
+            nextBtnMobile.addEventListener('click', () => splide_v2.go('+1'));
+
+            splide_v2.on('mounted move', () => updateArrows(splide_v2, prevBtnMobile, nextBtnMobile));
+        }
+    })();
+</script>

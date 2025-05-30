@@ -1,0 +1,96 @@
+<?php
+
+use Alnv\ContaoCatalogManagerBundle\Views\Master;
+use Contao\FrontendTemplate;
+use Contao\StringUtil;
+
+if ($this->asSlider && !isset($GLOBALS['TL_HEAD']['splidejs'])) {
+    $objCombiner = new \Combiner();
+    $objCombiner->add('layout/js/splide/splide.min.js');
+    $objCombiner->add('layout/js/splide/splide-extension-auto-scroll.min.js');
+    $GLOBALS['TL_HEAD']['splidejs'] = '<script src="' . $objCombiner->getCombinedFile() . '"></script>';
+
+    $objCombiner = new \Combiner();
+    $objCombiner->add('layout/js/splide/splide.min.css');
+    $GLOBALS['TL_HEAD']['splidecss'] = '<link href="' . $objCombiner->getCombinedFile() . '" rel="stylesheet"/>';
+}
+
+?>
+
+<?php if (!empty($this->items)): ?>
+
+    <?php if ($this->asSlider): ?>
+        <div id="subscriptions-<?= $this->id ?>" class="splide subscriptions-slider">
+            <div class="splide__track">
+                <div class="splide__list">
+                    <?php foreach ($this->items as $objItem): ?>
+                        <div class="splide__slide">
+                            <?php
+                            $arrData = (new Master('cm_subscription', [
+                                'alias' => (int)$objItem->subscription
+                            ]))->parse();
+                            $arrData = $arrData[0] ?? [];
+                            if (!empty($arrData)) {
+                                $arrData['styles'] = $objItem->styles;
+                                if ($objItem->urlText) {
+                                    $arrData['urlText'] = $objItem->urlText;
+                                }
+                                $arrData['highlight'] = (bool)$objItem->highlight;
+                                $arrData['highlightText'] = $objItem->highlightText ?: '';
+                                $objTemplate = new FrontendTemplate('ce_subscription');
+                                $objTemplate->setData($arrData);
+                                echo $objTemplate->parse();
+                            }
+                            ?>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+        </div>
+        <script>
+            (function () {
+                let objSlider = new Splide('#subscriptions-<?= $this->id ?>', {
+                    type: 'loop',
+                    perPage: 1,
+                    perMove: 1,
+                    mediaQuery: 'min',
+                    // focus: 2,
+                    breakpoints: {
+                        768: {
+                            perPage: 2,
+                            // focus: 'center'
+                        },
+                        1024: {
+                            perPage: 3
+                        }
+                    }
+                });
+                objSlider.mount();
+            })();
+        </script>
+    <?php else: ?>
+        <div class="ce_subscriptions<?= ($this->cssClass ? ' ' . implode(' ', StringUtil::deserialize($this->cssClass, true)) : '') ?> block">
+            <div class="subscriptions-container columns-<?= round(100 / count($this->items)) ?>">
+                <?php foreach ($this->items as $objItem): ?>
+                    <?php
+                    $arrData = (new Master('cm_subscription', [
+                        'alias' => (int)$objItem->subscription
+                    ]))->parse();
+                    $arrData = $arrData[0] ?? [];
+                    if (!empty($arrData)) {
+                        $arrData['styles'] = $objItem->styles;
+                        if ($objItem->urlText) {
+                            $arrData['urlText'] = $objItem->urlText;
+                        }
+                        $arrData['highlight'] = (bool)$objItem->highlight;
+                        $arrData['highlightText'] = $objItem->highlightText ?: '';
+                        $objTemplate = new FrontendTemplate('ce_subscription');
+                        $objTemplate->setData($arrData);
+                        echo $objTemplate->parse();
+                    }
+                    ?>
+                <?php endforeach; ?>
+            </div>
+        </div>
+    <?php endif; ?>
+<?php endif; ?>

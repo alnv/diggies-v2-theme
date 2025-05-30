@@ -1,0 +1,48 @@
+<section <?php if ($this->templateId): ?> id="<?= $this->templateId ?>"<?php endif; ?> class="section_cards_v2">
+    <div class="section_cards_v2-container">
+        <div class="section_cards_v2-top_wrapper">
+            <?php if (!empty($this->headline) && $this->headline['value']): ?>
+                <<?= $this->headline['unit'] ?> class="top_wrapper-title"><?= $this->headline['value'] ?></<?= $this->headline['unit'] ?>>
+            <?php endif; ?>
+            <?php if ($this->text): ?>
+                <p class="top_wrapper-description"><?= \strip_tags($this->text, '<a><br><strong>') ?></p>
+            <?php endif; ?>
+        </div>
+        <div id="<?= $this->columns ?>" class="section_cards_v2-cards_wrapper">
+            <?php foreach ($this->cards as $card): ?>
+                <div class="section_cards_v2-card">
+                    <svg class="card-img" width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g clip-path="url(#clip0_1293_979)">
+                        <path d="M28 56C43.464 56 56 43.464 56 28C56 12.536 43.464 0 28 0C12.536 0 0 12.536 0 28C0 43.464 12.536 56 28 56Z" fill="#FFDECC"/>
+                        <path d="M50.0976 15.1774C49.8372 15.0514 49.5474 14.9954 49.2576 14.9954H48.3742V24.2298C48.3742 24.9074 48.0102 25.5458 47.3928 25.8874C47.1058 26.0456 46.7782 26.1184 46.4506 26.1184H43.8116V41.0536H32.1384C29.0486 41.1418 27.7102 41.811 26.5762 43.7388C25.4422 41.8096 24.1038 41.1404 21.014 41.0536H12.1408V43.1536H21.014C24.1038 43.2418 25.4422 43.911 26.5762 45.8388C27.7102 43.9096 29.0486 43.2404 32.1384 43.1536H46.6116V28.2184H49.2506C49.5782 28.2184 49.9058 28.1456 50.1928 27.9874C50.8116 27.6458 51.1742 27.006 51.1742 26.3298V16.884C51.1742 16.1728 50.7738 15.5036 50.0976 15.1774Z" fill="#FF884D" stroke="#FF884D" stroke-linejoin="round"/>
+                        <path d="M9.3394 17.5952H19.1576C21.1246 17.5952 23.0118 18.284 24.402 19.5118C25.7936 20.7382 26.5748 22.4028 26.5748 24.1388V43.7416C25.4408 41.8124 24.1024 41.1432 21.0126 41.0564H9.3394V17.5952Z" fill="white" stroke="#1A0A03" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M43.8116 17.5952H33.9934C32.0264 17.5952 30.1392 18.284 28.749 19.5118C27.3574 20.7382 26.5762 22.4028 26.5762 24.1388V43.7416C27.7102 41.8124 29.0486 41.1432 32.1384 41.0564H43.8116V17.5952Z" fill="white" stroke="#1A0A03" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M48.3742 24.2298C48.3742 24.9074 48.0102 25.5458 47.3928 25.8874C47.1058 26.0456 46.7782 26.1184 46.4506 26.1184H38.913L34.8558 30.1756V26.1184H32.8636C32.039 26.1184 31.3712 25.4506 31.3712 24.626V14.8106C31.3712 14.5208 31.4272 14.2324 31.5532 13.9706C31.8794 13.2944 32.5486 12.894 33.2598 12.894H46.4562C46.746 12.894 47.0344 12.95 47.2962 13.076C47.9724 13.4022 48.3728 14.0714 48.3728 14.7826V24.2284L48.3742 24.2298Z" fill="white" stroke="#1A0A03" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M12.3312 15.6324H19.8884C21.6412 15.6324 23.3226 16.247 24.563 17.3404C25.8034 18.4338 26.4992 19.9178 26.4992 21.4648V40.1324C25.4884 38.4132 24.2942 37.8168 21.5404 37.7384H12.3298V15.6338L12.3312 15.6324Z" fill="white" stroke="#1A0A03" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M40.8394 32.9701H30.6474" stroke="#1A0A03" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M40.8394 36.7108H30.6474" stroke="#1A0A03" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round"/>
+                        </g>
+                        <defs>
+                        <clipPath id="clip0_1293_979">
+                        <rect width="56" height="56" fill="white"/>
+                        </clipPath>
+                        </defs>
+                    </svg>
+                    <div class="card-text_box">
+                        <?php if (!empty($card->headline) && $card->headline['value']): ?>
+                            <<?= $card->headline['unit'] ?> class="card-title"><?= $card->headline['value'] ?></<?= $card->headline['unit'] ?>>
+                        <?php endif; ?>
+                        <?php if ($card->text): ?>
+                            <p class="card-description"><?= \strip_tags($card->text, '<a><br><strong>') ?></p>
+                        <?php endif; ?>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
+        <?php if ($this->linkText && $this->linkUrl): ?>
+            <a href="<?= $this->linkUrl ?>" class="secondary_link link">
+                <p class="secondary_link-text"><?= $this->linkText ?></p>
+            </a>
+        <?php endif; ?>
+    </div>
+</section>

@@ -1,0 +1,123 @@
+.reviews_section {
+    background: var(--Colors-Secondary-orange-50);
+    padding: 0 20px;
+}
+
+.reviews_section-reviews_wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    padding: 80px 20px;
+    border-radius: 24px;
+    border: 1px solid var(--Colors-Neutral-neutral-100);
+    background: #FFF;
+}
+
+.reviews_section-top_wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.top_wrapper-text_box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.reviews_section-title {
+    color: var(--Colors-Neutral-neutral-800);
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 40px; /* 125% */
+    letter-spacing: -0.4px;
+}
+
+.reviews_section-description {
+    text-align: center;
+    color: var(--Colors-Neutral-neutral-800);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px; /* 150% */
+}
+
+.reviews_section-card {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.reviews_section-content{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.reviews_section-quote {
+    color: var(--Colors-Neutral-neutral-800);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px; /* 150% */
+}
+
+.reviews_section-user_box {
+    display: flex;
+    gap: 12px;
+}
+
+.reviews_section-user_image {
+    width: 40px;
+    height: 40px;
+}
+
+.reviews_section-user_info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+@media (min-width: 768px) {
+    .reviews_section {
+        padding: 20px;
+    }
+
+    .reviews_section-reviews_wrapper {
+        gap: 64px;
+        padding: 120px 110px;
+    }
+
+    .reviews_section-top_wrapper {
+        width: 100%;
+        flex-direction: row;
+        padding: 0 20px;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .reviews_section-description {
+        text-align: start;
+    }
+
+    .top_wrapper-text_box {
+        max-width: 70%;
+        align-items: start;
+    }
+
+    .reviews_section-quote {
+        font-size: 20px;
+        font-weight: 600;
+        line-height: 28px; /* 140% */
+    }
+
+    .reviews_section-user_box {
+        gap: 20px;
+    }
+
+    .reviews_section-user_image {
+        width: 64px;
+        height: 64px;
+    }
+}

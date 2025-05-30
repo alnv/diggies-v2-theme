@@ -1,0 +1,82 @@
+<section class="section_price">
+    <?php if (!empty($this->section_headline) && $this->section_headline['value']): ?>
+        <<?= $this->section_headline['unit'] ?> class="section_price-title"><?= $this->section_headline['value'] ?></<?= $this->section_headline['unit'] ?>>
+    <?php endif; ?>
+    <div class="section_price-price_wrapper">
+        <div class="price_wrapper-top_wrapper">
+            <?php if (!empty($this->headline) && $this->headline['value']): ?>
+                <<?= $this->headline['unit'] ?> class="price_wrapper-title"><?= $this->headline['value'] ?></<?= $this->headline['unit'] ?>>
+            <?php endif; ?>
+            <?php if ($this->text): ?>
+                <p class="price_wrapper-description"><?= \strip_tags($this->text, '<a><br><strong>') ?></p>
+            <?php endif; ?>
+        </div>
+        <div class="price_wrapper-cards_wrapper" id="<?= $this->columns ?>">
+            <?php foreach ($this->cards as $card): ?>
+                <div class="price_wrapper-card_wrapper <?= $card->superscription ? 'best_price_wrapper' : '' ?>">
+                    <?php if ($card->superscription): ?>
+                        <div class="price_wrapper-best_text_box">
+                            <p class="price_wrapper-best_text"><?= $card->superscription ?></p>
+                        </div>
+                    <?php endif; ?>
+                    <div class="price_wrapper-card <?= $card->in_row ? 'in-row' : '' ?>">
+                        <div class="price_wrapper-card-title_box">
+                            <div class="price_wrapper-card-titles">
+                                <?php if (!empty($card->headline) && $card->headline['value']): ?>
+                                    <<?= $card->headline['unit'] ?> class="card-title"><?= $card->headline['value'] ?></<?= $card->headline['unit'] ?>>
+                                <?php endif; ?>
+                                <?php if (!empty($card->blue_headline) && $card->blue_headline['value']): ?>
+                                    <<?= $card->blue_headline['unit'] ?> class="card-blue_title"><?= $card->blue_headline['value'] ?></<?= $card->blue_headline['unit'] ?>>
+                                <?php endif; ?>
+                                <?php if (!empty($card->large_headline) && $card->large_headline['value']): ?>
+                                    <<?= $card->large_headline['unit'] ?> class="card-large_title"><?= $card->large_headline['value'] ?></<?= $card->large_headline['unit'] ?>>
+                                <?php endif; ?>
+                            </div>
+                            <div class="card-price_box">
+                                <?php if ($card->price): ?>
+                                    <p class="price"><?= $card->price ?></p>
+                                <?php endif; ?>
+                                <?php if ($card->price_description): ?>
+                                    <p class="price_description"><?= \strip_tags($card->price_description, '<a><br><strong>') ?></p>
+                                <?php endif; ?>
+                            </div>
+                        </div>
+                        <div class="price_wrapper-content_wrapper">
+                            <div class="price_wrapper-content">
+                                <?php foreach ($card->benefits as $benefit): ?>
+                                    <?php if ($benefit->benefit_text): ?>
+                                        <div class="price_wrapper-benefit_wrapper">
+                                            <div class="green_circle">
+                                                <svg width="12" height="9" viewBox="0 0 12 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M11.0859 0.914062C11.2969 1.14844 11.2969 1.5 11.0859 1.71094L4.89844 7.89844C4.66406 8.13281 4.3125 8.13281 4.10156 7.89844L0.914062 4.71094C0.679688 4.5 0.679688 4.14844 0.914062 3.9375C1.125 3.70312 1.47656 3.70312 1.6875 3.9375L4.47656 6.72656L10.2891 0.914062C10.5 0.703125 10.8516 0.703125 11.0625 0.914062H11.0859Z" fill="#1A0A03"/>
+                                                </svg>
+                                            </div>
+                                            <p class="price_wrapper-benefit_text"><?= $benefit->benefit_text ?></p>
+                                        </div>
+                                    <?php endif; ?>
+                                <?php endforeach; ?>
+                                <?php if ($card->card_description): ?>
+                                    <p class="price_wrapper-card_description"><?= $card->card_description ?></p>
+                                <?php endif; ?>
+                            </div>
+                            <div class="price_wrapper-card_links">
+                                <?php foreach ($card->links as $link): ?>
+                                    <?php if ($link->link_text && $link->url): ?>
+                                        <a href="<?= $link->url ?>" class="link <?= $link->class === 'secondary_link' ? 'secondary_link' : 'primary_link' ?>">
+                                            <p class="<?= $link->class === 'secondary_link' ? 'secondary_link' : 'primary_link' ?>-text"><?= $link->link_text ?></p>
+                                            <?php if ($link->arrow): ?>
+                                                <svg width="13" height="12" viewBox="0 0 13 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M12.3516 6.62109L7.97656 10.9961C7.64844 11.3516 7.07422 11.3516 6.74609 10.9961C6.39062 10.668 6.39062 10.0938 6.74609 9.76562L9.61719 6.86719H1.25C0.757812 6.86719 0.375 6.48438 0.375 5.99219C0.375 5.52734 0.757812 5.11719 1.25 5.11719H9.61719L6.74609 2.24609C6.39062 1.91797 6.39062 1.34375 6.74609 1.01562C7.07422 0.660156 7.64844 0.660156 7.97656 1.01562L12.3516 5.39062C12.707 5.71875 12.707 6.29297 12.3516 6.62109Z" fill="#4660E9"/>
+                                                </svg>
+                                            <?php endif; ?>
+                                        </a>
+                                    <?php endif; ?>
+                                <?php endforeach; ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,58 @@
+<section <?php if ($this->templateId): ?> id="<?= $this->templateId ?>"<?php endif; ?> class="section_cards_v3">
+    <div class="section_cards_v3-container <?= $this->section_bg ? 'white_bg' : '' ?>">
+        <div class="section_cards_v3-top_wrapper center">
+            <?php if (!empty($this->headline) && $this->headline['value']): ?>
+                <<?= $this->headline['unit'] ?> class="top_wrapper-title"><?= $this->headline['value'] ?></<?= $this->headline['unit'] ?>>
+            <?php endif; ?>
+            <?php if ($this->text): ?>
+                <p class="top_wrapper-description"><?= \strip_tags($this->text, '<a><br><strong>') ?></p>
+            <?php endif; ?>
+        </div>
+        <div id="<?= $this->columns ?>" class="section_cards_v3-cards_wrapper">
+            <?php foreach ($this->cards as $index => $card): ?>
+                <div class="section_cards_v3-card_v3 <?= $this->img_left ? 'in-row' : '' ?>">
+                    <?php if ($card->image): ?>
+                        {{image::<?= $card->image ?>?alt=&class=section_cards_v3-img <?= $card->text_box_empty ? 'circled' : '' ?>}}
+                    <?php endif; ?>
+                    <div class="card_v3-content <?= $card->center_content ? 'center' : '' ?> <?= $card->text_box_empty ? 'is-hidden' : '' ?> ">
+                        <div class="card_v3-text_box">
+                            <div class="card_v3-title_box">
+                                <?php if ($card->counter): ?>
+                                    <div class="counter_box"><?= $index + 1 ?></div>
+                                <?php endif; ?>
+                                <?php if (!empty($card->headline) && $card->headline['value']): ?>
+                                    <<?= $card->headline['unit'] ?> class="card_v3-title"><?= $card->headline['value'] ?></<?= $card->headline['unit'] ?>>
+                                <?php endif; ?>
+                            </div>
+                            <?php if ($card->text): ?>
+                                <p class="card_v3-description"><?= \strip_tags($card->text, '<a><br><strong>') ?></p>
+                            <?php endif; ?>
+                        </div>
+                        <?php if ($card->link_text && $card->url): ?>
+                            <a href="<?= $card->url ?>" class="link <?= $card->class === 'secondary_link' ? 'secondary_link' : 'primary_link' ?>">
+                                <p class="<?= $card->class === 'secondary_link' ? 'secondary_link' : 'primary_link' ?>-text"><?= $card->link_text ?></p>
+                                <?php if ($card->link_image): ?>
+                                    {{image::<?= $card->link_image ?>?alt=&class=section_hero-img}}
+                                <?php endif; ?>
+                            </a>
+                        <?php endif; ?>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
+        <div class="section_cards_v3-links_wrapper">
+            <?php foreach ($this->links as $link): ?>
+                <?php if ($link->link_text && $link->url): ?>
+                    <a href="<?= $link->url ?>" class="link <?= $link->link_class === 'secondary_link' ? 'secondary_link' : 'primary_link' ?>">
+                        <p class="<?= $link->link_class === 'secondary_link' ? 'secondary_link' : 'primary_link' ?>-text"><?= $link->link_text ?></p>
+                        <?php if ($link->arrow): ?>
+                            <svg width="13" height="12" viewBox="0 0 13 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12.3516 6.62109L7.97656 10.9961C7.64844 11.3516 7.07422 11.3516 6.74609 10.9961C6.39062 10.668 6.39062 10.0938 6.74609 9.76562L9.61719 6.86719H1.25C0.757812 6.86719 0.375 6.48438 0.375 5.99219C0.375 5.52734 0.757812 5.11719 1.25 5.11719H9.61719L6.74609 2.24609C6.39062 1.91797 6.39062 1.34375 6.74609 1.01562C7.07422 0.660156 7.64844 0.660156 7.97656 1.01562L12.3516 5.39062C12.707 5.71875 12.707 6.29297 12.3516 6.62109Z" fill="#4660E9"/>
+                            </svg>
+                        <?php endif; ?>
+                    </a>
+                <?php endif; ?>
+            <?php endforeach; ?>
+        </div>
+    </div>
+</section>
