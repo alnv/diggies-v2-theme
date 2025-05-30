@@ -1,5 +1,7 @@
 <?php
 
+use Contao\FormModel;
+
 return [
     'label' => ['Banner Form: Überschrift, Text, Form', ''],
     'types' => ['content'],
@@ -22,6 +24,23 @@ return [
                 'tl_class' => 'clr',
                 'rte' => 'tinyMCE'
             ]
+        ],
+        'form' => [
+            'label' => ['Formular', ''],
+            'inputType' => 'select',
+            'eval' => [
+                'tl_class' => 'w50',
+                'includeBlancOption' => true
+            ],
+            'options_callback' => function () {
+                $arrForms = [];
+                if ($objForms = FormModel::findAll()) {
+                    while ($objForms->next()) {
+                        $arrForms[$objForms->id] = $objForms->title;
+                    }
+                }
+                return $arrForms;
+            }
         ],
         'links' => [
             'label' => ['Links', ''],

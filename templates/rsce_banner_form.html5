@@ -44,7 +44,10 @@
                     <p class="top_wrapper-description"><?= \strip_tags($this->text, '<a><br><strong>') ?></p>
                 <?php endif; ?>
             </div>
+            <?php if ($this->form): ?>
             <div class="banner_form-form_wrapper">
+                {{insert_form::<?= $this->form ?>}}
+                <!--
                 <div class="banner_form-fields_wrapper">
                     <div class="banner_form-select_btns">
                         <select class="banner_form-select" name="" id="">
@@ -68,7 +71,9 @@
                     </div>
                     <p class="section_search-checkbox_text">Zeige nur diggies mit Vorschau</p>
                 </div>
+                -->
             </div>
+            <?php endif; ?>
             <?php foreach ($this->links as $link): ?>
                 <?php if ($link->link_text && $link->url): ?>
                     <a href="<?= $link->url ?>" class="link <?= $link->class === 'secondary_link' ? 'secondary_link' : 'primary_link' ?>">

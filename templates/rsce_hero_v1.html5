@@ -28,6 +28,6 @@ use App\Helpers\InsertTag;
         </div>
     </div>
     <?php if ($this->image): ?>
-        {{image::<?= $this->image ?>?alt=&class=section_hero-img <?= $this->vissiable_img_mobile ? '' : 'desktop' ?>}}
+        {{image::<?= $this->image ?>?alt=&class=section_hero-img <?= $this->visible_img_mobile ? '' : 'desktop' ?>}}
     <?php endif; ?>
 </section>

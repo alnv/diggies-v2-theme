@@ -35,8 +35,8 @@ return [
                 'extensions' => ($GLOBALS['TL_CONFIG']['validImageTypes'] ?? '')
             ]
         ],
-        'vissiable_img_mobile' => [
-            'label' => ['Vissiable Image in Mobile', ''],
+        'visible_img_mobile' => [
+            'label' => ['Visible Image in Mobile', ''],
             'inputType' => 'checkbox',
             'eval' => [
                 'tl_class' => 'w50 m12'

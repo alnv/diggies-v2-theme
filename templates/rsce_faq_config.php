@@ -3,7 +3,7 @@
 return [
     'label' => ['FAQ', ''],
     'types' => ['content'],
-    'contentCategory' => 'BFT',
+    'contentCategory' => 'DIGGIES',
     'fields' => [
         'image' => [
             'label' => ['Bild', ''],
