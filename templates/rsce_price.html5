@@ -1,4 +1,4 @@
-<section class="section_price">
+<section class="section_price <?= $this->white_section ? 'white_section' : '' ?>">
     <?php if (!empty($this->section_headline) && $this->section_headline['value']): ?>
         <<?= $this->section_headline['unit'] ?> class="section_price-title"><?= $this->section_headline['value'] ?></<?= $this->section_headline['unit'] ?>>
     <?php endif; ?>

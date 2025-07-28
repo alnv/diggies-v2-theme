@@ -5,6 +5,13 @@ return [
     'types' => ['content'],
     'contentCategory' => 'DIGGIES',
     'fields' => [
+        'white_section' => [
+            'label' => ['White Section', ''],
+            'inputType' => 'checkbox',
+            'eval' => [
+                'tl_class' => 'w50 m12'
+            ]
+        ],
         'cards' => [
             'label' => ['Cards', ''],
             'inputType' => 'list',

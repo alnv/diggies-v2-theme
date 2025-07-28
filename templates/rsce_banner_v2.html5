@@ -1,4 +1,4 @@
-<section class="section_banner_v2">
+<section class="section_banner_v2 <?= $this->white_section ? 'white_section' : '' ?>">
     <div class="banner_v2_wrapper">
         <div class="banner_v2_wrapper-content">
             <?php if (!empty($this->headline) && $this->headline['value']): ?>

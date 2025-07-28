@@ -14,7 +14,7 @@
                     <path d="M22.1172 32C21.1724 32.0022 20.2305 31.896 19.3099 31.6833C17.166 31.1801 15.363 30.0988 14.096 28.556C13.9161 28.3369 13.8305 28.0553 13.8582 27.7732C13.8859 27.491 14.0246 27.2314 14.2437 27.0515C14.4628 26.8715 14.7444 26.786 15.0265 26.8137C15.3087 26.8414 15.5683 26.98 15.7482 27.1991C17.8686 29.7807 21.6991 30.2566 24.5551 29.583C26.4997 29.1244 27.9581 28.1502 28.1843 27.1588C28.3787 26.3066 27.59 25.4565 26.8941 24.8935C25.4677 23.7396 24.7294 22.2252 24.8683 20.7385C24.974 19.6088 25.6045 18.6291 26.5547 18.1178C28.2733 17.1928 29.9542 17.9221 30.6766 18.4987C30.6766 18.4987 31.46 19.1434 30.8631 19.981C30.5264 20.4537 29.9636 20.4613 29.6691 20.3515C29.5523 20.3065 29.4424 20.2452 29.3428 20.1695L29.3525 20.1771C29.2627 20.1089 28.4501 19.5256 27.5679 20.0001C27.2445 20.1741 27.0365 20.5157 26.997 20.9373C26.9258 21.699 27.3784 22.5349 28.2387 23.231C30.3559 24.9438 30.5112 26.5708 30.2685 27.634C29.8461 29.4855 27.8937 30.9919 25.0457 31.6636C24.0857 31.888 23.1031 32.0009 22.1172 32Z" fill="#FE6007"/>
                 </svg>
             </a>
-            <div class="navigation-links_wrapper desktop">
+            <div class="navigation-links_wrapper header_desktop">
                 {{insert_module::5}}
                 <!--
                 <a href="{{link_url::2}}" class="navigation-link">{{link_name::2}}</a>
@@ -33,14 +33,14 @@
             </div>
             <a href="{{link_url::4}}" class="primary_link link">
                 <p class="primary_link-text">
-                    <span class="desktop">Jetzt ausprobieren</span>
-                    <span class="mobile">Ausprobieren</span>
+                    <span class="header_desktop">Jetzt ausprobieren</span>
+                    <span class="header_mobile">Ausprobieren</span>
                 </p>
             </a>
-            <a href="{{link_url::12}}" class="secondary_link link desktop">
+            <a href="{{link_url::12}}" class="secondary_link link header_desktop">
                 <p class="secondary_link-text">Anmelden</p>
             </a>
-            <div class="navigation-burger_wrapper mobile">
+            <div class="navigation-burger_wrapper header_header_mobile">
                 <svg class="burger_icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M5 7C5 6.46875 5.4375 6 6 6H18C18.5312 6 19 6.46875 19 7C19 7.5625 18.5312 8 18 8H6C5.4375 8 5 7.5625 5 7ZM5 12C5 11.4688 5.4375 11 6 11H18C18.5312 11 19 11.4688 19 12C19 12.5625 18.5312 13 18 13H6C5.4375 13 5 12.5625 5 12ZM19 17C19 17.5625 18.5312 18 18 18H6C5.4375 18 5 17.5625 5 17C5 16.4688 5.4375 16 6 16H18C18.5312 16 19 16.4688 19 17Z" fill="#1A0A03"/>
                 </svg>

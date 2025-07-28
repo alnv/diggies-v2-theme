@@ -1,4 +1,4 @@
-<section <?php if ($this->templateId): ?> id="<?= $this->templateId ?>"<?php endif; ?> class="section_cards_v3">
+<section <?php if ($this->templateId): ?> id="<?= $this->templateId ?>"<?php endif; ?> class="section_cards_v3 <?= $this->white_section ? 'white_section' : '' ?>">
     <div class="section_cards_v3-container <?= $this->section_bg ? 'white_bg' : '' ?>">
         <div class="section_cards_v3-top_wrapper center">
             <?php if (!empty($this->headline) && $this->headline['value']): ?>

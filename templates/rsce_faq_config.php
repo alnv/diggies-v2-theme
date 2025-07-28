@@ -5,6 +5,13 @@ return [
     'types' => ['content'],
     'contentCategory' => 'DIGGIES',
     'fields' => [
+        'white_section' => [
+            'label' => ['White Section', ''],
+            'inputType' => 'checkbox',
+            'eval' => [
+                'tl_class' => 'w50 m12'
+            ]
+        ],
         'image' => [
             'label' => ['Bild', ''],
             'inputType' => 'fileTree',
@@ -47,6 +54,13 @@ return [
             'minItems' => 1,
             'elementLabel' => '%s. Service',
             'fields' => [
+                'white_section' => [
+                    'label' => ['White Section', ''],
+                    'inputType' => 'checkbox',
+                    'eval' => [
+                        'tl_class' => 'w50 m12'
+                    ]
+                ],
                 'headline' => [
                     'label' => ['Überschrift', ''],
                     'inputType' => 'inputUnit',

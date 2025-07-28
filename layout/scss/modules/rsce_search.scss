@@ -19,8 +19,7 @@
     text-align: center;
     font-size: 28px;
     font-weight: 700;
-    line-height: 32px; /* 114.286% */
-    letter-spacing: -0.4px;
+    line-height: 1.1;
 }
 
 .section_search-description {
@@ -28,7 +27,7 @@
     text-align: center;
     font-size: 16px;
     font-weight: 400;
-    line-height: 24px; /* 150% */
+    line-height: 1.5;
 }
 
 .section_search-search_box {
@@ -100,7 +99,7 @@
     color: var(--Colors-Neutral-neutral-600);
     font-size: 16px;
     font-weight: 500;
-    line-height: 24px; /* 150% */
+    line-height: 1.5;
 }
 
 .section_search-checkbox_wrapper {
@@ -150,7 +149,7 @@
     color: var(--Colors-Neutral-neutral-800);
     font-size: 14px;
     font-weight: 400;
-    line-height: 20px; /* 142.857% */
+    line-height: 1.4;
 }
 
 @media (min-width: 768px) {
@@ -165,7 +164,7 @@
 
     .section_search-title {
         font-size: 40px;
-        line-height: 48px; /* 120% */
+        line-height: 1.2;
     }
 
     .section_search-search_box {

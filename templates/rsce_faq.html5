@@ -1,4 +1,4 @@
-<section<?php if ($this->templateId): ?> id="<?= $this->templateId ?>"<?php endif; ?> class="section_faq">
+<section<?php if ($this->templateId): ?> id="<?= $this->templateId ?>"<?php endif; ?> class="section_faq <?= $this->white_section ? 'white_section' : '' ?>">
     <div class="section_faq-top_wrapper <?= $this->not_center ? 'no-center' : '' ?>">
         <div class="top_wrapper-title_wrapper">
             <?php if ($this->image): ?>

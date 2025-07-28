@@ -1,4 +1,4 @@
-<section <?php if ($this->templateId): ?> id="<?= $this->templateId ?>"<?php endif; ?> class="section_search">
+<section <?php if ($this->templateId): ?> id="<?= $this->templateId ?>"<?php endif; ?> class="section_search <?= $this->white_section ? 'white_section' : '' ?>">
     <div class="section_search-top_box">
         <?php if (!empty($this->headline) && $this->headline['value']): ?>
             <<?= $this->headline['unit'] ?> class="section_search-title"><?= $this->headline['value'] ?></<?= $this->headline['unit'] ?>>

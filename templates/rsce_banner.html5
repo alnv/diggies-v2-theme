@@ -1,4 +1,4 @@
-<section class="section_banner">
+<section class="section_banner <?= $this->white_section ? 'white_section' : '' ?>">
     <div class="section_banner-banner_wrapper <?= $this->background ?> <?= $this->image ? '' : 'default_img' ?>">
         <div class="banner_wrapper-content">
             <?php if ($this->image): ?>

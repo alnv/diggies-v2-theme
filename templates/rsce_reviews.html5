@@ -5,7 +5,7 @@
 $uniqueId = uniqid('slider_');
 ?>
 
-<section class="reviews_section" <?php if ($this->templateId): ?> id="<?= $this->templateId ?>"<?php endif; ?>>
+<section class="reviews_section <?= $this->white_section ? 'white_section' : '' ?>" <?php if ($this->templateId): ?> id="<?= $this->templateId ?>"<?php endif; ?>>
     <div class="reviews_section-reviews_wrapper">
         <div class="reviews_section-top_wrapper">
             <div class="top_wrapper-text_box">

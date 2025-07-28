@@ -5,7 +5,7 @@
 $uniqueId = uniqid('slider_');
 ?>
 
-<section class="section_slider_v3">
+<section class="section_slider_v3 <?= $this->white_section ? 'white_section' : '' ?>">
     <div class="section_slider_v3-top_wrapper">
         <div class="section_slider_v3-info_box">
             <div class="section_slider_v3-tags_wrapper">

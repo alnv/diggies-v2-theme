@@ -1,4 +1,4 @@
-<section <?php if ($this->templateId): ?> id="<?= $this->templateId ?>"<?php endif; ?> class="section_cards_v4">
+<section <?php if ($this->templateId): ?> id="<?= $this->templateId ?>"<?php endif; ?> class="section_cards_v4 <?= $this->white_section ? 'white_section' : '' ?>">
     <div class="section_cards_v3-container <?= $this->section_bg ? 'white_bg' : '' ?>">
         <div class="section_cards_v3-top_wrapper center">
             <?php if (!empty($this->headline) && $this->headline['value']): ?>
@@ -12,7 +12,7 @@
             <?php foreach ($this->cards as $card): ?>
                 <div class="section_cards_v3-card_v4 <?= $this->img_left ? 'in-row' : '' ?> <?= $this->center_img ? 'center_img' : '' ?> <?= $card->bg_color ?: 'default' ?>">
                     <?php if ($card->image): ?>
-                        {{image::<?= $card->image ?>?alt=&class=section_cards_v3-img}}
+                        {{image::<?= $card->image ?>?alt=&class=section_cards_v4-img}}
                     <?php else: ?>
                         <svg class="section_cards_v3-deafult_img" xmlns="http://www.w3.org/2000/svg" width="50" height="46" viewBox="0 0 50 46" fill="none">
                             <path d="M12.4377 15.3305C15.7044 15.7972 19.2433 19.025 20.6044 20.5805V43.9137C19.0489 42.9415 15.3544 40.647 13.0211 39.247C10.6877 37.847 7.38219 38.2748 6.02108 38.6637L5.43774 15.3305C6.40997 15.1361 9.17108 14.8639 12.4377 15.3305Z" fill="#E0E6FF"/>

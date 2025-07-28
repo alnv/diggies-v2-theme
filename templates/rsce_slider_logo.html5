@@ -5,7 +5,7 @@
 $uniqueId = uniqid('slider_');
 ?>
 
-<section class="section_slider_logo" <?php if ($this->templateId): ?> id="<?= $this->templateId ?>"<?php endif; ?>>
+<section class="section_slider_logo <?= $this->white_section ? 'white_section' : '' ?>" <?php if ($this->templateId): ?> id="<?= $this->templateId ?>"<?php endif; ?>>
     <div class="section_slider_v2-top_wrapper">
         <div class="section_slider_logo-info_box">
             <?php if (!empty($this->headline) && $this->headline['value']): ?>

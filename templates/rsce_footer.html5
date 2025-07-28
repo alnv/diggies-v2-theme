@@ -1,4 +1,4 @@
-<footer class="footer">
+<footer class="footer  <?= $this->white_section ? 'white_section' : '' ?>">
     <div class="footer-top_wrapper">
         <?php foreach ($this->cards as $card): ?>
             <div class="top_wrapper-column">

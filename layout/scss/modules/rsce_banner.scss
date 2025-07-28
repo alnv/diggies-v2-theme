@@ -28,7 +28,7 @@
         color: var(--Colors-Neutral-neutral-800);
         font-size: 32px;
         font-weight: 700;
-        line-height: 40px; /* 125% */
+        line-height: 1.25;
         letter-spacing: -0.4px;
     }
 
@@ -37,17 +37,17 @@
         text-align: start;
         font-size: 16px;
         font-weight: 400;
-        line-height: 24px; /* 150% */
+        line-height: 1.5;
     }
 }
 
 @media (min-width: 768px) {
     .section_banner {
-        padding: 32px 20px;
+        padding: 32px 20px !important;
     }
 
     .section_banner-banner_wrapper {
-        padding: 120px 110px;
+        padding: 120px 110px !important;
         align-items: end;
     }
 

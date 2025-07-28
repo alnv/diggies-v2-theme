@@ -1,4 +1,4 @@
-<section <?php if ($this->templateId): ?> id="<?= $this->templateId ?>"<?php endif; ?> class="section_cards_v1">
+<section <?php if ($this->templateId): ?> id="<?= $this->templateId ?>"<?php endif; ?> class="section_cards_v1 <?= $this->white_section ? 'white_section' : '' ?>">
     <div class="section_cards_v1-cards_wrapper">
         <?php foreach ($this->cards as $card): ?>
             <div class="section_cards_v1-card">

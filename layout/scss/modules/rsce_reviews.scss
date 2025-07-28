@@ -32,8 +32,7 @@
     color: var(--Colors-Neutral-neutral-800);
     font-size: 32px;
     font-weight: 700;
-    line-height: 40px; /* 125% */
-    letter-spacing: -0.4px;
+    line-height: 1.25;
 }
 
 .reviews_section-description {
@@ -41,7 +40,7 @@
     color: var(--Colors-Neutral-neutral-800);
     font-size: 16px;
     font-weight: 400;
-    line-height: 24px; /* 150% */
+    line-height: 1.5;
 }
 
 .reviews_section-card {
@@ -60,7 +59,7 @@
     color: var(--Colors-Neutral-neutral-800);
     font-size: 16px;
     font-weight: 400;
-    line-height: 24px; /* 150% */
+    line-height: 1.5;
 }
 
 .reviews_section-user_box {
@@ -82,11 +81,14 @@
 @media (min-width: 768px) {
     .reviews_section {
         padding: 20px;
+        display: flex;
+        justify-content: center;
     }
 
     .reviews_section-reviews_wrapper {
         gap: 64px;
         padding: 120px 110px;
+        max-width: 1400px;
     }
 
     .reviews_section-top_wrapper {
@@ -109,7 +111,7 @@
     .reviews_section-quote {
         font-size: 20px;
         font-weight: 600;
-        line-height: 28px; /* 140% */
+        line-height: 1.4;
     }
 
     .reviews_section-user_box {
