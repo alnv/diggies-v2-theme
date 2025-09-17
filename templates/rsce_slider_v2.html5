@@ -110,7 +110,7 @@ $uniqueId = uniqid('slider_');
         </div>
     <?php else: ?>
         <div class="section_slider_v2-splide_wrapper">
-            <div class="splide splide_v2_<?= $uniqueId ?>" role="group" aria-label="Splide Basic HTML Example">
+            <div class="splide splide_v2_<?= $uniqueId ?>" role="group" aria-label="">
                 <div class="splide__track">
                     <ul class="splide__list">
                         <?php foreach ($this->cards as $card): ?>

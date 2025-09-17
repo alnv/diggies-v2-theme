@@ -1,0 +1,50 @@
+<?php
+
+$arrCards = [];
+
+foreach ($this->entities as $arrEntity) {
+    $objCard = new stdClass();
+
+    if ($this->cmTable == 'cm_diggies') {
+        $objCard->image = $arrEntity['images'][0]['uuid'] ?? '';
+        $objCard->category = $arrEntity['types'][0]['label'] ?? '';
+        $objCard->card_type = '';
+        $objCard->headline = $arrEntity['name'] ?? '';
+        $objCard->date = '';
+        $objCard->description = '';
+        $objCard->tags = [];
+        $objCard->lesson_icons = [];
+        $objCard->links = [];
+    }
+
+    if ($this->cmTable == 'cm_blog') {
+        $objCard->image = $arrEntity['image'][0]['uuid'] ?? '';
+        $objCard->category = '';
+        $objCard->card_type = $arrEntity['categories'][0]['label'] ?? '';
+        $objCard->headline = $arrEntity['title'] ?? '';
+        $objCard->date = '';
+        $objCard->description = $arrEntity['teaser'] ?? '';
+        $objCard->tags = [];
+        $objCard->lesson_icons = [];
+        $objCard->links = [];
+    }
+
+    $arrCards[] = $objCard;
+}
+
+$objTemplate = new \Contao\FrontendTemplate('rsce_slider_v2');
+$objTemplate->setData([
+    'templateId' => '',
+    'white_section' => false,
+    'top_center' => false,
+    'headline' => [
+        'value' => $this->headline,
+        'unit' => $this->hl
+    ],
+    'text' => $this->text,
+    'grid_box' => false,
+    'cards' => $arrCards
+]);
+echo $objTemplate->parse();
+?>
+<?php // dd($this->entities); ?>

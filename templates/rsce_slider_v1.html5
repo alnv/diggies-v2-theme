@@ -71,8 +71,8 @@
         </div>
     </div>
     <?php if ($this->linkText && $this->linkUrl): ?>
-        <a href="<?= $this->linkUrl ?>" class="link <?= $link->class === 'secondary_link' ? 'secondary_link' : 'primary_link' ?>">
-            <p class="<?= $link->class === 'secondary_link' ? 'secondary_link' : 'primary_link' ?>-text"><?= $this->linkText ?></p>
+        <a href="<?= $this->linkUrl ?>" class="link <?= $this->class === 'secondary_link' ? 'secondary_link' : 'primary_link' ?>">
+            <p class="<?= $this->class === 'secondary_link' ? 'secondary_link' : 'primary_link' ?>-text"><?= $this->linkText ?></p>
         </a>
     <?php endif; ?>
 </section>
