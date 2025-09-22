@@ -1,0 +1,53 @@
+<?php
+use Contao\StringUtil;
+use Alnv\ContaoCatalogManagerBundle\Helper\Toolkit;
+?>
+<div class="catalog-result">
+    <div class="catalog-result-container">
+        <div class="catalog-image">
+            <figure class="zoom-image">
+                <?php if (!empty($this->images)): ?>
+                    <?= ($this->images[0]['thumb']??'') ?>
+                <?php endif; ?>
+            </figure>
+        </div>
+        <div class="catalog-content">
+            <div class="content-container">
+                <h3><?= $this->name ?></h3>
+                <p>
+                    <?php foreach ($this->types as $arrType): ?>
+                        <span class="tag <?= $arrType['class'] ?>"><?= $arrType['label'] ?></span>
+                    <?php endforeach; ?>
+                </p>
+                <p class="teaser"><?= StringUtil::substr($this->teaser, 340) ?></p>
+                <div class="catalog-buttons">
+                    <?php if ($this->masterUrl): ?>
+                        <a href="<?= $this->masterUrl ?>" class="button profile">Steckbrief →</a>
+                    <?php endif; ?>
+                </div>
+                <div class="catalog-tags">
+                    <ul>
+                        <?php if (!empty($this->classLevels)): ?>
+                            <li><?= Toolkit::parse($this->classLevels) ?></li>
+                        <?php endif; ?>
+                        <?php if (!$this->lessonDuration): ?>
+                            <li><?= $this->lessonDuration ?> min</li>
+                        <?php endif; ?>
+                        <?php if (!empty($this->subjects)): ?>
+                            <?php foreach ($this->subjects as $arrSubject): ?>
+                                <li><?= $arrSubject['label'] ?></li>
+                            <?php endforeach;?>
+                        <?php endif; ?>
+                    </ul>
+                </div>
+                <div class="catalog-features">
+                    <ul>
+                        <?php foreach ($this->features as $arrFeature): ?>
+                            <li class="<?= $arrFeature['class'] ?>"><span><?= $arrFeature['label'] ?></span></li>
+                        <?php endforeach; ?>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
