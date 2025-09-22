@@ -1,0 +1,608 @@
+<?php
+
+use Contao\Input;
+use Contao\Combiner;
+use App\Library\Labels;
+use App\Helpers\Getters;
+
+global $objPage;
+
+$objCombiner = new Combiner();
+$objCombiner->add('layout/js/vue/vue.min.js');
+$objCombiner->add('layout/js/vue/vue-resource.min.js');
+$objCombiner->add('layout/js/autocomplete.min.js');
+$GLOBALS['TL_JAVASCRIPT']['vue'] = $objCombiner->getCombinedFile();
+
+$arrSubjects = (new Getters())->getOptions('subjects');
+$arrTypes = (new Getters())->getOptions('types');
+$arrFeatures = (new Getters())->getOptions('features');
+$arrFormSubjects = (new Getters())->getFormSubjects();
+$arrForClassLevels = (new Getters())->getFormClassLevels();
+
+$strContents = '';
+$strAlias = '';
+
+/*
+if ($objPage->id == '75' && ($strActiveUrlFragment = Input::get('catalog'))) {
+
+    $arrCatalogItem = (new Getters())->getCatalogItemByUrlFragment($strActiveUrlFragment);
+    if (!empty($arrCatalogItem)) {
+
+        $objPage->pageTitle = $arrCatalogItem['seoTitle'] ?: $objPage->pageTitle;
+        $objPage->description = strip_tags(($arrCatalogItem['seoDescription'] ?: $objPage->description));
+
+        $objPage->og_title = $objPage->pageTitle;
+        $objPage->og_description = $objPage->description;
+        $GLOBALS['TL_HEAD']['search:type'] = '<meta name="search:type" content="catalog"/>';
+
+        foreach ($arrCatalogItem as $strField => $varValue) {
+            $this->{$strField} = $varValue ?: '';
+        }
+
+        $strAlias = $arrCatalogItem['alias'];
+        $strContents = $arrCatalogItem['contents'] ?? '';
+
+        Input::setGet($strAlias, $strActiveUrlFragment);
+    }
+}
+*/
+
+?>
+<!-- indexer::stop -->
+<div id="id-catalog-list-<?= $this->id ?>" class="ce_catalog block">
+
+    <div class="catalog-container">
+        <div class="catalog-form">
+
+            <div class="ce_text block">
+                <div class="content_container">
+                <?php if (!empty($this->headline) && $this->headline['value']): ?>
+                    <<?= $this->headline['unit'] ?> class="headline"><?= $this->headline['value'] ?></<?= $this->headline['unit'] ?>>
+                <?php endif; ?>
+
+                <div class="rte">
+                    <?= $this->text ?>
+                </div>
+
+                <?php if (!empty($this->tags)): ?>
+                    <div class="catalog-tags">
+                        <p class="sub-tag-headline"><?= Labels::getLabel('diggie.list.tags.headline', 'Beliebte Themen:') ?></p>
+                        <ul>
+                        <?php foreach ($this->tags as $strTag): ?>
+                            <li><?= $strTag ?></li>
+                        <?php endforeach; ?>
+                        </ul>
+                    </div>
+                    <?php endif; ?>
+                </div>
+            </div>
+
+            <div class="form-container-top" v-show="!initial">
+                <div class="filter-form">
+                    <label for="autoComplete" class="search-icon"><svg width="32" height="33" viewBox="0 0 32 33" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14.6667 25.7445C20.5577 25.7445 25.3333 20.9688 25.3333 15.0778C25.3333 9.18676 20.5577 4.41113 14.6667 4.41113C8.77563 4.41113 4 9.18676 4 15.0778C4 20.9688 8.77563 25.7445 14.6667 25.7445Z" stroke="#E0E6FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M27.9992 28.4113L22.1992 22.6113" stroke="#E0E6FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></label>
+                    <input id="autoComplete" type="search" dir="ltr" @keyup="search" v-model="params.search" spellcheck=false autocorrect="off" autocomplete="off" autocapitalize="off" tabindex="1" v-bind:class="{searching: loading}">
+                </div>
+            </div>
+
+            <div class="form-container-bottom<?= ($strAlias?' columns-4':'') ?>" ref="catalog-results" v-show="!initial">
+
+                <?php if ($strAlias != 'classLevels'): ?>
+                <div class="filter-form select-checkbox">
+                    <button class="select-menu" @click="toggleSelectMenu">
+                        <?= Labels::getLabel('catalog.filter.classLevels', 'Klassenstufe') ?>
+                    </button>
+                    <div class="checkbox-container">
+                        <div class="checkbox" v-for="classLevel in filter.classLevels">
+                            <input :id="'classlevel-' + classLevel" type="checkbox" v-model="params.classLevels" :value="classLevel">
+                            <label :for="'classlevel-' + classLevel">{{ classLevel }}</label>
+                        </div>
+                    </div>
+                </div>
+                <?php endif; ?>
+
+                <?php if ($strAlias != 'subjects'): ?>
+                <div class="filter-form select-checkbox">
+                    <button class="select-menu" @click="toggleSelectMenu">
+                        <?= Labels::getLabel('catalog.filter.subjects', 'Fächer') ?>
+                    </button>
+                    <div class="checkbox-container">
+                        <div class="checkbox" v-for="(label,val) in filter.subjects">
+                            <input :id="'subject-' + val" type="checkbox" v-model="params.subjects" :value="val">
+                            <label :for="'subject-' + val">{{ label }}</label>
+                        </div>
+                    </div>
+                </div>
+                <?php endif; ?>
+
+                <?php if ($strAlias != 'types'): ?>
+                <div class="filter-form select-checkbox">
+                    <button class="select-menu" @click="toggleSelectMenu">
+                        <?= Labels::getLabel('catalog.filter.types', 'diggie-Typ') ?>
+                    </button>
+                    <div class="checkbox-container">
+                        <div class="checkbox" v-for="(label,val) in filter.types">
+                            <input :id="'type-' + val" type="checkbox" v-model="params.types" :value="val">
+                            <label :for="'type-' + val">{{ label }}</label>
+                        </div>
+                    </div>
+                </div>
+                <?php endif; ?>
+
+                <div class="filter-form select-checkbox">
+                    <button class="select-menu" @click="toggleSelectMenu">
+                        <?= Labels::getLabel('catalog.filter.features', 'Merkmale') ?>
+                    </button>
+                    <div class="checkbox-container">
+                        <div class="checkbox" v-for="(label,val) in filter.features">
+                            <input :id="'feature-' + val" type="checkbox" v-model="params.features" :value="val">
+                            <label :for="'feature-' + val">{{ label }}</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="filter-buttons">
+                    <button @click="triggerFetch" class="button secondary"><?= Labels::getLabel('catalog.filter.button', 'Suche starten') ?></button>
+                    <button @click="resetParams" class="button ghosted"><span><?= Labels::getLabel('catalog.filter.reset', 'Filter zurücksetzen') ?></span><svg width="21" height="23" viewBox="0 0 21 23" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_2881_7497)"><path d="M14.875 1.87549L18.375 5.37549L14.875 8.87549" stroke="#4660E9" stroke-width="2.33" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.625 10.6255V8.87549C2.625 7.94723 2.99375 7.05699 3.65013 6.40061C4.3065 5.74424 5.19674 5.37549 6.125 5.37549H18.375" stroke="#4660E9" stroke-width="2.33" stroke-linecap="round" stroke-linejoin="round"/><path d="M6.125 21.1255L2.625 17.6255L6.125 14.1255" stroke="#4660E9" stroke-width="2.33" stroke-linecap="round" stroke-linejoin="round"/><path d="M18.375 12.3755V14.1255C18.375 15.0537 18.0063 15.944 17.3499 16.6004C16.6935 17.2567 15.8033 17.6255 14.875 17.6255H2.625" stroke="#4660E9" stroke-width="2.33" stroke-linecap="round" stroke-linejoin="round"/></g><defs><clipPath id="clip0_2881_7497"><rect width="21" height="22" fill="white" transform="translate(0 0.675781)"/></clipPath></defs></svg></button>
+                </div>
+
+                <div class="filter-preview">
+                    <span class="switch" @click="togglePreview()">
+                        <input type="checkbox" v-model="params.preview" id="preview">
+                        <span class="slider round"></span>
+                    </span>
+                    <label for="preview"><?= Labels::getLabel('catalog.filter.preview', 'zeige nur diggies mit Vorschau') ?></label>
+                </div>
+            </div>
+        </div>
+
+        <div class="catalog-panel" v-show="!initial">
+            <p><?= Labels::getLabel('catalog.search.results', 'Suchergebnis:') ?> <span>{{ total }}</span> <?= Labels::getLabel('catalog.search.found', 'gefundene diggies:') ?></p><p><?= Labels::getLabel('catalog.search.interest', 'Interessiert?') ?> <a href="<?= Labels::getLabel('catalog.link.test.url', '#') ?>"><?= Labels::getLabel('catalog.link.test.label', 'Kostenlos testen →') ?></a></p>
+        </div>
+
+        <div class="catalog-results" v-if="catalogs.length">
+            <div v-for="catalog in catalogs" class="catalog-result">
+                <div class="catalog-result-container">
+                    <div class="catalog-image">
+                        <a :href="catalog.masterUrl" title="">
+                            <figure v-if="getImage(catalog.images)" v-html="getImage(catalog.images)" class="zoom-image"></figure>
+                        </a>
+                    </div>
+                    <div class="catalog-content">
+                        <div class="content-container">
+                            <h3>{{ catalog.name }}</h3>
+                            <p v-if="catalog.types.length"><span :class="'tag '+ type.class" v-for="type in catalog.types">{{ type.label }}</span></p>
+                            <p v-if="catalog.teaser" class="teaser">{{ truncateText(catalog.teaser, 340) }}</p>
+                            <div class="preview-button">
+                                <a v-if="catalog.previewMode" target="_blank" :href="catalog.previewUrl" class="button secondary">
+                                    <svg width="23" height="22" viewBox="0 0 23 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <g clip-path="url(#clip0_10067_43669)">
+                                            <path d="M1.41602 11C1.41602 11 5.08268 3.66666 11.4993 3.66666C17.916 3.66666 21.5827 11 21.5827 11C21.5827 11 17.916 18.3333 11.4993 18.3333C5.08268 18.3333 1.41602 11 1.41602 11Z" stroke="white" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <path d="M11.5 13.75C13.0188 13.75 14.25 12.5188 14.25 11C14.25 9.48122 13.0188 8.25 11.5 8.25C9.98122 8.25 8.75 9.48122 8.75 11C8.75 12.5188 9.98122 13.75 11.5 13.75Z" stroke="white" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </g>
+                                        <defs>
+                                            <clipPath id="clip0_10067_43669">
+                                                <rect width="22" height="22" fill="white" transform="translate(0.5)"/>
+                                            </clipPath>
+                                        </defs>
+                                    </svg>
+                                    <?= Labels::getLabel('catalog.button.preview', 'Vorschau') ?>
+                                </a>
+                            </div>
+                            <div class="catalog-buttons">
+                                <a :href="catalog.masterUrl" class="button profile"><?= Labels::getLabel('catalog.button.profile', 'Steckbrief →') ?></a>
+                            </div>
+                            <div class="catalog-tags">
+                                <ul>
+                                    <li v-if="catalog.classLevels.length"><template v-for="(classLevel,index) in catalog.classLevels">{{ classLevel.label }}<span v-if="index !== (catalog.classLevels.length-1)">-</span></template></li>
+                                    <li v-if="catalog.lessonDuration">{{ catalog.lessonDuration }} min</li>
+                                    <li v-if="catalog.subjects.length" v-for="subject in catalog.subjects">{{ subject.label }}</li>
+                                </ul>
+                            </div>
+                            <div class="catalog-features">
+                                <ul>
+                                    <li v-if="catalog.features.length" v-for="feature in catalog.features" :class="feature.class"><span>{{ feature.label }}</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div v-if="loading" class="loading">
+            <img src="/system/themes/flexible/icons/loading.svg" alt="">
+        </div>
+    </div>
+
+    <div v-if="pagination" class="ce_pagination block" ref="pagination" v-html="pagination"></div>
+
+    <?php if ($this->formEmail && !$strContents): ?>
+    <div :class="'ce_contact-form '+ form.state" v-if="!loading && !initial" id="diggies-vorschlagen">
+        <div class="contact-form-container">
+            <?php if ($this->formImage): ?>
+                <div class="contact-form-image">
+                    {{image::<?= $this->formImage ?>?mode=crop&width=186&height=186}}
+                </div>
+            <?php endif; ?>
+            <div class="contact-form-content">
+                <div class="contact-form-text">
+                    <h4 v-html="form.current.headline"></h4>
+                    <p v-html="form.current.text"></p>
+                    <p class="note"><i>*</i> Pflichtfeld</p>
+                </div>
+                <div class="contact-form-again">
+                    <button class="button ghosted" @click.prevent="showSubmitForm"><?= Labels::getLabel('catalog.contact.form.button.again', 'Neuer Vorschlag') ?></button>
+                </div>
+                <div class="contact-form-form">
+                    <div class="form">
+                        <div class="filter-form-rows column-1">
+                            <div class="filter-form textarea">
+                                <textarea v-model="request.message" placeholder="<?= Labels::getLabel('catalog.contact.form.message', 'Vorschlag') ?> *"></textarea>
+                            </div>
+                        </div>
+                        <div class="filter-form-rows column-3">
+                            <div class="filter-form select-checkbox">
+                                <button class="select-menu" @click="toggleSelectMenu"><?= Labels::getLabel('catalog.contact.form.subjects', 'Schulfach auswählen') ?> *</button>
+                                <div class="checkbox-container">
+                                    <div class="checkbox" v-for="(label,val) in form.options.subjects">
+                                        <input :id="'req-subject-' + val" type="checkbox" v-model="request.subjects" :value="label">
+                                        <label :for="'req-subject-' + val">{{ label }}</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="filter-form select-checkbox">
+                                <button class="select-menu" @click="toggleSelectMenu"><?= Labels::getLabel('catalog.contact.form.classLevels', 'Klassenstufe') ?> *</button>
+                                <div class="checkbox-container">
+                                    <div class="checkbox" v-for="(label,val) in form.options.classLevels">
+                                        <input :id="'req-classlevel-' + val" type="checkbox" v-model="request.classLevels" :value="label">
+                                        <label :for="'req-classlevel-' + val">{{ label }}</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="filter-form text">
+                                <input type="email" v-model="request.email" placeholder="<?= Labels::getLabel('catalog.contact.form.email', 'E-Mail für Rückfragen (optional)') ?>">
+                            </div>
+                        </div>
+                        <div class="filter-form-rows column-2">
+                            <div class="filter-form checkbox">
+                                <input type="checkbox" v-model="request.consent" value="1" id="consent">
+                                <label for="consent"><?= Labels::getLabel('catalog.contact.form.consent', 'Ich habe die <a href="{{link_url::44}}" target="_blank">Datenschutzbestimmungen</a> gelesen und erkenne diese ausdrücklich an.') ?>*</label>
+                            </div>
+                            <div class="filter-form submit" v-bind:class="{disabled: formSubmitDisabled}">
+                               <button class="button secondary" @click.prevent="submitForm" :disabled="formSubmitDisabled"><?= $this->formButton ?></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <?php endif; ?>
+</div>
+<!-- indexer::continue -->
+
+<?php if ($strContents): ?>
+    <div class="ce_space block large with-border" style="margin-bottom:30px;max-width: 1024px;margin-right:auto;margin-left:auto"></div>
+    <?= $strContents ?>
+<?php endif; ?>
+
+<script>
+    (function () {
+
+        let objState = {
+            params: {
+                search: "",
+                classLevels: <?= Input::get('classLevels') ? '['. (new Getters())->getClassLevelsFragUrlFragment(Input::get('classLevels')) .']' : '[]' ?>,
+                subjects: <?= Input::get('subjects') ? '["'. Input::get('subjects') .'"]' : '[]' ?>,
+                types: <?= Input::get('types') ? '["'. Input::get('types') .'"]' : '[]' ?>,
+                features: [],
+                preview: ''
+            },
+            profile: {
+                name: "",
+                description: "",
+                classLevels: [],
+                subjects: []
+            },
+            initial: true,
+            loading: false,
+            // popUp: false,
+            timeout: null,
+            catalogs: [],
+            total: 0,
+            pagination: '',
+            slider: null,
+            autoCompleteJS: null,
+            filter: {
+                subjects: <?= \json_encode($arrSubjects, 0, 512) ?>,
+                types: <?= \json_encode($arrTypes, 0, 512) ?>,
+                features: <?= \json_encode($arrFeatures, 0, 512) ?>,
+                classLevels: [5, 6, 7, 8, 9, 10]
+            },
+            request: {
+                id: "<?= $this->id ?>",
+                title: "",
+                subjects: [],
+                classLevels: []
+            },
+            formSubmitDisabled: true,
+            form: {
+                state: 'checkin',
+                headlines: [
+                    "<?= $this->formHeadline ?>",
+                    "<?= $this->formHeadline2 ?>"
+                ],
+                text: [
+                    "<?= strip_tags(str_replace(array("\r", "\n"), '', $this->formText)) ?>",
+                    "<?= strip_tags(str_replace(array("\r", "\n"), '', $this->formText2)) ?>"
+                ],
+                current: {
+                    headline: "",
+                    text: ""
+                },
+                options: {
+                    subjects: <?= \json_encode($arrFormSubjects, 0, 512) ?>,
+                    classLevels: <?= \json_encode($arrForClassLevels, 0, 512) ?>
+                }
+            }
+        };
+
+        new Vue({
+            el: '#id-catalog-list-<?= $this->id ?>',
+            data: objState,
+            methods: {
+                fetch: function (url) {
+                    this.loading = true;
+                    if (!url) {
+                        url = '/catalog-manager/json-listing/6/5?search=' + this.params.search;
+                    }
+                    this.$http.post(url, this.params,
+                        {
+                            emulateJSON: true,
+                            'Content-Type': 'application/x-www-form-urlencoded'
+                        }
+                    ).then(function (res) {
+                        this.catalogs = this.parse(res.body.results);
+                        this.total = res.body.limit ? res.body.limit : 0;
+                        this.pagination = res.body.pagination;
+                        setTimeout(function () {
+                            this.setPagination();
+                            this.loading = false;
+                            this.initial = false;
+                        }.bind(this), 50);
+                    }.bind(this));
+                },
+                isValidSubmit: function () {
+                    return this.request.message && this.request.consent && this.request.subjects.length && this.request.classLevels.length;
+                },
+                submitForm: function () {
+                    if (!this.isValidSubmit()) {
+                        return;
+                    }
+                    this.$http.post('diggies/contact', this.request,
+                        {
+                            emulateJSON: true,
+                            'Content-Type': 'application/x-www-form-urlencoded'
+                        }
+                    ).then(function () {
+                        this.setFormContent(1);
+                        this.request.message = "";
+                        this.request.email = "";
+                        this.request.consent = "";
+                        this.request.subjects = [];
+                        this.request.classLevels = [];
+                        this.form.state = "checkout";
+                    }.bind(this));
+                },
+                showSubmitForm: function () {
+                    this.setFormView();
+                },
+                setFormView: function () {
+                    this.setFormContent(0);
+                    this.form.state = "checkin";
+                },
+                triggerFetch: function () {
+                    this.fetch('');
+                },
+                setPagination: function () {
+                    let self = this;
+                    if (!this.$refs.pagination) {
+                        return;
+                    }
+                    let links = this.$refs.pagination.querySelectorAll('a');
+                    for (let i = 0; i < links.length; i++) {
+                        links[i].addEventListener('click', function (e) {
+                            e.preventDefault();
+                            self.fetch(this.href);
+                            self.$refs['catalog-results'].scrollIntoView();
+                            return false;
+                        })
+                    }
+                },
+                toggleSelectMenu: function (e) {
+                    if (e.target.parentNode.classList.contains('active')) {
+                        e.target.parentNode.classList.remove('active');
+                    } else {
+                        e.target.parentNode.classList.add('active');
+                    }
+                },
+                truncateText: function (txt, maxChars) {
+                    if (txt.length > maxChars) {
+                        txt = txt.substr(0,maxChars) + '…';
+                    }
+                    return txt;
+                },
+                togglePreview: function () {
+                    this.params.preview = (this.params.preview ? '' : '1');
+                    this.fetch('');
+                },
+                resetParams: function () {
+                    this.params.search = "";
+                    this.params.classLevels = [];
+                    this.params.subjects = [];
+                    this.params.features = [];
+                    this.params.types = [];
+                    this.fetch('')
+                },
+                search: function() {
+                    clearTimeout(this.timeout);
+                    this.timeout = setTimeout(function () {
+                        this.fetch('');
+                    }.bind(this), 800);
+                },
+                getImage: function (images) {
+                    if (!images) {
+                        return ''
+                    }
+                    if (!images.length) {
+                        return '';
+                    }
+                    return images[0]['thumb'];
+                },
+                parse: function (catalogs) {
+                    let results = [];
+                    for (let i=0;i<catalogs.length;i++) {
+                        let catalog = catalogs[i];
+                            catalog.active = false;
+                        results.push(catalog);
+                    }
+                    return results;
+                },
+                setSlider: function () {
+                    if (this.slider) {
+                        this.slider.destroy();
+                    }
+                    this.slider = new Splide('#id-profile-slider-<?= $this->id ?>', {
+                        type: 'loop',
+                        perMove: 1,
+                        perPage: 1
+                    })
+                    this.slider.mount();
+                },
+                submit: function () {
+                    let cursor = this.autoCompleteJS.feedback.hasOwnProperty('cursor') ? this.autoCompleteJS.feedback.cursor : this.autoCompleteJS.feedback.selection.index;
+                    let match = this.autoCompleteJS.feedback.matches[cursor] ? this.autoCompleteJS.feedback.matches[cursor] : '';
+                    if (match) {
+                        this.params.search = match.value;
+                    }
+                    this.fetch('')
+                },
+                setFormContent: function (index) {
+                    this.form.current.headline = this.form.headlines[index];
+                    this.form.current.text = this.form.text[index];
+                },
+                setAutoComplete: function () {
+                    let self = this;
+                    this.autoCompleteJS = new autoComplete({
+                        placeHolder: "Geben Sie Ihre Suchbegriffe ein.",
+                        threshold: 2,
+                        debounce: 800,
+                        submit: true,
+                        data: {
+                            src: async function(query) {
+                                let headers = new Headers();
+                                    headers.append('Accept', 'application/json');
+                                    headers.append('Content-Type', 'application/json');
+                                const source = await fetch("/autocompletion/list?q=" + query, {
+                                    method: "POST",
+                                    headers: headers,
+                                    cache: "no-cache",
+                                    redirect: "follow",
+                                    credentials: "same-origin",
+                                    referrerPolicy: "no-referrer",
+                                    body: JSON.stringify({})
+                                });
+                                return await source.json();
+                            }
+                        },
+                        resultsList: {
+                            maxResults: 25,
+                            tabSelect: true
+                        },
+                        resultItem: {
+                            highlight: true
+                        },
+                        events: {
+                            input: {
+                                selection: (event) => {
+                                    self.params.search = event.detail.selection.value;
+                                    self.submit();
+                                },
+                                keydown(event) {
+                                    switch (event.keyCode) {
+                                        case 40:
+                                        case 38:
+                                            event.preventDefault();
+                                            event.keyCode === 40 ? objState.autoCompleteJS.next() : objState.autoCompleteJS.previous();
+                                            break;
+                                        case 9:
+                                            event.preventDefault();
+                                            if (objState.autoCompleteJS.resultsList.tabSelect) {
+                                                objState.autoCompleteJS.next()
+                                            }
+                                            break;
+                                        case 27:
+                                            objState.autoCompleteJS.input.value = "";
+                                            objState.autoCompleteJS.close();
+                                            break;
+                                        case 13:
+                                            event.preventDefault();
+                                            self.submit();
+                                            objState.autoCompleteJS.close();
+                                            break;
+                                    }
+                                }
+                            }
+                        }
+                    });
+                }
+            },
+            watch: {
+                'params.subjects': {
+                    handler: function () {
+                        this.fetch('');
+                    },
+                    deep: true
+                },
+                'params.classLevels': {
+                    handler: function () {
+                        this.fetch('');
+                    },
+                    deep: true
+                },
+                'params.types': {
+                    handler: function () {
+                        this.fetch('');
+                    },
+                    deep: true
+                },
+                'params.features': {
+                    handler: function () {
+                        this.fetch('');
+                    },
+                    deep: true
+                },
+                'params.preview': {
+                    handler: function () {
+                        //
+                    },
+                    deep: true
+                },
+                'request': {
+                    handler: function () {
+                        this.formSubmitDisabled = !this.isValidSubmit();
+                    },
+                    deep: true
+                }
+            },
+            mounted: function () {
+                this.fetch('')
+                this.setFormView();
+                this.setAutoComplete();
+                document.querySelector('#id-catalog-list-<?= $this->id ?>').style.display = 'block';
+                window.addEventListener('popstate', function () {
+                    this.popUp = false;
+                }.bind(this))
+            }
+        })
+    })();
+</script>

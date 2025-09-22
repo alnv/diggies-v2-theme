@@ -10,3 +10,12 @@ ArrayUtil::arrayInsert($GLOBALS['BE_MOD']['diggies-bundle'], 1, [
         ]
     ]
 ]);
+
+ArrayUtil::arrayInsert($GLOBALS['BE_MOD']['content'], 2, [
+    'labels' => [
+        'name' => 'labels',
+        'tables' => [
+            'tl_labels'
+        ]
+    ]
+]);

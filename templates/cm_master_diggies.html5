@@ -1,0 +1,260 @@
+<?php
+
+global $objPage;
+
+use App\Helpers\StylesCombiner;
+use App\Library\Labels;
+use Ausi\SlugGenerator\SlugGenerator;
+use Ausi\SlugGenerator\SlugOptions;
+use Contao\Combiner;
+use Contao\PageModel;
+use Contao\FrontendTemplate;
+use Alnv\ContaoCatalogManagerBundle\Helper\Toolkit;
+use Alnv\ContaoCatalogManagerBundle\Helper\Getters;
+use Alnv\ContaoCatalogManagerBundle\Views\Listing;
+
+$arrPageFilters = Getters::getPageFiltersByPageId($objPage->id);
+$objCombiner = new Combiner();
+$objCombiner->add('layout/js/splide/splide.min.js');
+$GLOBALS['TL_HEAD']['splidejs'] = '<script src="' . $objCombiner->getCombinedFile() . '"></script>';
+
+$objCombiner = new Combiner();
+$objCombiner->add('layout/js/splide/splide.min.css');
+$GLOBALS['TL_HEAD']['splidecss'] = '<link href="' . $objCombiner->getCombinedFile() . '" rel="stylesheet"/>';
+
+$objGenerator = new SlugGenerator((new SlugOptions())
+    ->setValidChars('a-z0-9')
+    ->setLocale('de')
+    ->setDelimiter('-')
+);
+
+$arrTags = $this->tags ?: [];
+if ($arrTags && is_string($arrTags)) {
+    $arrTags = explode(',', $arrTags);
+}
+
+$objPage->pageTitle = $this->name . ' - ' . $this->subtitle;
+$objPage->og_title = $objPage->pageTitle;
+$objPage->og_description = strip_tags($this->teaser);
+$objPage->og_image = !empty($this->images) ? $this->images[0]['uuid'] : '';
+$objPage->description = strip_tags($this->teaser);
+
+$GLOBALS['TL_HEAD']['search:type'] = '<meta name="search:type" content="diggie"/>';
+?>
+<div class="ce_diggie_master block">
+    <div class="diggie_master-container">
+        <div class="catalog-profile-close">
+            <a href="<?= $objPage->getFrontendUrl() ?>" class="button close">
+                <svg width="29" height="29" viewBox="0 0 29 29" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M14.1521 26.0698C20.7341 26.0698 26.0698 20.7341 26.0698 14.1521C26.0698 7.57012 20.7341 2.23438 14.1521 2.23438C7.57012 2.23438 2.23438 7.57012 2.23438 14.1521C2.23438 20.7341 7.57012 26.0698 14.1521 26.0698Z" stroke="#FE6007" stroke-width="2.38354" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M17.709 10.6143L10.6328 17.6904" stroke="#FE6007" stroke-width="2.38354" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M10.6328 10.6143L17.709 17.6904" stroke="#FE6007" stroke-width="2.38354" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </a>
+        </div>
+        <div class="master-header">
+            {{insert_module::34}}
+            <!-- indexer::stop -->
+            <div class="header-rows">
+                <a href="mailto:?subject=<?= $this->name ?>&body=<?= $this->teaser ?> <?= $objPage->getAbsoluteUrl('/' . $this->alias) ?>"
+                   class="button mail"><?= Labels::getLabel('catalog.button.newMail', '<span>Kolleg:innen</span> empfehlen') ?>
+                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M6.66927 6.66699H33.3359C35.1693 6.66699 36.6693 8.16699 36.6693 10.0003V30.0003C36.6693 31.8337 35.1693 33.3337 33.3359 33.3337H6.66927C4.83594 33.3337 3.33594 31.8337 3.33594 30.0003V10.0003C3.33594 8.16699 4.83594 6.66699 6.66927 6.66699Z" stroke="#FE6007" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M36.6693 10L20.0026 21.6667L3.33594 10" stroke="#FE6007" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
+                <a href="{{link_url::72}}" class="button primary">Jetzt testen</a>
+            </div>
+            <!-- indexer::continue -->
+        </div>
+
+        <!-- indexer::stop -->
+        <p class="strong"><strong>Steckbrief</strong></p>
+        <!-- indexer::continue -->
+
+        <div class="ce_text block">
+            <div class="content_container">
+                <h1 class="headline"><?= $this->name ?></h1>
+                <h2 class="subheadline"><?= $this->subtitle ?></h2>
+                <!-- indexer::stop -->
+                <p class="strong"><strong>Zusammenfassung</strong></p>
+                <!-- indexer::continue -->
+                <p><?= $this->teaser ?></p>
+            </div>
+        </div>
+
+        <div class="catalog-main-rows">
+            <div class="splide" id="id-master-slider-<?= $this->id ?>">
+                <div class="splide__track">
+                    <div class="splide__list">
+                        <?php foreach ($this->images as $arrImage): ?>
+                            <figure class="splide__slide">
+                                {{image::<?= $arrImage['path'] ?>?mode=proportional&width=800&height=466}}
+                            </figure>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+
+            </div>
+            <div class="catalog-tags-container">
+
+                <div>
+                    <?php if (!empty($this->subjects)): ?>
+                        <!-- indexer::stop -->
+                        <p class="subheadline"><?= Labels::getLabel('diggie.master.subheadline.subject', 'Fach:') ?></p>
+                        <!-- indexer::continue -->
+                        <div class="catalog-tags">
+                            <ul>
+                                <?php foreach ($this->subjects as $arrSubject): ?>
+                                    <?php
+                                    $objPageFilerSubject = $arrPageFilters[0] ?? null;
+                                    ?>
+                                    <li><a <?php if ($objPageFilerSubject): ?>href="#"<?php endif; ?>><?= $arrSubject['label'] ?></a></li>
+                                <?php endforeach; ?>
+                            </ul>
+                        </div>
+                    <?php endif; ?>
+
+                    <?php if (!empty($this->types)): ?>
+                        <!-- indexer::stop -->
+                        <p class="subheadline"><?= Labels::getLabel('diggie.master.subheadline.types', 'diggie-Typ:') ?></p>
+                        <!-- indexer::continue -->
+                        <div class="catalog-tags">
+                            <?php
+                            $objPageFilterType = $arrPageFilters[2] ?? null;
+                            ?>
+                            <ul>
+                                <?php foreach ($this->types as $arrType): ?>
+                                    <li class="<?= $objGenerator->generate($arrType['label']) ?> "><a href="#"><?= $arrType['label'] ?></a></li>
+                                <?php endforeach; ?>
+                            </ul>
+                        </div>
+                    <?php endif; ?>
+                    <!-- indexer::stop -->
+                    <p class="subheadline"><?= Labels::getLabel('diggie.master.subheadline.classLevels', 'Klassenstufe und Dauer:') ?></p>
+                    <!-- indexer::continue -->
+                    <div class="catalog-tags">
+                        <?php
+                        $objPageFilterClasses = $arrPageFilters[1] ?? null;
+                        ?>
+                        <ul>
+                            <li><a <?php if ($objPageFilterClasses): ?>href="#" <?php endif; ?>><?= Toolkit::parse($this->classLevels) ?></a></li>
+                            <li><?= $this->lessonDuration ?> min</li>
+                        </ul>
+                    </div>
+
+                    <?php if (!empty($this->features)): ?>
+                        <!-- indexer::stop -->
+                        <p class="subheadline"><?= Labels::getLabel('diggie.master.subheadline.features', 'Merkmale:') ?></p>
+                        <!-- indexer::continue -->
+                        <div class="catalog-tags">
+                            <ul>
+                                <?php foreach ($this->features as $arrFeature): ?>
+                                    <li class="<?= $objGenerator->generate($arrFeature['label']) ?>"><span><?= $arrFeature['label'] ?></span></li>
+                                <?php endforeach; ?>
+                            </ul>
+                        </div>
+                    <?php endif; ?>
+                </div>
+
+                <?php if ($this->previewMode): ?>
+                    <div class="preview-button">
+                        <a href="<?= $this->previewUrl ?>" class="button secondary" target="_blank">
+                            <svg width="23" height="22" viewBox="0 0 23 22" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_10067_43669)"><path d="M1.41602 11C1.41602 11 5.08268 3.66666 11.4993 3.66666C17.916 3.66666 21.5827 11 21.5827 11C21.5827 11 17.916 18.3333 11.4993 18.3333C5.08268 18.3333 1.41602 11 1.41602 11Z" stroke="white" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/><path d="M11.5 13.75C13.0188 13.75 14.25 12.5188 14.25 11C14.25 9.48122 13.0188 8.25 11.5 8.25C9.98122 8.25 8.75 9.48122 8.75 11C8.75 12.5188 9.98122 13.75 11.5 13.75Z" stroke="white" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></g><defs><clipPath id="clip0_10067_43669"><rect width="22" height="22" fill="white" transform="translate(0.5)"/></clipPath></defs></svg>
+                            <?= Labels::getLabel('catalog.button.preview', 'Vorschau') ?>
+                        </a>
+                    </div>
+                <?php endif; ?>
+            </div>
+        </div>
+
+        <div class="catalog-content">
+            <?= $this->description ?>
+        </div>
+
+        <?php if ($strContent = $this->getContentElements()): ?>
+            <div class="catalog-content-elements">
+                <?= $strContent ?>
+            </div>
+        <?php endif; ?>
+
+        <?php if (!empty($arrTags)): ?>
+            <div class="catalog-tags central">
+                <p class="strong"><?= Labels::getLabel('diggie.master.tags.headline', 'Themen in dieser diggie:') ?></p>
+                <ul>
+                    <?php foreach ($arrTags as $strTag): ?>
+                        <li><?= $strTag ?></li>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
+        <?php endif; ?>
+    </div>
+</div>
+
+<?php if (!empty($this->tags)): ?>
+    <?php
+    $arrQueries = [];
+    $arrValues = [];
+    $arrColumns = [];
+
+    foreach ($arrTags as $strTag) {
+        $arrValues[] = '[[:<:]]'. $strTag .'[[:>:]]';
+        $arrQueries[] = 'tags REGEXP ?';
+    }
+
+    foreach ($this->subjects as $arrSubject) {
+        $arrValues[] = '[[:<:]]'. $arrSubject['value'] .'[[:>:]]';
+        $arrQueries[] = 'subjects REGEXP ?';
+    }
+
+    foreach ($this->classLevels as $arrClassLevel) {
+        $arrValues[] = '[[:<:]]'. $arrClassLevel['value'] .'[[:>:]]';
+        $arrQueries[] = 'classLevels REGEXP ?';
+    }
+
+    foreach ($this->types as $arrType) {
+        $arrValues[] = '[[:<:]]'. ($arrType['value'] ?? '') .'[[:>:]]';
+        $arrQueries[] = 'types REGEXP ?';
+    }
+
+    $arrColumns[] = '(' . implode(' OR ', $arrQueries) . ')';
+
+    $objEntities = new Listing('cm_diggies', [
+        'limit' => 4,
+        'order' => 'tstamp DESC',
+        'column' => $arrColumns,
+        'value' => $arrValues,
+        'masterPage' => $objPage->id
+    ]);
+    $arrEntities = $objEntities->parse();
+    ?>
+    <?php if (!empty($arrEntities)): ?>
+        <!-- indexer::stop -->
+        <div class="ce_catalog">
+            <h2><?= Labels::getLabel('diggie.master.related.headline', 'Diese diggies könnten Ihnen auch gefallen:') ?></h2>
+            <div class="catalog-results">
+                <?php foreach ($arrEntities as $arrEntity): ?>
+                    <?php
+                    $objTemplate = new FrontendTemplate('ce_diggie_item');
+                    $objTemplate->setData($arrEntity);
+                    echo $objTemplate->parse();
+                    ?>
+                <?php endforeach; ?>
+            </div>
+        </div>
+        <!-- indexer::continue -->
+    <?php endif; ?>
+<?php endif; ?>
+
+<script>
+    (function () {
+        let objSlider = new Splide('#id-master-slider-<?= $this->id ?>', {
+            type: 'loop',
+            perPage: 1,
+            perMove: 1,
+            interval: 3000,
+            autoplay: true
+        });
+        objSlider.mount();
+    })();
+</script>

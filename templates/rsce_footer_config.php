@@ -135,7 +135,7 @@ return [
                     'elementLabel' => '%s. Contact',
                     'fields' => [
                         'office_name' => [
-                            'label' => ['Büroname', ''],
+                            'label' => ['Name', ''],
                             'inputType' => 'text',
                             'eval' => [
                                 'maxlength' => 255,
@@ -153,7 +153,7 @@ return [
                             ]
                         ],
                         'office_street' => [
-                            'label' => ['Bürostraße', ''],
+                            'label' => ['Straße', ''],
                             'inputType' => 'text',
                             'eval' => [
                                 'maxlength' => 255,
@@ -162,7 +162,7 @@ return [
                             ]
                         ],
                         'office_zip_city' => [
-                            'label' => ['Büro, Postleitzahl, Stadt', ''],
+                            'label' => ['Postleitzahl, Stadt', ''],
                             'inputType' => 'text',
                             'eval' => [
                                 'maxlength' => 255,
@@ -171,7 +171,7 @@ return [
                             ]
                         ],
                         'time' => [
-                            'label' => ['Time', ''],
+                            'label' => ['Öffnungszeiten', ''],
                             'inputType' => 'text',
                             'eval' => [
                                 'maxlength' => 255,
@@ -189,7 +189,7 @@ return [
                             ]
                         ],
                         'email' => [
-                            'label' => ['Email', ''],
+                            'label' => ['E-Mail', ''],
                             'inputType' => 'text',
                             'eval' => [
                                 'maxlength' => 255,
@@ -234,8 +234,8 @@ return [
                         'decodeEntities' => true,
                         'tl_class' => 'w50 wizard'
                     ]
-                ],
+                ]
             ]
-        ],
+        ]
     ]
 ];
