@@ -43,6 +43,118 @@ $GLOBALS['TL_HEAD']['search:type'] = '<meta name="search:type" content="diggie"/
 ?>
 <div class="ce_diggie_master block">
     <div class="diggie_master-container">
+        <div class="section_slider_v3-top_wrapper">
+            <div class="section_slider_v3-info_box">
+                <div class="section_slider_v3-tags_wrapper">
+                    <?php foreach($this->tags as $tag): ?>
+                        <p class="section_slider_v3-tag <?= $tag->violett ? 'violett' : '' ?>"><?= $tag->text ?></p>
+                    <?php endforeach; ?>
+                </div>
+                <div class="section_slider_v3-description_box">
+                    <?php if ($this->name): ?>
+                        <h1 class="section_slider_v3-title"><?= $this->name ?></h1>
+                    <?php endif; ?>
+                    <?php if ($this->subtitle): ?>
+                        <p class="section_slider_v3-large_title"><?= $this->subtitle ?></p>
+                    <?php endif; ?>
+                    <?php if ($this->text): ?>
+                        <p class="section_slider_v3-description mobile"><?= \strip_tags($this->text, '<a><br><strong>') ?></p>
+                    <?php endif; ?>
+                </div>
+            </div>
+        </div>
+        <div class="section_slider_v3-splides_wrapper">
+            <div class="section_slider_v3-splide_wrapper">
+                <div class="splide splide_v3_<?= $uniqueId ?>" role="group" aria-label="Splide Basic HTML Example">
+                    <div class="splide__track">
+                        <ul class="splide__list">
+                            <?php foreach ($this->images as $arrImage): ?>
+                                <li class="splide__slide">
+                                    {{image::<?= $arrImage['path'] ?>?alt=&class=splide-img}}
+                                </li>
+                            <?php endforeach; ?>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="section_slider_v3-aside_splider desktop">
+                <div class="splide splide_aside_v3<?= $uniqueId ?>" role="group" aria-label="Splide Basic HTML Example">
+                    <div class="splide__track">
+                        <ul class="splide__list">
+                            <?php foreach ($this->images as $arrImage): ?>
+                                <li class="splide__slide">
+                                    {{image::<?= $arrImage['path'] ?>?alt=&class=splide-img}}
+                                </li>
+                            <?php endforeach; ?>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section_text_block">
+            <div class="section_text_block-form_wrapper">
+                <?php if (!empty($this->form_headline) && $this->form_headline['value']): ?>
+                    <<?= $this->form_headline['unit'] ?> class="section_text_block-title"><?= $this->form_headline['value'] ?></<?= $this->form_headline['unit'] ?>>
+                <?php endif; ?>
+                <div class="section_text_block-form_inputs">
+                    <?php foreach ($this->form_fields as $field): ?>
+                        <div class="section_text_block-form_input_wrapper">
+                            <?php if ($field->title): ?>
+                                <p class="form_input_wrapper-input_title"><?= $field->title ?></p>
+                                <input class="form_input_wrapper-input" type="<?= $field->type ? $field->type : 'text' ?>" name="<?= $field->type ?>" id="" placeholder="<?= $field->placeholder ?>">
+                                <?php if ($field->description): ?>
+                                    <p class="form_input_wrapper-input_description">$field->description</p>
+                                <?php endif; ?>
+                            <?php endif; ?>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+                <div class="section_text_block-links_wrapper">
+                    <?php foreach ($this->form_links as $link): ?>
+                        <?php if ($link->link_text && $link->url): ?>
+                            <a href="<?= $link->url ?>" class="link <?= $link->link_class === 'secondary_link' ? 'secondary_link' : 'primary_link' ?>">
+                                <p class="<?= $link->link_class === 'secondary_link' ? 'secondary_link' : 'primary_link' ?>-text"><?= $link->link_text ?></p>
+                                <?php if ($link->arrow): ?>
+                                    <svg width="13" height="12" viewBox="0 0 13 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M12.3516 6.62109L7.97656 10.9961C7.64844 11.3516 7.07422 11.3516 6.74609 10.9961C6.39062 10.668 6.39062 10.0938 6.74609 9.76562L9.61719 6.86719H1.25C0.757812 6.86719 0.375 6.48438 0.375 5.99219C0.375 5.52734 0.757812 5.11719 1.25 5.11719H9.61719L6.74609 2.24609C6.39062 1.91797 6.39062 1.34375 6.74609 1.01562C7.07422 0.660156 7.64844 0.660156 7.97656 1.01562L12.3516 5.39062C12.707 5.71875 12.707 6.29297 12.3516 6.62109Z" fill="#4660E9"/>
+                                    </svg>
+                                <?php endif; ?>
+                            </a>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+            <div class="section_text_block-content_box">
+                <div class="section_text_block-top_box">
+                    <?php if (!empty($this->headline) && $this->headline['value']): ?>
+                        <<?= $this->headline['unit'] ?> class="section_text_block-title"><?= $this->headline['value'] ?></<?= $this->headline['unit'] ?>>
+                    <?php endif; ?>
+                    <?php if ($this->text): ?>
+                        <p class="section_text_block-description"><?= \strip_tags($this->text, '<a><br><strong>') ?></p>
+                    <?php endif; ?>
+                </div>
+                <div class="section_text_block-info_box">
+                    <?php foreach ($this->blocks as $block): ?>
+                        <div class="section_text_block-info_item">
+                            <?php if ($block->block_title && $block->text): ?>
+                                <p class="section_text_block-info_item_title"><?= $block->block_title ?></p>
+                                <p class="section_text_block-info_item_description"><?= \strip_tags($block->text, '<a><br><strong>') ?></p>
+                            <?php endif; ?>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+                <?php if (!empty($arrTags)): ?>
+                    <div class="section_text_block-topics_wrapper">
+                        <p class="section_text_block-topics_title"><?= Labels::getLabel('diggie.master.tags.headline', 'Themen in dieser diggie:') ?></p>
+                        <div class="section_text_block-topics_container">
+                            <?php foreach ($arrTags as $strTag): ?>
+                                <p class="section_text_block-topic"><?= $strTag ?></p>
+                            <?php endforeach; ?>
+                        </div>
+                    </div>
+                <?php endif; ?>
+            </div>
+        </div>
         <div class="catalog-profile-close">
             <a href="<?= $objPage->getFrontendUrl() ?>" class="button close">
                 <svg width="29" height="29" viewBox="0 0 29 29" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -226,7 +338,7 @@ $GLOBALS['TL_HEAD']['search:type'] = '<meta name="search:type" content="diggie"/
         'value' => $arrValues,
         'masterPage' => $objPage->id
     ]);
-    $arrEntities = $objEntities->parse();
+    $arrEntities = []; //$objEntities->parse();
     ?>
     <?php if (!empty($arrEntities)): ?>
         <!-- indexer::stop -->
@@ -256,5 +368,43 @@ $GLOBALS['TL_HEAD']['search:type'] = '<meta name="search:type" content="diggie"/
             autoplay: true
         });
         objSlider.mount();
+
+        if (document.querySelector('.splide_v3_<?= $uniqueId ?>') != null) {
+            const splide_v3 = new Splide( '.splide_v3_<?= $uniqueId ?>', {
+                arrows: false,
+                omitEnd: true,
+                perPage: 1,
+                pagination: false,
+                gap: '20px',
+                breakpoints: {
+                    768: {
+                        perPage: 1,
+                        gap: '10px',
+                        pagination: true
+                    },
+                },
+            } );
+
+            const splide_v3_aside = new Splide( '.splide_aside_v3<?= $uniqueId ?>', {
+                direction: 'ttb',
+                arrows: false,
+                omitEnd: true,
+                isNavigation: true,
+                perPage: 5,
+                pagination: false,
+                height: '500px',
+                autoHeight: true,
+                gap: '20px',
+                slideFocus: true
+            } ).mount();
+
+            splide_v3.sync(splide_v3_aside).mount();
+
+            document.querySelectorAll('.splide_aside_v3<?= $uniqueId ?> .splide__slide').forEach((slide, index) => {
+                slide.addEventListener('click', () => {
+                    splide_v3.go(index);
+                });
+            });
+        }
     })();
 </script>

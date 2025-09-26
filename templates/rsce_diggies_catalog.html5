@@ -53,297 +53,468 @@ if ($objPage->id == '75' && ($strActiveUrlFragment = Input::get('catalog'))) {
 
     <div class="catalog-container">
         <div class="catalog-form">
+            <div class="section_hero">
+                <div class="section_hero-content">
+                    <svg class="section_hero-icon" width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g clip-path="url(#clip0_2215_32590)">
+                            <path
+                                d="M32 64C49.6731 64 64 49.6731 64 32C64 14.3269 49.6731 0 32 0C14.3269 0 0 14.3269 0 32C0 49.6731 14.3269 64 32 64Z"
+                                fill="#FFDECC" />
+                            <path
+                                d="M57.2542 17.3457C56.9566 17.2017 56.6254 17.1377 56.2942 17.1377H55.2846V27.6913C55.2846 28.4657 54.8686 29.1953 54.163 29.5857C53.835 29.7665 53.4606 29.8497 53.0862 29.8497H50.0702V46.9185H36.7294C33.1982 47.0193 31.6686 47.7841 30.3726 49.9873C29.0766 47.7825 27.547 47.0177 24.0158 46.9185H13.875V49.3185H24.0158C27.547 49.4193 29.0766 50.1841 30.3726 52.3873C31.6686 50.1825 33.1982 49.4177 36.7294 49.3185H53.2702V32.2497H56.2862C56.6606 32.2497 57.035 32.1665 57.363 31.9857C58.0702 31.5953 58.4846 30.8641 58.4846 30.0913V19.2961C58.4846 18.4833 58.027 17.7185 57.2542 17.3457Z"
+                                fill="#FF884D" stroke="#FF884D" stroke-width="1.17857" stroke-linejoin="round" />
+                            <path
+                                d="M10.6743 20.1089H21.8951C24.1431 20.1089 26.2999 20.8961 27.8887 22.2993C29.4791 23.7009 30.3719 25.6033 30.3719 27.5873V49.9905C29.0759 47.7857 27.5463 47.0209 24.0151 46.9217H10.6743V20.1089Z"
+                                fill="white" stroke="#1A0A03" stroke-width="1.17857" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                            <path
+                                d="M50.0706 20.1089H38.8498C36.6018 20.1089 34.445 20.8961 32.8562 22.2993C31.2658 23.7009 30.373 25.6033 30.373 27.5873V49.9905C31.669 47.7857 33.1986 47.0209 36.7298 46.9217H50.0706V20.1089Z"
+                                fill="white" stroke="#1A0A03" stroke-width="1.17857" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                            <path
+                                d="M55.286 27.691C55.286 28.4654 54.87 29.195 54.1644 29.5854C53.8364 29.7662 53.462 29.8494 53.0876 29.8494H44.4732L39.8364 34.4862V29.8494H37.5596C36.6172 29.8494 35.854 29.0862 35.854 28.1438V16.9262C35.854 16.595 35.918 16.2654 36.062 15.9662C36.4348 15.1934 37.1996 14.7358 38.0124 14.7358H53.094C53.4252 14.7358 53.7548 14.7998 54.054 14.9438C54.8268 15.3166 55.2844 16.0814 55.2844 16.8942V27.6894L55.286 27.691Z"
+                                fill="white" stroke="#1A0A03" stroke-width="1.17857" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                            <path
+                                d="M14.0934 17.8657H22.7302C24.7334 17.8657 26.655 18.5681 28.0726 19.8177C29.4902 21.0673 30.2854 22.7633 30.2854 24.5313V45.8657C29.1302 43.9009 27.7654 43.2193 24.6182 43.1297H14.0918V17.8673L14.0934 17.8657Z"
+                                fill="white" stroke="#1A0A03" stroke-width="1.17857" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                            <path d="M46.6739 37.6802H35.0259" stroke="#1A0A03" stroke-width="0.942857"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M46.6739 41.9556H35.0259" stroke="#1A0A03" stroke-width="0.942857"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                        </g>
+                        <defs>
+                            <clipPath id="clip0_2215_32590">
+                                <rect width="64" height="64" fill="white" />
+                            </clipPath>
+                        </defs>
+                    </svg>
 
-            <div class="ce_text block">
-                <div class="content_container">
-                <?php if (!empty($this->headline) && $this->headline['value']): ?>
-                    <<?= $this->headline['unit'] ?> class="headline"><?= $this->headline['value'] ?></<?= $this->headline['unit'] ?>>
-                <?php endif; ?>
-
-                <div class="rte">
-                    <?= $this->text ?>
-                </div>
-
-                <?php if (!empty($this->tags)): ?>
-                    <div class="catalog-tags">
-                        <p class="sub-tag-headline"><?= Labels::getLabel('diggie.list.tags.headline', 'Beliebte Themen:') ?></p>
-                        <ul>
-                        <?php foreach ($this->tags as $strTag): ?>
-                            <li><?= $strTag ?></li>
+                    <div class="section_hero-info_box">
+                        <?php if (!empty($this->headline) && $this->headline['value']): ?>
+                        <<?= $this->headline['unit'] ?> class="section_hero-title">
+                            <?= $this->headline['value'] ?>
+                        </<?= $this->headline['unit'] ?>>
+                        <?php endif; ?>
+                        <?php if ($this->text): ?>
+                        <p class="section_hero-description">
+                            <?= \strip_tags($this->text, '<a><br><strong>') ?>
+                        </p>
+                        <?php endif; ?>
+                    </div>
+                    <div class="section_hero-links_wrapper">
+                        <?php foreach ($this->links as $link): ?>
+                        <?php if ($link->link_text && $link->url): ?>
+                        <a href="<?= $link->url ?>"
+                            class="link <?= $link->link_class === 'secondary_link' ? 'secondary_link' : 'primary_link' ?>">
+                            <p
+                                class="<?= $link->link_class === 'secondary_link' ? 'secondary_link' : 'primary_link' ?>-text">
+                                <?= $link->link_text ?>
+                            </p>
+                            <?php if ($link->arrow): ?>
+                            <svg width="13" height="12" viewBox="0 0 13 12" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M12.3516 6.62109L7.97656 10.9961C7.64844 11.3516 7.07422 11.3516 6.74609 10.9961C6.39062 10.668 6.39062 10.0938 6.74609 9.76562L9.61719 6.86719H1.25C0.757812 6.86719 0.375 6.48438 0.375 5.99219C0.375 5.52734 0.757812 5.11719 1.25 5.11719H9.61719L6.74609 2.24609C6.39062 1.91797 6.39062 1.34375 6.74609 1.01562C7.07422 0.660156 7.64844 0.660156 7.97656 1.01562L12.3516 5.39062C12.707 5.71875 12.707 6.29297 12.3516 6.62109Z"
+                                    fill="#4660E9" />
+                            </svg>
+                            <?php endif; ?>
+                        </a>
+                        <?php endif; ?>
                         <?php endforeach; ?>
-                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section_search" v-show="!initial">
+                <div class="filter-form">
+                    <div class="filter_form-input_search">
+                        <label for="autoComplete" class="search-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M17 10.5C17 11.9375 16.5312 13.2812 15.75 14.3438L19.6875 18.3125C20.0938 18.6875 20.0938 19.3438 19.6875 19.7188C19.3125 20.125 18.6562 20.125 18.2812 19.7188L14.3125 15.75C13.25 16.5625 11.9062 17 10.5 17C6.90625 17 4 14.0938 4 10.5C4 6.9375 6.90625 4 10.5 4C14.0625 4 17 6.9375 17 10.5ZM10.5 15C12.0938 15 13.5625 14.1562 14.375 12.75C15.1875 11.375 15.1875 9.65625 14.375 8.25C13.5625 6.875 12.0938 6 10.5 6C8.875 6 7.40625 6.875 6.59375 8.25C5.78125 9.65625 5.78125 11.375 6.59375 12.75C7.40625 14.1562 8.875 15 10.5 15Z"
+                                    fill="#867F7C" />
+                            </svg>
+
+                        </label>
+                        <input class="search-input" id="autoComplete" type="search" dir="ltr" @keyup="search"
+                            v-model="params.search" spellcheck=false autocorrect="off" autocomplete="off"
+                            autocapitalize="off" tabindex="1" v-bind:class="{searching: loading}"
+                            placeholder="Suche...">
+                        <button class="search-button mobile" @click="triggerFetch" type="button">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M17 10.5C17 11.9375 16.5312 13.2812 15.75 14.3438L19.6875 18.3125C20.0938 18.6875 20.0938 19.3438 19.6875 19.7188C19.3125 20.125 18.6562 20.125 18.2812 19.7188L14.3125 15.75C13.25 16.5625 11.9062 17 10.5 17C6.90625 17 4 14.0938 4 10.5C4 6.9375 6.90625 4 10.5 4C14.0625 4 17 6.9375 17 10.5ZM10.5 15C12.0938 15 13.5625 14.1562 14.375 12.75C15.1875 11.375 15.1875 9.65625 14.375 8.25C13.5625 6.875 12.0938 6 10.5 6C8.875 6 7.40625 6.875 6.59375 8.25C5.78125 9.65625 5.78125 11.375 6.59375 12.75C7.40625 14.1562 8.875 15 10.5 15Z"
+                                    fill="white" />
+                            </svg>
+                        </button>
+                    </div>
+                    <button class="filter_btn mobile">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M4 6.3125C4 5.59375 4.5625 5 5.28125 5H18.6875C19.4062 5 20 5.59375 20 6.3125C20 6.625 19.875 6.90625 19.6875 7.125L14.5 13.5312V18C14.5 18.5625 14.0312 19 13.4688 19C13.25 19 13.0312 18.9375 12.8438 18.7812L9.96875 16.5C9.65625 16.25 9.5 15.9062 9.5 15.5312V13.5312L4.28125 7.125C4.09375 6.90625 4 6.625 4 6.3125ZM5.71875 6.5L10.8125 12.7812C10.9375 12.9375 11 13.0938 11 13.25V15.4062L13 17V13.25C13 13.0938 13.0312 12.9375 13.1562 12.7812L18.2812 6.5H5.71875Z"
+                                fill="#1A0A03" />
+                        </svg>
+                    </button>
+                    <button class="search-button desktop" @click="triggerFetch" type="button">
+                        Suchen
+                    </button>
+                </div>
+                <div class="form-container-bottom desktop<?= ($strAlias?' columns-4':'') ?>" ref="catalog-results"
+                    v-show="!initial">
+
+                    <?php if ($strAlias != 'classLevels'): ?>
+                    <div class="filter-form select-checkbox">
+                        <button class="select-menu" @click="toggleSelectMenu">
+                            <?= Labels::getLabel('catalog.filter.classLevels', 'Klassenstufe') ?>
+                        </button>
+                        <div class="checkbox-container">
+                            <div class="checkbox" v-for="classLevel in filter.classLevels">
+                                <input :id="'classlevel-' + classLevel" type="checkbox" v-model="params.classLevels"
+                                    :value="classLevel">
+                                <label :for="'classlevel-' + classLevel">{{ classLevel }}</label>
+                            </div>
+                        </div>
                     </div>
                     <?php endif; ?>
-                </div>
-            </div>
 
-            <div class="form-container-top" v-show="!initial">
-                <div class="filter-form">
-                    <label for="autoComplete" class="search-icon"><svg width="32" height="33" viewBox="0 0 32 33" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14.6667 25.7445C20.5577 25.7445 25.3333 20.9688 25.3333 15.0778C25.3333 9.18676 20.5577 4.41113 14.6667 4.41113C8.77563 4.41113 4 9.18676 4 15.0778C4 20.9688 8.77563 25.7445 14.6667 25.7445Z" stroke="#E0E6FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M27.9992 28.4113L22.1992 22.6113" stroke="#E0E6FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></label>
-                    <input id="autoComplete" type="search" dir="ltr" @keyup="search" v-model="params.search" spellcheck=false autocorrect="off" autocomplete="off" autocapitalize="off" tabindex="1" v-bind:class="{searching: loading}">
-                </div>
-            </div>
-
-            <div class="form-container-bottom<?= ($strAlias?' columns-4':'') ?>" ref="catalog-results" v-show="!initial">
-
-                <?php if ($strAlias != 'classLevels'): ?>
-                <div class="filter-form select-checkbox">
-                    <button class="select-menu" @click="toggleSelectMenu">
-                        <?= Labels::getLabel('catalog.filter.classLevels', 'Klassenstufe') ?>
-                    </button>
-                    <div class="checkbox-container">
-                        <div class="checkbox" v-for="classLevel in filter.classLevels">
-                            <input :id="'classlevel-' + classLevel" type="checkbox" v-model="params.classLevels" :value="classLevel">
-                            <label :for="'classlevel-' + classLevel">{{ classLevel }}</label>
+                    <?php if ($strAlias != 'subjects'): ?>
+                    <div class="filter-form select-checkbox">
+                        <button class="select-menu" @click="toggleSelectMenu">
+                            <?= Labels::getLabel('catalog.filter.subjects', 'Fächer') ?>
+                        </button>
+                        <div class="checkbox-container">
+                            <div class="checkbox" v-for="(label,val) in filter.subjects">
+                                <input :id="'subject-' + val" type="checkbox" v-model="params.subjects" :value="val">
+                                <label :for="'subject-' + val">{{ label }}</label>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <?php endif; ?>
+                    <?php endif; ?>
 
-                <?php if ($strAlias != 'subjects'): ?>
-                <div class="filter-form select-checkbox">
-                    <button class="select-menu" @click="toggleSelectMenu">
-                        <?= Labels::getLabel('catalog.filter.subjects', 'Fächer') ?>
-                    </button>
-                    <div class="checkbox-container">
-                        <div class="checkbox" v-for="(label,val) in filter.subjects">
-                            <input :id="'subject-' + val" type="checkbox" v-model="params.subjects" :value="val">
-                            <label :for="'subject-' + val">{{ label }}</label>
+                    <?php if ($strAlias != 'types'): ?>
+                    <div class="filter-form select-checkbox">
+                        <button class="select-menu" @click="toggleSelectMenu">
+                            <?= Labels::getLabel('catalog.filter.types', 'diggie-Typ') ?>
+                        </button>
+                        <div class="checkbox-container">
+                            <div class="checkbox" v-for="(label,val) in filter.types">
+                                <input :id="'type-' + val" type="checkbox" v-model="params.types" :value="val">
+                                <label :for="'type-' + val">{{ label }}</label>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <?php endif; ?>
+                    <?php endif; ?>
 
-                <?php if ($strAlias != 'types'): ?>
-                <div class="filter-form select-checkbox">
-                    <button class="select-menu" @click="toggleSelectMenu">
-                        <?= Labels::getLabel('catalog.filter.types', 'diggie-Typ') ?>
-                    </button>
-                    <div class="checkbox-container">
-                        <div class="checkbox" v-for="(label,val) in filter.types">
-                            <input :id="'type-' + val" type="checkbox" v-model="params.types" :value="val">
-                            <label :for="'type-' + val">{{ label }}</label>
+                    <div class="filter-form select-checkbox">
+                        <button class="select-menu" @click="toggleSelectMenu">
+                            <?= Labels::getLabel('catalog.filter.features', 'Merkmale') ?>
+                        </button>
+                        <div class="checkbox-container">
+                            <div class="checkbox" v-for="(label,val) in filter.features">
+                                <input :id="'feature-' + val" type="checkbox" v-model="params.features" :value="val">
+                                <label :for="'feature-' + val">{{ label }}</label>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <?php endif; ?>
 
-                <div class="filter-form select-checkbox">
-                    <button class="select-menu" @click="toggleSelectMenu">
-                        <?= Labels::getLabel('catalog.filter.features', 'Merkmale') ?>
-                    </button>
-                    <div class="checkbox-container">
-                        <div class="checkbox" v-for="(label,val) in filter.features">
-                            <input :id="'feature-' + val" type="checkbox" v-model="params.features" :value="val">
-                            <label :for="'feature-' + val">{{ label }}</label>
-                        </div>
+                    <div class="filter-preview section_search-checkbox_wrapper">
+                        <span class="section_search-checkbox_container switch" @click="togglePreview()">
+                            <input class="checkbox" type="checkbox" v-model="params.preview" id="preview">
+                            <svg width="12" height="9" viewBox="0 0 12 9" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M11.0859 0.914062C11.2969 1.14844 11.2969 1.5 11.0859 1.71094L4.89844 7.89844C4.66406 8.13281 4.3125 8.13281 4.10156 7.89844L0.914062 4.71094C0.679688 4.5 0.679688 4.14844 0.914062 3.9375C1.125 3.70312 1.47656 3.70312 1.6875 3.9375L4.47656 6.72656L10.2891 0.914062C10.5 0.703125 10.8516 0.703125 11.0625 0.914062H11.0859Z"
+                                    fill="white" />
+                            </svg>
+                            <span class="slider round"></span>
+                        </span>
+                        <label class="section_search-checkbox_text" for="preview">
+                            <?= Labels::getLabel('catalog.filter.preview', 'zeige nur diggies mit Vorschau') ?>
+                        </label>
                     </div>
                 </div>
-
-                <div class="filter-buttons">
-                    <button @click="triggerFetch" class="button secondary"><?= Labels::getLabel('catalog.filter.button', 'Suche starten') ?></button>
-                    <button @click="resetParams" class="button ghosted"><span><?= Labels::getLabel('catalog.filter.reset', 'Filter zurücksetzen') ?></span><svg width="21" height="23" viewBox="0 0 21 23" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_2881_7497)"><path d="M14.875 1.87549L18.375 5.37549L14.875 8.87549" stroke="#4660E9" stroke-width="2.33" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.625 10.6255V8.87549C2.625 7.94723 2.99375 7.05699 3.65013 6.40061C4.3065 5.74424 5.19674 5.37549 6.125 5.37549H18.375" stroke="#4660E9" stroke-width="2.33" stroke-linecap="round" stroke-linejoin="round"/><path d="M6.125 21.1255L2.625 17.6255L6.125 14.1255" stroke="#4660E9" stroke-width="2.33" stroke-linecap="round" stroke-linejoin="round"/><path d="M18.375 12.3755V14.1255C18.375 15.0537 18.0063 15.944 17.3499 16.6004C16.6935 17.2567 15.8033 17.6255 14.875 17.6255H2.625" stroke="#4660E9" stroke-width="2.33" stroke-linecap="round" stroke-linejoin="round"/></g><defs><clipPath id="clip0_2881_7497"><rect width="21" height="22" fill="white" transform="translate(0 0.675781)"/></clipPath></defs></svg></button>
-                </div>
-
-                <div class="filter-preview">
-                    <span class="switch" @click="togglePreview()">
-                        <input type="checkbox" v-model="params.preview" id="preview">
-                        <span class="slider round"></span>
-                    </span>
-                    <label for="preview"><?= Labels::getLabel('catalog.filter.preview', 'zeige nur diggies mit Vorschau') ?></label>
-                </div>
+                <a href="" class="reset-all desktop">Alle zurücksetzen</a>
             </div>
         </div>
+        <div class="catalog_wrapper">
+            <div class="catalog-panel" v-show="!initial">
+                <p>
+                    <?= Labels::getLabel('catalog.search.results', 'Suchergebnis:') ?> <span>{{ total }}</span>
+                    <?= Labels::getLabel('catalog.search.found', 'gefundene diggies:') ?>
+                </p>
+                <!-- <div class="filter-buttons">
+                    <button @click="resetParams" class="button ghosted"><span>
+                            <?= Labels::getLabel('catalog.filter.reset', 'Filter zurücksetzen') ?>
+                        </span><svg width="21" height="23" viewBox="0 0 21 23" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <g clip-path="url(#clip0_2881_7497)">
+                                <path d="M14.875 1.87549L18.375 5.37549L14.875 8.87549" stroke="#4660E9"
+                                    stroke-width="2.33" stroke-linecap="round" stroke-linejoin="round" />
+                                <path
+                                    d="M2.625 10.6255V8.87549C2.625 7.94723 2.99375 7.05699 3.65013 6.40061C4.3065 5.74424 5.19674 5.37549 6.125 5.37549H18.375"
+                                    stroke="#4660E9" stroke-width="2.33" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                                <path d="M6.125 21.1255L2.625 17.6255L6.125 14.1255" stroke="#4660E9"
+                                    stroke-width="2.33" stroke-linecap="round" stroke-linejoin="round" />
+                                <path
+                                    d="M18.375 12.3755V14.1255C18.375 15.0537 18.0063 15.944 17.3499 16.6004C16.6935 17.2567 15.8033 17.6255 14.875 17.6255H2.625"
+                                    stroke="#4660E9" stroke-width="2.33" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </g>
+                            <defs>
+                                <clipPath id="clip0_2881_7497">
+                                    <rect width="21" height="22" fill="white" transform="translate(0 0.675781)" />
+                                </clipPath>
+                            </defs>
+                        </svg></button>
+                </div> -->
 
-        <div class="catalog-panel" v-show="!initial">
-            <p><?= Labels::getLabel('catalog.search.results', 'Suchergebnis:') ?> <span>{{ total }}</span> <?= Labels::getLabel('catalog.search.found', 'gefundene diggies:') ?></p><p><?= Labels::getLabel('catalog.search.interest', 'Interessiert?') ?> <a href="<?= Labels::getLabel('catalog.link.test.url', '#') ?>"><?= Labels::getLabel('catalog.link.test.label', 'Kostenlos testen →') ?></a></p>
-        </div>
+                <!-- <p>
+                <?= Labels::getLabel('catalog.search.interest', 'Interessiert?') ?> <a
+                    href="<?= Labels::getLabel('catalog.link.test.url', '#') ?>">
+                    <?= Labels::getLabel('catalog.link.test.label', 'Kostenlos testen →') ?>
+                </a>
+            </p> -->
+                <div class="sorting_btn">
+                    <span class="desktop">Sortieren nach</span>
+                    <svg width="18" height="16" viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M5.6875 1.3125L8.6875 4.3125C9.09375 4.6875 9.09375 5.34375 8.6875 5.71875C8.3125 6.125 7.65625 6.125 7.28125 5.71875L6 4.4375V14C6 14.5625 5.53125 15 5 15C4.4375 15 4 14.5625 4 14V4.4375L2.6875 5.71875C2.3125 6.125 1.65625 6.125 1.28125 5.71875C0.875 5.34375 0.875 4.6875 1.28125 4.3125L4.28125 1.3125C4.65625 0.90625 5.3125 0.90625 5.6875 1.3125ZM16.6875 11.7188L13.6875 14.7188C13.3125 15.125 12.6562 15.125 12.2812 14.7188L9.28125 11.7188C8.875 11.3438 8.875 10.6875 9.28125 10.3125C9.65625 9.90625 10.3125 9.90625 10.6875 10.3125L12 11.5938V2C12 1.46875 12.4375 1 13 1C13.5312 1 14 1.46875 14 2V11.5938L15.2812 10.3125C15.6562 9.90625 16.3125 9.90625 16.6875 10.3125C17.0938 10.6875 17.0938 11.3438 16.6875 11.7188Z"
+                            fill="#1A0A03" />
+                    </svg>
+                    <!-- <span>{{ sortLabel }}</span> -->
+                    <!-- <select v-model="params.sort" @change="triggerFetch">
+                        <option value="newest"><?= Labels::getLabel('catalog.sort.newest', 'Neueste zuerst') ?></option>
+                        <option value="oldest"><?= Labels::getLabel('catalog.sort.oldest', 'Älteste zuerst') ?></option>
+                        <option value="name_asc"><?= Labels::getLabel('catalog.sort.name_asc', 'Name A-Z') ?></option>
+                        <option value="name_desc"><?= Labels::getLabel('catalog.sort.name_desc', 'Name Z-A') ?></option>
+                    </select> -->
+                </div>
+            </div>
 
-        <div class="catalog-results" v-if="catalogs.length">
-            <div v-for="catalog in catalogs" class="catalog-result">
-                <div class="catalog-result-container">
+            <div class="catalog-results" v-if="catalogs.length">
+                <div v-for="catalog in catalogs" class="catalog-result">
                     <div class="catalog-image">
                         <a :href="catalog.masterUrl" title="">
-                            <figure v-if="getImage(catalog.images)" v-html="getImage(catalog.images)" class="zoom-image"></figure>
+                            <figure v-if="getImage(catalog.images)" v-html="getImage(catalog.images)"
+                                class="zoom-image"></figure>
                         </a>
                     </div>
                     <div class="catalog-content">
                         <div class="content-container">
-                            <h3>{{ catalog.name }}</h3>
-                            <p v-if="catalog.types.length"><span :class="'tag '+ type.class" v-for="type in catalog.types">{{ type.label }}</span></p>
+                            <div class="card_v3-title_box">
+                                <h3 class="card_v3-title">{{ catalog.name }}</h3>
+                            </div>
+
+                            <p v-if="catalog.types.length" class="card_v3-description">
+                                <span :class="'tag ' + type.class" v-for="type in catalog.types">
+                                    {{ type.label }}
+                                </span>
+                            </p>
+
                             <p v-if="catalog.teaser" class="teaser">{{ truncateText(catalog.teaser, 340) }}</p>
-                            <div class="preview-button">
-                                <a v-if="catalog.previewMode" target="_blank" :href="catalog.previewUrl" class="button secondary">
-                                    <svg width="23" height="22" viewBox="0 0 23 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <g clip-path="url(#clip0_10067_43669)">
-                                            <path d="M1.41602 11C1.41602 11 5.08268 3.66666 11.4993 3.66666C17.916 3.66666 21.5827 11 21.5827 11C21.5827 11 17.916 18.3333 11.4993 18.3333C5.08268 18.3333 1.41602 11 1.41602 11Z" stroke="white" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
-                                            <path d="M11.5 13.75C13.0188 13.75 14.25 12.5188 14.25 11C14.25 9.48122 13.0188 8.25 11.5 8.25C9.98122 8.25 8.75 9.48122 8.75 11C8.75 12.5188 9.98122 13.75 11.5 13.75Z" stroke="white" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
-                                        </g>
-                                        <defs>
-                                            <clipPath id="clip0_10067_43669">
-                                                <rect width="22" height="22" fill="white" transform="translate(0.5)"/>
-                                            </clipPath>
-                                        </defs>
-                                    </svg>
-                                    <?= Labels::getLabel('catalog.button.preview', 'Vorschau') ?>
-                                </a>
+
+                            <div class="section_cards_v3-links_wrapper">
+                                <div class="preview-button">
+                                    <a v-if="catalog.previewMode" target="_blank" :href="catalog.previewUrl"
+                                        class="button secondary">
+                                        <svg width="23" height="22" viewBox="0 0 23 22" fill="none">
+                                        </svg>
+                                        <?= Labels::getLabel('catalog.button.preview', 'Vorschau') ?>
+                                    </a>
+                                </div>
+                                <div class="catalog-buttons">
+                                    <a :href="catalog.masterUrl" class="button profile">
+                                        <?= Labels::getLabel('catalog.button.profile', 'Steckbrief →') ?>
+                                    </a>
+                                </div>
                             </div>
-                            <div class="catalog-buttons">
-                                <a :href="catalog.masterUrl" class="button profile"><?= Labels::getLabel('catalog.button.profile', 'Steckbrief →') ?></a>
-                            </div>
+
                             <div class="catalog-tags">
                                 <ul>
-                                    <li v-if="catalog.classLevels.length"><template v-for="(classLevel,index) in catalog.classLevels">{{ classLevel.label }}<span v-if="index !== (catalog.classLevels.length-1)">-</span></template></li>
+                                    <li v-if="catalog.classLevels.length">
+                                        <template v-for="(classLevel, index) in catalog.classLevels">
+                                            {{ classLevel.label }}<span
+                                                v-if="index !== (catalog.classLevels.length-1)">-</span>
+                                        </template>
+                                    </li>
                                     <li v-if="catalog.lessonDuration">{{ catalog.lessonDuration }} min</li>
-                                    <li v-if="catalog.subjects.length" v-for="subject in catalog.subjects">{{ subject.label }}</li>
+                                    <li v-if="catalog.subjects.length" v-for="subject in catalog.subjects">
+                                        {{ subject.label }}
+                                    </li>
                                 </ul>
                             </div>
+
                             <div class="catalog-features">
                                 <ul>
-                                    <li v-if="catalog.features.length" v-for="feature in catalog.features" :class="feature.class"><span>{{ feature.label }}</span></li>
+                                    <li v-if="catalog.features.length" v-for="feature in catalog.features"
+                                        :class="feature.class">
+                                        <span>{{ feature.label }}</span>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
                     </div>
                 </div>
+                <div v-if="loading" class="loading">
+                    <img src="/system/themes/flexible/icons/loading.svg" alt="">
+                </div>
             </div>
         </div>
-        <div v-if="loading" class="loading">
-            <img src="/system/themes/flexible/icons/loading.svg" alt="">
-        </div>
-    </div>
 
-    <div v-if="pagination" class="ce_pagination block" ref="pagination" v-html="pagination"></div>
+        <div v-if="pagination" class="ce_pagination block" ref="pagination" v-html="pagination"></div>
 
-    <?php if ($this->formEmail && !$strContents): ?>
-    <div :class="'ce_contact-form '+ form.state" v-if="!loading && !initial" id="diggies-vorschlagen">
-        <div class="contact-form-container">
-            <?php if ($this->formImage): ?>
+        <?php if ($this->formEmail && !$strContents): ?>
+        <div :class="'ce_contact-form '+ form.state" v-if="!loading && !initial" id="diggies-vorschlagen">
+            <div class="contact-form-container">
+                <?php if ($this->formImage): ?>
                 <div class="contact-form-image">
-                    {{image::<?= $this->formImage ?>?mode=crop&width=186&height=186}}
+                    {{image::
+                    <?= $this->formImage ?>?mode=crop&width=186&height=186}}
                 </div>
-            <?php endif; ?>
-            <div class="contact-form-content">
-                <div class="contact-form-text">
-                    <h4 v-html="form.current.headline"></h4>
-                    <p v-html="form.current.text"></p>
-                    <p class="note"><i>*</i> Pflichtfeld</p>
-                </div>
-                <div class="contact-form-again">
-                    <button class="button ghosted" @click.prevent="showSubmitForm"><?= Labels::getLabel('catalog.contact.form.button.again', 'Neuer Vorschlag') ?></button>
-                </div>
-                <div class="contact-form-form">
-                    <div class="form">
-                        <div class="filter-form-rows column-1">
-                            <div class="filter-form textarea">
-                                <textarea v-model="request.message" placeholder="<?= Labels::getLabel('catalog.contact.form.message', 'Vorschlag') ?> *"></textarea>
-                            </div>
-                        </div>
-                        <div class="filter-form-rows column-3">
-                            <div class="filter-form select-checkbox">
-                                <button class="select-menu" @click="toggleSelectMenu"><?= Labels::getLabel('catalog.contact.form.subjects', 'Schulfach auswählen') ?> *</button>
-                                <div class="checkbox-container">
-                                    <div class="checkbox" v-for="(label,val) in form.options.subjects">
-                                        <input :id="'req-subject-' + val" type="checkbox" v-model="request.subjects" :value="label">
-                                        <label :for="'req-subject-' + val">{{ label }}</label>
-                                    </div>
+                <?php endif; ?>
+                <div class="contact-form-content">
+                    <div class="contact-form-text">
+                        <h4 v-html="form.current.headline"></h4>
+                        <p v-html="form.current.text"></p>
+                        <p class="note"><i>*</i> Pflichtfeld</p>
+                    </div>
+                    <div class="contact-form-again">
+                        <button class="button ghosted" @click.prevent="showSubmitForm">
+                            <?= Labels::getLabel('catalog.contact.form.button.again', 'Neuer Vorschlag') ?>
+                        </button>
+                    </div>
+                    <div class="contact-form-form">
+                        <div class="form">
+                            <div class="filter-form-rows column-1">
+                                <div class="filter-form textarea">
+                                    <textarea v-model="request.message"
+                                        placeholder="<?= Labels::getLabel('catalog.contact.form.message', 'Vorschlag') ?> *"></textarea>
                                 </div>
                             </div>
-                            <div class="filter-form select-checkbox">
-                                <button class="select-menu" @click="toggleSelectMenu"><?= Labels::getLabel('catalog.contact.form.classLevels', 'Klassenstufe') ?> *</button>
-                                <div class="checkbox-container">
-                                    <div class="checkbox" v-for="(label,val) in form.options.classLevels">
-                                        <input :id="'req-classlevel-' + val" type="checkbox" v-model="request.classLevels" :value="label">
-                                        <label :for="'req-classlevel-' + val">{{ label }}</label>
+                            <div class="filter-form-rows column-3">
+                                <div class="filter-form select-checkbox">
+                                    <button class="select-menu" @click="toggleSelectMenu">
+                                        <?= Labels::getLabel('catalog.contact.form.subjects', 'Schulfach auswählen') ?>
+                                        *
+                                    </button>
+                                    <div class="checkbox-container">
+                                        <div class="checkbox" v-for="(label,val) in form.options.subjects">
+                                            <input :id="'req-subject-' + val" type="checkbox" v-model="request.subjects"
+                                                :value="label">
+                                            <label :for="'req-subject-' + val">{{ label }}</label>
+                                        </div>
                                     </div>
                                 </div>
+                                <div class="filter-form select-checkbox">
+                                    <button class="select-menu" @click="toggleSelectMenu">
+                                        <?= Labels::getLabel('catalog.contact.form.classLevels', 'Klassenstufe') ?> *
+                                    </button>
+                                    <div class="checkbox-container">
+                                        <div class="checkbox" v-for="(label,val) in form.options.classLevels">
+                                            <input :id="'req-classlevel-' + val" type="checkbox"
+                                                v-model="request.classLevels" :value="label">
+                                            <label :for="'req-classlevel-' + val">{{ label }}</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="filter-form text">
+                                    <input type="email" v-model="request.email"
+                                        placeholder="<?= Labels::getLabel('catalog.contact.form.email', 'E-Mail für Rückfragen (optional)') ?>">
+                                </div>
                             </div>
-                            <div class="filter-form text">
-                                <input type="email" v-model="request.email" placeholder="<?= Labels::getLabel('catalog.contact.form.email', 'E-Mail für Rückfragen (optional)') ?>">
-                            </div>
-                        </div>
-                        <div class="filter-form-rows column-2">
-                            <div class="filter-form checkbox">
-                                <input type="checkbox" v-model="request.consent" value="1" id="consent">
-                                <label for="consent"><?= Labels::getLabel('catalog.contact.form.consent', 'Ich habe die <a href="{{link_url::44}}" target="_blank">Datenschutzbestimmungen</a> gelesen und erkenne diese ausdrücklich an.') ?>*</label>
-                            </div>
-                            <div class="filter-form submit" v-bind:class="{disabled: formSubmitDisabled}">
-                               <button class="button secondary" @click.prevent="submitForm" :disabled="formSubmitDisabled"><?= $this->formButton ?></button>
+                            <div class="filter-form-rows column-2">
+                                <div class="filter-form checkbox">
+                                    <input type="checkbox" v-model="request.consent" value="1" id="consent">
+                                    <label for="consent">
+                                        <?= Labels::getLabel('catalog.contact.form.consent', 'Ich habe die <a href="{{link_url::44}}" target="_blank">Datenschutzbestimmungen</a> gelesen und erkenne diese ausdrücklich an.') ?>*
+                                    </label>
+                                </div>
+                                <div class="filter-form submit" v-bind:class="{disabled: formSubmitDisabled}">
+                                    <button class="button secondary" @click.prevent="submitForm"
+                                        :disabled="formSubmitDisabled">
+                                        <?= $this->formButton ?>
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <?php endif; ?>
     </div>
-    <?php endif; ?>
-</div>
-<!-- indexer::continue -->
+    <!-- indexer::continue -->
 
-<?php if ($strContents): ?>
-    <div class="ce_space block large with-border" style="margin-bottom:30px;max-width: 1024px;margin-right:auto;margin-left:auto"></div>
+    <?php if ($strContents): ?>
+    <div class="ce_space block large with-border"
+        style="margin-bottom:30px;max-width: 1024px;margin-right:auto;margin-left:auto"></div>
     <?= $strContents ?>
-<?php endif; ?>
+    <?php endif; ?>
 
-<script>
-    (function () {
+    <script>
+        (function () {
 
-        let objState = {
-            params: {
-                search: "",
-                classLevels: <?= Input::get('classLevels') ? '['. (new Getters())->getClassLevelsFragUrlFragment(Input::get('classLevels')) .']' : '[]' ?>,
-                subjects: <?= Input::get('subjects') ? '["'. Input::get('subjects') .'"]' : '[]' ?>,
-                types: <?= Input::get('types') ? '["'. Input::get('types') .'"]' : '[]' ?>,
-                features: [],
-                preview: ''
-            },
-            profile: {
-                name: "",
-                description: "",
-                classLevels: [],
-                subjects: []
-            },
-            initial: true,
-            loading: false,
-            // popUp: false,
-            timeout: null,
-            catalogs: [],
-            total: 0,
-            pagination: '',
-            slider: null,
-            autoCompleteJS: null,
-            filter: {
-                subjects: <?= \json_encode($arrSubjects, 0, 512) ?>,
+            let objState = {
+                params: {
+                    search: "",
+                    classLevels: <?= Input :: get('classLevels') ?'['. (new Getters()) -> getClassLevelsFragUrlFragment(Input:: get('classLevels')).']': '[]' ?>,
+                    subjects: <?= Input :: get('subjects') ?'["'.Input:: get('subjects') .'"]': '[]' ?>,
+                    types: <?= Input :: get('types') ?'["'.Input:: get('types') .'"]': '[]' ?>,
+                    features: [],
+                    preview: ''
+                },
+                profile: {
+                    name: "",
+                    description: "",
+                    classLevels: [],
+                    subjects: []
+                },
+                initial: true,
+                loading: false,
+                // popUp: false,
+                timeout: null,
+                catalogs: [],
+                total: 0,
+                pagination: '',
+                slider: null,
+                autoCompleteJS: null,
+                filter: {
+                    subjects: <?= \json_encode($arrSubjects, 0, 512) ?>,
                 types: <?= \json_encode($arrTypes, 0, 512) ?>,
                 features: <?= \json_encode($arrFeatures, 0, 512) ?>,
-                classLevels: [5, 6, 7, 8, 9, 10]
-            },
+                    classLevels: [5, 6, 7, 8, 9, 10]
+        },
             request: {
-                id: "<?= $this->id ?>",
+            id: "<?= $this->id ?>",
                 title: "",
-                subjects: [],
-                classLevels: []
-            },
-            formSubmitDisabled: true,
+                    subjects: [],
+                        classLevels: []
+        },
+        formSubmitDisabled: true,
             form: {
-                state: 'checkin',
+            state: 'checkin',
                 headlines: [
                     "<?= $this->formHeadline ?>",
                     "<?= $this->formHeadline2 ?>"
                 ],
-                text: [
-                    "<?= strip_tags(str_replace(array("\r", "\n"), '', $this->formText)) ?>",
-                    "<?= strip_tags(str_replace(array("\r", "\n"), '', $this->formText2)) ?>"
-                ],
-                current: {
-                    headline: "",
+                    text: [
+                        "<?= strip_tags(str_replace(array("\r", "\n"), '', $this->formText)) ?>",
+                        "<?= strip_tags(str_replace(array("\r", "\n"), '', $this->formText2)) ?>"
+                    ],
+                        current: {
+                headline: "",
                     text: ""
-                },
-                options: {
-                    subjects: <?= \json_encode($arrFormSubjects, 0, 512) ?>,
+            },
+            options: {
+                subjects: <?= \json_encode($arrFormSubjects, 0, 512) ?>,
                     classLevels: <?= \json_encode($arrForClassLevels, 0, 512) ?>
                 }
-            }
+        }
         };
 
         new Vue({
@@ -427,7 +598,7 @@ if ($objPage->id == '75' && ($strActiveUrlFragment = Input::get('catalog'))) {
                 },
                 truncateText: function (txt, maxChars) {
                     if (txt.length > maxChars) {
-                        txt = txt.substr(0,maxChars) + '…';
+                        txt = txt.substr(0, maxChars) + '…';
                     }
                     return txt;
                 },
@@ -443,7 +614,7 @@ if ($objPage->id == '75' && ($strActiveUrlFragment = Input::get('catalog'))) {
                     this.params.types = [];
                     this.fetch('')
                 },
-                search: function() {
+                search: function () {
                     clearTimeout(this.timeout);
                     this.timeout = setTimeout(function () {
                         this.fetch('');
@@ -460,9 +631,9 @@ if ($objPage->id == '75' && ($strActiveUrlFragment = Input::get('catalog'))) {
                 },
                 parse: function (catalogs) {
                     let results = [];
-                    for (let i=0;i<catalogs.length;i++) {
+                    for (let i = 0; i < catalogs.length; i++) {
                         let catalog = catalogs[i];
-                            catalog.active = false;
+                        catalog.active = false;
                         results.push(catalog);
                     }
                     return results;
@@ -498,10 +669,10 @@ if ($objPage->id == '75' && ($strActiveUrlFragment = Input::get('catalog'))) {
                         debounce: 800,
                         submit: true,
                         data: {
-                            src: async function(query) {
+                            src: async function (query) {
                                 let headers = new Headers();
-                                    headers.append('Accept', 'application/json');
-                                    headers.append('Content-Type', 'application/json');
+                                headers.append('Accept', 'application/json');
+                                headers.append('Content-Type', 'application/json');
                                 const source = await fetch("/autocompletion/list?q=" + query, {
                                     method: "POST",
                                     headers: headers,
@@ -604,5 +775,5 @@ if ($objPage->id == '75' && ($strActiveUrlFragment = Input::get('catalog'))) {
                 }.bind(this))
             }
         })
-    })();
-</script>
+    }) ();
+    </script>
