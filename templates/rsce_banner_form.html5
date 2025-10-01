@@ -47,45 +47,8 @@
             <?php if ($this->form): ?>
             <div class="banner_form-form_wrapper">
                 {{insert_form::<?= $this->form ?>}}
-                <!--
-                <div class="banner_form-fields_wrapper">
-                    <div class="banner_form-select_btns">
-                        <select class="banner_form-select" name="" id="">
-                            <option value="Klassenstufe">Klassenstufe</option>
-                            <option value="Klassenstufe">Klassenstufe</option>
-                        </select>
-                        <select class="banner_form-select" name="" id="">
-                            <option value="Klassenstufe">Klassenstufe</option>
-                            <option value="Klassenstufe">Klassenstufe</option>
-                        </select>
-                    </div>
-                    <textarea class="banner_form-textarea" placeholder="Vorschalg *" rows="5"></textarea>
-                    <input type="text" class="banner_form-text" placeholder="Email (Optional)">
-                </div>
-                <div class="banner_form-checkbox_wrapper">
-                    <div class="section_search-checkbox_container">
-                        <input class="checkbox" type="checkbox" name="" id="">
-                        <svg width="12" height="9" viewBox="0 0 12 9" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M11.0859 0.914062C11.2969 1.14844 11.2969 1.5 11.0859 1.71094L4.89844 7.89844C4.66406 8.13281 4.3125 8.13281 4.10156 7.89844L0.914062 4.71094C0.679688 4.5 0.679688 4.14844 0.914062 3.9375C1.125 3.70312 1.47656 3.70312 1.6875 3.9375L4.47656 6.72656L10.2891 0.914062C10.5 0.703125 10.8516 0.703125 11.0625 0.914062H11.0859Z" fill="white"/>
-                        </svg>
-                    </div>
-                    <p class="section_search-checkbox_text">Zeige nur diggies mit Vorschau</p>
-                </div>
-                -->
-            <!-- </div>
+            </div> 
             <?php endif; ?>
-            <?php foreach ($this->links as $link): ?>
-                <?php if ($link->link_text && $link->url): ?>
-                    <a href="<?= $link->url ?>" class="link <?= $link->class === 'secondary_link' ? 'secondary_link' : 'primary_link' ?>">
-                        <p class="<?= $link->class === 'secondary_link' ? 'secondary_link' : 'primary_link' ?>-text"><?= $link->link_text ?></p>
-                        <?php if ($link->arrow): ?>
-                            <svg width="13" height="12" viewBox="0 0 13 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M12.3516 6.62109L7.97656 10.9961C7.64844 11.3516 7.07422 11.3516 6.74609 10.9961C6.39062 10.668 6.39062 10.0938 6.74609 9.76562L9.61719 6.86719H1.25C0.757812 6.86719 0.375 6.48438 0.375 5.99219C0.375 5.52734 0.757812 5.11719 1.25 5.11719H9.61719L6.74609 2.24609C6.39062 1.91797 6.39062 1.34375 6.74609 1.01562C7.07422 0.660156 7.64844 0.660156 7.97656 1.01562L12.3516 5.39062C12.707 5.71875 12.707 6.29297 12.3516 6.62109Z" fill="#4660E9"/>
-                            </svg>
-                        <?php endif; ?>
-                    </a>
-                <?php endif; ?>
-            <?php endforeach; ?> -->
         </div>
     </div>
 </section>

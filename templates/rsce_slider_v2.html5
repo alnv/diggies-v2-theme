@@ -120,7 +120,7 @@ $uniqueId = uniqid('slider_');
                                 <?php endif; ?>
                                 <div class="slide_info">
                                     <?php if ($card->category): ?>
-                                        <p class="slide_info-category<?= $card->category_bg ? '_violet' : '' ?>"><?= $card->category ?></p>
+                                        <p class="slide_info-category <?= $card->category_bg ? '_violet' : '' ?>"><?= $card->category ?></p>
                                     <?php endif; ?>
                                     <?php if ($card->card_type): ?>
                                         <p class="slide_info-card_type"><?= $card->card_type ?></p>

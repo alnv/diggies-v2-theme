@@ -17,6 +17,7 @@
     display: flex;
     flex-direction: column;
     gap: 40px;
+    width: 100%;
 
     .link  {
         width: 100%;
@@ -216,7 +217,10 @@ input::placeholder, textarea::placeholder {
 
 @media (min-width: 768px) {
     .banner_form {
-        padding: 64px 20px;
+        padding: 64px 0;
+        width: calc(100% - 260px);
+        max-width: 1400px;
+        margin: 0 auto;
     }
 
     .banner_form-main_wrapper {
@@ -224,8 +228,7 @@ input::placeholder, textarea::placeholder {
     }
 
     .banner_form-content_wrapper {
-        max-width: 41.1%;
-
+        width: 50%;
         .link  {
             width: fit-content;
         }

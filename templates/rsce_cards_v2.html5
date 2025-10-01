@@ -1,5 +1,5 @@
 <section <?php if ($this->templateId): ?> id="<?= $this->templateId ?>"<?php endif; ?> class="section_cards_v2 <?= $this->white_section ? 'white_section' : '' ?>">
-    <div class="section_cards_v2-container">
+    <div class="section_cards_v2-container <?= $this->white_container ? 'white_bg' : '' ?>">
         <div class="section_cards_v2-top_wrapper">
             <?php if (!empty($this->headline) && $this->headline['value']): ?>
                 <<?= $this->headline['unit'] ?> class="top_wrapper-title"><?= $this->headline['value'] ?></<?= $this->headline['unit'] ?>>

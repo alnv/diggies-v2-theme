@@ -1,5 +1,5 @@
 <section <?php if ($this->templateId): ?> id="<?= $this->templateId ?>"<?php endif; ?> class="section_cards_v3 <?= $this->white_section ? 'white_section' : '' ?>">
-    <div class="section_cards_v3-container <?= $this->section_bg ? 'white_bg' : '' ?>">
+    <div class="section_cards_v3-container <?= $this->white_bg ? 'white_bg' : '' ?>">
         <div class="section_cards_v3-top_wrapper center">
             <?php if (!empty($this->headline) && $this->headline['value']): ?>
                 <<?= $this->headline['unit'] ?> class="top_wrapper-title"><?= $this->headline['value'] ?></<?= $this->headline['unit'] ?>>
@@ -8,7 +8,16 @@
                 <p class="top_wrapper-description"><?= \strip_tags($this->text, '<a><br><strong>') ?></p>
             <?php endif; ?>
         </div>
-        <div id="<?= $this->columns ?>" class="section_cards_v3-cards_wrapper">
-        </div>
+        <?php if ($this->videoSrc): ?>
+            <div class="video_block">
+                <iframe 
+                    src="https://www.youtube.com/embed/<?= $this->videoSrc ?>" 
+                    title="YouTube video player" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+        <?php endif; ?>
     </div>
 </section>

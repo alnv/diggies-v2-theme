@@ -12,6 +12,13 @@ return [
                 'tl_class' => 'w50 m12'
             ]
         ],
+        'white_container' => [
+            'label' => ['White Section', ''],
+            'inputType' => 'checkbox',
+            'eval' => [
+                'tl_class' => 'w50 m12'
+            ]
+        ],
         'headline' => [
             'label' => ['Überschrift', ''],
             'inputType' => 'inputUnit',

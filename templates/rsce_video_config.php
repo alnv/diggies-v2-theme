@@ -30,7 +30,16 @@ return [
                 'rte' => 'tinyMCE'
             ]
         ],
-        'section_bg' => [
+        'videoSrc' => [
+            'label' => ['Vide SRC', ''],
+            'inputType' => 'textarea',
+            'eval' => [
+                'maxlength' => 255,
+                'tl_class' => 'w50',
+                'allowHtml' => true
+            ]
+        ],
+        'white_bg' => [
             'label' => ['White Background for Section', ''],
             'inputType' => 'checkbox',
             'eval' => [

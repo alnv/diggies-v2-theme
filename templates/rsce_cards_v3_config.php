@@ -64,6 +64,13 @@ return [
                         'extensions' => ($GLOBALS['TL_CONFIG']['validImageTypes'] ?? '')
                     ]
                 ],
+                'img_sm' => [
+                    'label' => ['Image Small', ''],
+                    'inputType' => 'checkbox',
+                    'eval' => [
+                        'tl_class' => 'w50 m12'
+                    ]
+                ],
                 'text_box_empty' => [
                     'label' => ['Empty Text Box', ''],
                     'inputType' => 'checkbox',
@@ -103,46 +110,49 @@ return [
                         'tl_class' => 'w50 m12'
                     ]
                 ],
-                'link_text' => [
-                    'label' => ['Text', ''],
-                    'inputType' => 'text',
-                    'eval' => [
-                        'maxlength' => 255,
-                        'tl_class' => 'w50',
-                        'allowHtml' => true
-                    ]
-                ],
-                'url' => [
-                    'label' => ['Link URL', ''],
-                    'inputType' => 'text',
-                    'eval' => [
-                        'rgxp' => 'url',
-                        'maxlength' => 255,
-                        'dcaPicker' => true,
-                        'mandatory' => false,
-                        'decodeEntities' => true,
-                        'tl_class' => 'w50 wizard'
-                    ]
-                ],
-                'class' => [
-                    'label' => ['Link Color', ''],
-                    'inputType' => 'select',
-                    'eval' => [
-                        'tl_class' => 'w50',
-                        'includeBlankOption' => true
-                    ],
-                    'options' => ['primary_link', 'secondary_link']
-                ],
-                'link_image' => [
-                    'label' => ['Link Bild', ''],
-                    'inputType' => 'fileTree',
-                    'eval' => [
-                        'mandatory' => false,
-                        'fieldType' => 'radio',
-                        'files' => true,
-                        'filesOnly' => true,
-                        'tl_class' => 'clr',
-                        'extensions' => ($GLOBALS['TL_CONFIG']['validImageTypes'] ?? '')
+                'card_links' => [
+                    'label' => ['Card Links', ''],
+                    'inputType' => 'list',
+                    'maxItems' => 2,
+                    'elementLabel' => '%s. Link',
+                    'fields' => [
+                        'link_text' => [
+                            'label' => ['Text', ''],
+                            'inputType' => 'text',
+                            'eval' => [
+                                'maxlength' => 255,
+                                'tl_class' => 'w50',
+                                'allowHtml' => true
+                            ]
+                        ],
+                        'url' => [
+                            'label' => ['Link URL', ''],
+                            'inputType' => 'text',
+                            'eval' => [
+                                'rgxp' => 'url',
+                                'maxlength' => 255,
+                                'dcaPicker' => true,
+                                'mandatory' => false,
+                                'decodeEntities' => true,
+                                'tl_class' => 'w50 wizard'
+                            ]
+                        ],
+                        'class' => [
+                            'label' => ['Link Color', ''],
+                            'inputType' => 'select',
+                            'eval' => [
+                                'tl_class' => 'w50',
+                                'includeBlankOption' => true
+                            ],
+                            'options' => ['primary_link', 'secondary_link']
+                        ],
+                        'link_arrow' => [
+                            'label' => ['Add Arrow', ''],
+                            'inputType' => 'checkbox',
+                            'eval' => [
+                                'tl_class' => 'w50 m12'
+                            ]
+                        ],
                     ]
                 ],
             ]
@@ -193,8 +203,8 @@ return [
                 ],
             ]
         ],
-        'section_bg' => [
-            'label' => ['White Background for Section', ''],
+        'white_wrapper' => [
+            'label' => ['White Background for Content', ''],
             'inputType' => 'checkbox',
             'eval' => [
                 'tl_class' => 'w50 m12'

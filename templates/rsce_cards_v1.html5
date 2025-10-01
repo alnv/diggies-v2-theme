@@ -1,7 +1,7 @@
 <section <?php if ($this->templateId): ?> id="<?= $this->templateId ?>"<?php endif; ?> class="section_cards_v1 <?= $this->white_section ? 'white_section' : '' ?>">
     <div class="section_cards_v1-cards_wrapper">
         <?php foreach ($this->cards as $card): ?>
-            <div class="section_cards_v1-card">
+            <div class="section_cards_v1-card <?php if ($card->white_card) echo 'white_card' ?>">
                 <?php if ($card->image): ?>
                     {{image::<?= $card->image ?>?alt=&class=section_cards_v1-img desktop ?>}}
                 <?php endif; ?>

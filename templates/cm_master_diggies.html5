@@ -1,3 +1,6 @@
+<script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" rel="stylesheet">
+
 <?php
 
 global $objPage;
@@ -41,24 +44,33 @@ $objPage->description = strip_tags($this->teaser);
 
 $GLOBALS['TL_HEAD']['search:type'] = '<meta name="search:type" content="diggie"/>';
 ?>
+
 <div class="ce_diggie_master block">
     <div class="diggie_master-container">
         <div class="section_slider_v3-top_wrapper">
             <div class="section_slider_v3-info_box">
                 <div class="section_slider_v3-tags_wrapper">
                     <?php foreach($this->tags as $tag): ?>
-                        <p class="section_slider_v3-tag <?= $tag->violett ? 'violett' : '' ?>"><?= $tag->text ?></p>
+                    <p class="section_slider_v3-tag <?= $tag->violett ? 'violett' : '' ?>">
+                        <?= $tag->text ?>
+                    </p>
                     <?php endforeach; ?>
                 </div>
                 <div class="section_slider_v3-description_box">
                     <?php if ($this->name): ?>
-                        <h1 class="section_slider_v3-title"><?= $this->name ?></h1>
+                    <h1 class="section_slider_v3-title">
+                        <?= $this->name ?>
+                    </h1>
                     <?php endif; ?>
                     <?php if ($this->subtitle): ?>
-                        <p class="section_slider_v3-large_title"><?= $this->subtitle ?></p>
+                    <p class="section_slider_v3-large_title">
+                        <?= $this->subtitle ?>
+                    </p>
                     <?php endif; ?>
                     <?php if ($this->text): ?>
-                        <p class="section_slider_v3-description mobile"><?= \strip_tags($this->text, '<a><br><strong>') ?></p>
+                    <p class="section_slider_v3-description">
+                        <?= \strip_tags($this->text, '<a><br><strong>') ?>
+                    </p>
                     <?php endif; ?>
                 </div>
             </div>
@@ -69,9 +81,9 @@ $GLOBALS['TL_HEAD']['search:type'] = '<meta name="search:type" content="diggie"/
                     <div class="splide__track">
                         <ul class="splide__list">
                             <?php foreach ($this->images as $arrImage): ?>
-                                <li class="splide__slide">
-                                    {{image::<?= $arrImage['path'] ?>?alt=&class=splide-img}}
-                                </li>
+                            <li class="splide__slide">
+                                {{image::<?= $arrImage['path'] ?>?alt=&class=splide-img}}
+                            </li>
                             <?php endforeach; ?>
                         </ul>
                     </div>
@@ -82,9 +94,9 @@ $GLOBALS['TL_HEAD']['search:type'] = '<meta name="search:type" content="diggie"/
                     <div class="splide__track">
                         <ul class="splide__list">
                             <?php foreach ($this->images as $arrImage): ?>
-                                <li class="splide__slide">
-                                    {{image::<?= $arrImage['path'] ?>?alt=&class=splide-img}}
-                                </li>
+                            <li class="splide__slide">
+                                {{image::<?= $arrImage['path'] ?>?alt=&class=splide-img}}
+                            </li>
                             <?php endforeach; ?>
                         </ul>
                     </div>
@@ -93,74 +105,116 @@ $GLOBALS['TL_HEAD']['search:type'] = '<meta name="search:type" content="diggie"/
         </div>
         <div class="section_text_block">
             <div class="section_text_block-form_wrapper">
+                <p class="section_text_block-title">Jetzt 30 Tage kostenlos testen </p>
+                <div class="section_text_block-form_inputs">
+                    {{insert_form::1}}
+                </div>
+            </div>
+            <!-- <div class="section_text_block-form_wrapper">
                 <?php if (!empty($this->form_headline) && $this->form_headline['value']): ?>
-                    <<?= $this->form_headline['unit'] ?> class="section_text_block-title"><?= $this->form_headline['value'] ?></<?= $this->form_headline['unit'] ?>>
+                <<?= $this->form_headline['unit'] ?> class="section_text_block-title">
+                    <?= $this->form_headline['value'] ?>
+                </<?= $this->form_headline['unit'] ?>>
                 <?php endif; ?>
                 <div class="section_text_block-form_inputs">
                     <?php foreach ($this->form_fields as $field): ?>
-                        <div class="section_text_block-form_input_wrapper">
-                            <?php if ($field->title): ?>
-                                <p class="form_input_wrapper-input_title"><?= $field->title ?></p>
-                                <input class="form_input_wrapper-input" type="<?= $field->type ? $field->type : 'text' ?>" name="<?= $field->type ?>" id="" placeholder="<?= $field->placeholder ?>">
-                                <?php if ($field->description): ?>
-                                    <p class="form_input_wrapper-input_description">$field->description</p>
-                                <?php endif; ?>
-                            <?php endif; ?>
-                        </div>
+                    <div class="section_text_block-form_input_wrapper">
+                        <?php if ($field->title): ?>
+                        <p class="form_input_wrapper-input_title">
+                            <?= $field->title ?>
+                        </p>
+                        <input class="form_input_wrapper-input" type="<?= $field->type ? $field->type : 'text' ?>"
+                            name="<?= $field->type ?>" id="" placeholder="<?= $field->placeholder ?>">
+                        <?php if ($field->description): ?>
+                        <p class="form_input_wrapper-input_description">
+                            <?= $field->description ?>
+                        </p>
+                        <?php endif; ?>
+                        <?php endif; ?>
+                    </div>
                     <?php endforeach; ?>
                 </div>
                 <div class="section_text_block-links_wrapper">
                     <?php foreach ($this->form_links as $link): ?>
-                        <?php if ($link->link_text && $link->url): ?>
-                            <a href="<?= $link->url ?>" class="link <?= $link->link_class === 'secondary_link' ? 'secondary_link' : 'primary_link' ?>">
-                                <p class="<?= $link->link_class === 'secondary_link' ? 'secondary_link' : 'primary_link' ?>-text"><?= $link->link_text ?></p>
-                                <?php if ($link->arrow): ?>
-                                    <svg width="13" height="12" viewBox="0 0 13 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M12.3516 6.62109L7.97656 10.9961C7.64844 11.3516 7.07422 11.3516 6.74609 10.9961C6.39062 10.668 6.39062 10.0938 6.74609 9.76562L9.61719 6.86719H1.25C0.757812 6.86719 0.375 6.48438 0.375 5.99219C0.375 5.52734 0.757812 5.11719 1.25 5.11719H9.61719L6.74609 2.24609C6.39062 1.91797 6.39062 1.34375 6.74609 1.01562C7.07422 0.660156 7.64844 0.660156 7.97656 1.01562L12.3516 5.39062C12.707 5.71875 12.707 6.29297 12.3516 6.62109Z" fill="#4660E9"/>
-                                    </svg>
-                                <?php endif; ?>
-                            </a>
+                    <?php if ($link->link_text && $link->url): ?>
+                    <a href="<?= $link->url ?>"
+                        class="link <?= $link->link_class === 'secondary_link' ? 'secondary_link' : 'primary_link' ?>">
+                        <p
+                            class="<?= $link->link_class === 'secondary_link' ? 'secondary_link' : 'primary_link' ?>-text">
+                            <?= $link->link_text ?>
+                        </p>
+                        <?php if ($link->arrow): ?>
+                        <svg width="13" height="12" viewBox="0 0 13 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M12.3516 6.62109L7.97656 10.9961C7.64844 11.3516 7.07422 11.3516 6.74609 10.9961C6.39062 10.668 6.39062 10.0938 6.74609 9.76562L9.61719 6.86719H1.25C0.757812 6.86719 0.375 6.48438 0.375 5.99219C0.375 5.52734 0.757812 5.11719 1.25 5.11719H9.61719L6.74609 2.24609C6.39062 1.91797 6.39062 1.34375 6.74609 1.01562C7.07422 0.660156 7.64844 0.660156 7.97656 1.01562L12.3516 5.39062C12.707 5.71875 12.707 6.29297 12.3516 6.62109Z"
+                                fill="#4660E9" />
+                        </svg>
                         <?php endif; ?>
+                    </a>
+                    <?php endif; ?>
                     <?php endforeach; ?>
                 </div>
-            </div>
+            </div> -->
             <div class="section_text_block-content_box">
-                <div class="section_text_block-top_box">
+                <!-- <div class="section_text_block-top_box">
                     <?php if (!empty($this->headline) && $this->headline['value']): ?>
                         <<?= $this->headline['unit'] ?> class="section_text_block-title"><?= $this->headline['value'] ?></<?= $this->headline['unit'] ?>>
                     <?php endif; ?>
                     <?php if ($this->text): ?>
                         <p class="section_text_block-description"><?= \strip_tags($this->text, '<a><br><strong>') ?></p>
                     <?php endif; ?>
+                </div> -->
+                <div class="section_text_block-top_box">
+                    <p class="section_text_block-title">Zusammenfassung</p>
+                    <p class="section_text_block-description"><?= $this->teaser ?></p>
                 </div>
-                <div class="section_text_block-info_box">
+                <!-- <div class="section_text_block-info_box">
                     <?php foreach ($this->blocks as $block): ?>
-                        <div class="section_text_block-info_item">
-                            <?php if ($block->block_title && $block->text): ?>
-                                <p class="section_text_block-info_item_title"><?= $block->block_title ?></p>
-                                <p class="section_text_block-info_item_description"><?= \strip_tags($block->text, '<a><br><strong>') ?></p>
-                            <?php endif; ?>
-                        </div>
+                    <div class="section_text_block-info_item">
+                        <?php if ($block->block_title && $block->text): ?>
+                        <p class="section_text_block-info_item_title">
+                            <?= $block->block_title ?>
+                        </p>
+                        <p class="section_text_block-info_item_description">
+                            <?= \strip_tags($block->text, '<a><br><strong>') ?>
+                        </p>
+                        <?php endif; ?>
+                    </div>
                     <?php endforeach; ?>
+                </div> -->
+                <div class="section_text_block-info_box">
+                    <div class="section_text_block-info_item">
+                        <p class="section_text_block-info_item_title">Prior professional knowledge</p>
+                        <p class="section_text_block-info_item_description">Not necessary prior professional knowledge
+                            of the students</p>
+                    </div>
                 </div>
                 <?php if (!empty($arrTags)): ?>
-                    <div class="section_text_block-topics_wrapper">
-                        <p class="section_text_block-topics_title"><?= Labels::getLabel('diggie.master.tags.headline', 'Themen in dieser diggie:') ?></p>
-                        <div class="section_text_block-topics_container">
-                            <?php foreach ($arrTags as $strTag): ?>
-                                <p class="section_text_block-topic"><?= $strTag ?></p>
-                            <?php endforeach; ?>
-                        </div>
+                <div class="section_text_block-topics_wrapper">
+                    <p class="section_text_block-topics_title">
+                        <?= Labels::getLabel('diggie.master.tags.headline', 'Themen in dieser diggie:') ?>
+                    </p>
+                    <div class="section_text_block-topics_container">
+                        <?php foreach ($arrTags as $strTag): ?>
+                        <p class="section_text_block-topic">
+                            <?= $strTag ?>
+                        </p>
+                        <?php endforeach; ?>
                     </div>
+                </div>
                 <?php endif; ?>
             </div>
         </div>
         <div class="catalog-profile-close">
             <a href="<?= $objPage->getFrontendUrl() ?>" class="button close">
                 <svg width="29" height="29" viewBox="0 0 29 29" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M14.1521 26.0698C20.7341 26.0698 26.0698 20.7341 26.0698 14.1521C26.0698 7.57012 20.7341 2.23438 14.1521 2.23438C7.57012 2.23438 2.23438 7.57012 2.23438 14.1521C2.23438 20.7341 7.57012 26.0698 14.1521 26.0698Z" stroke="#FE6007" stroke-width="2.38354" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M17.709 10.6143L10.6328 17.6904" stroke="#FE6007" stroke-width="2.38354" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M10.6328 10.6143L17.709 17.6904" stroke="#FE6007" stroke-width="2.38354" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path
+                        d="M14.1521 26.0698C20.7341 26.0698 26.0698 20.7341 26.0698 14.1521C26.0698 7.57012 20.7341 2.23438 14.1521 2.23438C7.57012 2.23438 2.23438 7.57012 2.23438 14.1521C2.23438 20.7341 7.57012 26.0698 14.1521 26.0698Z"
+                        stroke="#FE6007" stroke-width="2.38354" stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M17.709 10.6143L10.6328 17.6904" stroke="#FE6007" stroke-width="2.38354"
+                        stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M10.6328 10.6143L17.709 17.6904" stroke="#FE6007" stroke-width="2.38354"
+                        stroke-linecap="round" stroke-linejoin="round" />
                 </svg>
             </a>
         </div>
@@ -169,10 +223,14 @@ $GLOBALS['TL_HEAD']['search:type'] = '<meta name="search:type" content="diggie"/
             <!-- indexer::stop -->
             <div class="header-rows">
                 <a href="mailto:?subject=<?= $this->name ?>&body=<?= $this->teaser ?> <?= $objPage->getAbsoluteUrl('/' . $this->alias) ?>"
-                   class="button mail"><?= Labels::getLabel('catalog.button.newMail', '<span>Kolleg:innen</span> empfehlen') ?>
+                    class="button mail">
+                    <?= Labels::getLabel('catalog.button.newMail', '<span>Kolleg:innen</span> empfehlen') ?>
                     <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M6.66927 6.66699H33.3359C35.1693 6.66699 36.6693 8.16699 36.6693 10.0003V30.0003C36.6693 31.8337 35.1693 33.3337 33.3359 33.3337H6.66927C4.83594 33.3337 3.33594 31.8337 3.33594 30.0003V10.0003C3.33594 8.16699 4.83594 6.66699 6.66927 6.66699Z" stroke="#FE6007" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M36.6693 10L20.0026 21.6667L3.33594 10" stroke="#FE6007" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path
+                            d="M6.66927 6.66699H33.3359C35.1693 6.66699 36.6693 8.16699 36.6693 10.0003V30.0003C36.6693 31.8337 35.1693 33.3337 33.3359 33.3337H6.66927C4.83594 33.3337 3.33594 31.8337 3.33594 30.0003V10.0003C3.33594 8.16699 4.83594 6.66699 6.66927 6.66699Z"
+                            stroke="#FE6007" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M36.6693 10L20.0026 21.6667L3.33594 10" stroke="#FE6007" stroke-width="2.5"
+                            stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
                 </a>
                 <a href="{{link_url::72}}" class="button primary">Jetzt testen</a>
@@ -186,12 +244,20 @@ $GLOBALS['TL_HEAD']['search:type'] = '<meta name="search:type" content="diggie"/
 
         <div class="ce_text block">
             <div class="content_container">
-                <h1 class="headline"><?= $this->name ?></h1>
-                <h2 class="subheadline"><?= $this->subtitle ?></h2>
+                <h1 class="headline">
+                    <?= $this->name ?>
+                </h1>
+                <h2 class="subheadline">
+                    <?= $this->subtitle ?>
+                </h2>
                 <!-- indexer::stop -->
                 <p class="strong"><strong>Zusammenfassung</strong></p>
                 <!-- indexer::continue -->
-                <p><?= $this->teaser ?></p>
+                 <?php if ($strContent = $this->getContentElements()): ?>
+                    <div class="catalog-content-elements">
+                        <?= $strContent ?>
+                    </div>
+                <?php endif; ?>
             </div>
         </div>
 
@@ -200,9 +266,10 @@ $GLOBALS['TL_HEAD']['search:type'] = '<meta name="search:type" content="diggie"/
                 <div class="splide__track">
                     <div class="splide__list">
                         <?php foreach ($this->images as $arrImage): ?>
-                            <figure class="splide__slide">
-                                {{image::<?= $arrImage['path'] ?>?mode=proportional&width=800&height=466}}
-                            </figure>
+                        <figure class="splide__slide">
+                            {{image::
+                            <?= $arrImage['path'] ?>?mode=proportional&width=800&height=466}}
+                        </figure>
                         <?php endforeach; ?>
                     </div>
                 </div>
@@ -212,70 +279,104 @@ $GLOBALS['TL_HEAD']['search:type'] = '<meta name="search:type" content="diggie"/
 
                 <div>
                     <?php if (!empty($this->subjects)): ?>
-                        <!-- indexer::stop -->
-                        <p class="subheadline"><?= Labels::getLabel('diggie.master.subheadline.subject', 'Fach:') ?></p>
-                        <!-- indexer::continue -->
-                        <div class="catalog-tags">
-                            <ul>
-                                <?php foreach ($this->subjects as $arrSubject): ?>
-                                    <?php
+                    <!-- indexer::stop -->
+                    <p class="subheadline">
+                        <?= Labels::getLabel('diggie.master.subheadline.subject', 'Fach:') ?>
+                    </p>
+                    <!-- indexer::continue -->
+                    <div class="catalog-tags">
+                        <ul>
+                            <?php foreach ($this->subjects as $arrSubject): ?>
+                            <?php
                                     $objPageFilerSubject = $arrPageFilters[0] ?? null;
                                     ?>
-                                    <li><a <?php if ($objPageFilerSubject): ?>href="#"<?php endif; ?>><?= $arrSubject['label'] ?></a></li>
-                                <?php endforeach; ?>
-                            </ul>
-                        </div>
+                            <li><a <?php if ($objPageFilerSubject): ?>href="#"
+                                    <?php endif; ?>>
+                                    <?= $arrSubject['label'] ?>
+                                </a></li>
+                            <?php endforeach; ?>
+                        </ul>
+                    </div>
                     <?php endif; ?>
 
                     <?php if (!empty($this->types)): ?>
-                        <!-- indexer::stop -->
-                        <p class="subheadline"><?= Labels::getLabel('diggie.master.subheadline.types', 'diggie-Typ:') ?></p>
-                        <!-- indexer::continue -->
-                        <div class="catalog-tags">
-                            <?php
+                    <!-- indexer::stop -->
+                    <p class="subheadline">
+                        <?= Labels::getLabel('diggie.master.subheadline.types', 'diggie-Typ:') ?>
+                    </p>
+                    <!-- indexer::continue -->
+                    <div class="catalog-tags">
+                        <?php
                             $objPageFilterType = $arrPageFilters[2] ?? null;
                             ?>
-                            <ul>
-                                <?php foreach ($this->types as $arrType): ?>
-                                    <li class="<?= $objGenerator->generate($arrType['label']) ?> "><a href="#"><?= $arrType['label'] ?></a></li>
-                                <?php endforeach; ?>
-                            </ul>
-                        </div>
+                        <ul>
+                            <?php foreach ($this->types as $arrType): ?>
+                            <li class="<?= $objGenerator->generate($arrType['label']) ?> "><a href="#">
+                                    <?= $arrType['label'] ?>
+                                </a></li>
+                            <?php endforeach; ?>
+                        </ul>
+                    </div>
                     <?php endif; ?>
                     <!-- indexer::stop -->
-                    <p class="subheadline"><?= Labels::getLabel('diggie.master.subheadline.classLevels', 'Klassenstufe und Dauer:') ?></p>
+                    <p class="subheadline">
+                        <?= Labels::getLabel('diggie.master.subheadline.classLevels', 'Klassenstufe und Dauer:') ?>
+                    </p>
                     <!-- indexer::continue -->
                     <div class="catalog-tags">
                         <?php
                         $objPageFilterClasses = $arrPageFilters[1] ?? null;
                         ?>
                         <ul>
-                            <li><a <?php if ($objPageFilterClasses): ?>href="#" <?php endif; ?>><?= Toolkit::parse($this->classLevels) ?></a></li>
-                            <li><?= $this->lessonDuration ?> min</li>
+                            <li><a <?php if ($objPageFilterClasses): ?>href="#"
+                                    <?php endif; ?>>
+                                    <?= Toolkit::parse($this->classLevels) ?>
+                                </a></li>
+                            <li>
+                                <?= $this->lessonDuration ?> min
+                            </li>
                         </ul>
                     </div>
 
                     <?php if (!empty($this->features)): ?>
-                        <!-- indexer::stop -->
-                        <p class="subheadline"><?= Labels::getLabel('diggie.master.subheadline.features', 'Merkmale:') ?></p>
-                        <!-- indexer::continue -->
-                        <div class="catalog-tags">
-                            <ul>
-                                <?php foreach ($this->features as $arrFeature): ?>
-                                    <li class="<?= $objGenerator->generate($arrFeature['label']) ?>"><span><?= $arrFeature['label'] ?></span></li>
-                                <?php endforeach; ?>
-                            </ul>
-                        </div>
+                    <!-- indexer::stop -->
+                    <p class="subheadline">
+                        <?= Labels::getLabel('diggie.master.subheadline.features', 'Merkmale:') ?>
+                    </p>
+                    <!-- indexer::continue -->
+                    <div class="catalog-tags">
+                        <ul>
+                            <?php foreach ($this->features as $arrFeature): ?>
+                            <li class="<?= $objGenerator->generate($arrFeature['label']) ?>"><span>
+                                    <?= $arrFeature['label'] ?>
+                                </span></li>
+                            <?php endforeach; ?>
+                        </ul>
+                    </div>
                     <?php endif; ?>
                 </div>
 
                 <?php if ($this->previewMode): ?>
-                    <div class="preview-button">
-                        <a href="<?= $this->previewUrl ?>" class="button secondary" target="_blank">
-                            <svg width="23" height="22" viewBox="0 0 23 22" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_10067_43669)"><path d="M1.41602 11C1.41602 11 5.08268 3.66666 11.4993 3.66666C17.916 3.66666 21.5827 11 21.5827 11C21.5827 11 17.916 18.3333 11.4993 18.3333C5.08268 18.3333 1.41602 11 1.41602 11Z" stroke="white" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/><path d="M11.5 13.75C13.0188 13.75 14.25 12.5188 14.25 11C14.25 9.48122 13.0188 8.25 11.5 8.25C9.98122 8.25 8.75 9.48122 8.75 11C8.75 12.5188 9.98122 13.75 11.5 13.75Z" stroke="white" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></g><defs><clipPath id="clip0_10067_43669"><rect width="22" height="22" fill="white" transform="translate(0.5)"/></clipPath></defs></svg>
-                            <?= Labels::getLabel('catalog.button.preview', 'Vorschau') ?>
-                        </a>
-                    </div>
+                <div class="preview-button">
+                    <a href="<?= $this->previewUrl ?>" class="button secondary" target="_blank">
+                        <svg width="23" height="22" viewBox="0 0 23 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <g clip-path="url(#clip0_10067_43669)">
+                                <path
+                                    d="M1.41602 11C1.41602 11 5.08268 3.66666 11.4993 3.66666C17.916 3.66666 21.5827 11 21.5827 11C21.5827 11 17.916 18.3333 11.4993 18.3333C5.08268 18.3333 1.41602 11 1.41602 11Z"
+                                    stroke="white" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
+                                <path
+                                    d="M11.5 13.75C13.0188 13.75 14.25 12.5188 14.25 11C14.25 9.48122 13.0188 8.25 11.5 8.25C9.98122 8.25 8.75 9.48122 8.75 11C8.75 12.5188 9.98122 13.75 11.5 13.75Z"
+                                    stroke="white" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
+                            </g>
+                            <defs>
+                                <clipPath id="clip0_10067_43669">
+                                    <rect width="22" height="22" fill="white" transform="translate(0.5)" />
+                                </clipPath>
+                            </defs>
+                        </svg>
+                        <?= Labels::getLabel('catalog.button.preview', 'Vorschau') ?>
+                    </a>
+                </div>
                 <?php endif; ?>
             </div>
         </div>
@@ -285,26 +386,30 @@ $GLOBALS['TL_HEAD']['search:type'] = '<meta name="search:type" content="diggie"/
         </div>
 
         <?php if ($strContent = $this->getContentElements()): ?>
-            <div class="catalog-content-elements">
-                <?= $strContent ?>
-            </div>
+        <div class="catalog-content-elements">
+            <?= $strContent ?>
+        </div>
         <?php endif; ?>
 
         <?php if (!empty($arrTags)): ?>
-            <div class="catalog-tags central">
-                <p class="strong"><?= Labels::getLabel('diggie.master.tags.headline', 'Themen in dieser diggie:') ?></p>
-                <ul>
-                    <?php foreach ($arrTags as $strTag): ?>
-                        <li><?= $strTag ?></li>
-                    <?php endforeach; ?>
-                </ul>
-            </div>
+        <div class="catalog-tags central">
+            <p class="strong">
+                <?= Labels::getLabel('diggie.master.tags.headline', 'Themen in dieser diggie:') ?>
+            </p>
+            <ul>
+                <?php foreach ($arrTags as $strTag): ?>
+                <li>
+                    <?= $strTag ?>
+                </li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
         <?php endif; ?>
     </div>
 </div>
 
 <?php if (!empty($this->tags)): ?>
-    <?php
+<?php
     $arrQueries = [];
     $arrValues = [];
     $arrColumns = [];
@@ -340,22 +445,24 @@ $GLOBALS['TL_HEAD']['search:type'] = '<meta name="search:type" content="diggie"/
     ]);
     $arrEntities = []; //$objEntities->parse();
     ?>
-    <?php if (!empty($arrEntities)): ?>
-        <!-- indexer::stop -->
-        <div class="ce_catalog">
-            <h2><?= Labels::getLabel('diggie.master.related.headline', 'Diese diggies könnten Ihnen auch gefallen:') ?></h2>
-            <div class="catalog-results">
-                <?php foreach ($arrEntities as $arrEntity): ?>
-                    <?php
+<?php if (!empty($arrEntities)): ?>
+<!-- indexer::stop -->
+<div class="ce_catalog">
+    <h2>
+        <?= Labels::getLabel('diggie.master.related.headline', 'Diese diggies könnten Ihnen auch gefallen:') ?>
+    </h2>
+    <div class="catalog-results">
+        <?php foreach ($arrEntities as $arrEntity): ?>
+        <?php
                     $objTemplate = new FrontendTemplate('ce_diggie_item');
                     $objTemplate->setData($arrEntity);
                     echo $objTemplate->parse();
                     ?>
-                <?php endforeach; ?>
-            </div>
-        </div>
-        <!-- indexer::continue -->
-    <?php endif; ?>
+        <?php endforeach; ?>
+    </div>
+</div>
+<!-- indexer::continue -->
+<?php endif; ?>
 <?php endif; ?>
 
 <script>
@@ -370,7 +477,7 @@ $GLOBALS['TL_HEAD']['search:type'] = '<meta name="search:type" content="diggie"/
         objSlider.mount();
 
         if (document.querySelector('.splide_v3_<?= $uniqueId ?>') != null) {
-            const splide_v3 = new Splide( '.splide_v3_<?= $uniqueId ?>', {
+            const splide_v3 = new Splide('.splide_v3_<?= $uniqueId ?>', {
                 arrows: false,
                 omitEnd: true,
                 perPage: 1,
@@ -383,9 +490,9 @@ $GLOBALS['TL_HEAD']['search:type'] = '<meta name="search:type" content="diggie"/
                         pagination: true
                     },
                 },
-            } );
+            });
 
-            const splide_v3_aside = new Splide( '.splide_aside_v3<?= $uniqueId ?>', {
+            const splide_v3_aside = new Splide('.splide_aside_v3<?= $uniqueId ?>', {
                 direction: 'ttb',
                 arrows: false,
                 omitEnd: true,
@@ -396,7 +503,7 @@ $GLOBALS['TL_HEAD']['search:type'] = '<meta name="search:type" content="diggie"/
                 autoHeight: true,
                 gap: '20px',
                 slideFocus: true
-            } ).mount();
+            }).mount();
 
             splide_v3.sync(splide_v3_aside).mount();
 

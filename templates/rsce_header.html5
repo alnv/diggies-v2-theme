@@ -37,7 +37,7 @@
                     <span class="header_mobile">Ausprobieren</span>
                 </p>
             </a>
-            <a href="{{link_url::12}}" class="secondary_link link header_desktop">
+            <a href="{{link_url::12}}" class="secondary_link link header_desktop desktop">
                 <p class="secondary_link-text">Anmelden</p>
             </a>
             <div class="navigation-burger_wrapper header_header_mobile">

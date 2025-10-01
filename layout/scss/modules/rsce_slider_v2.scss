@@ -1,10 +1,12 @@
 .section_slider_v2 {
-    padding: 80px 20px;
+    padding: 80px 0;
+    padding-left: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 40px;
     background: var(--Colors-Secondary-orange-50);
+
 }
 
 .section_slider_v2-top_wrapper {
@@ -39,6 +41,10 @@
 
 .section_slider_v2-cards_list {
     gap: 20px;
+}
+
+.section_slider_v2-splide_wrapper {
+    width: 100%;
 }
 
 .section_slider_v2 {

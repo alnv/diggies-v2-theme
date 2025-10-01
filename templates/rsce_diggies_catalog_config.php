@@ -103,7 +103,7 @@ return [
                 'files' => true,
                 'filesOnly' => true,
                 'tl_class' => 'clr',
-                'extensions' => $GLOBALS['TL_CONFIG']['validImageTypes']
+        
             ]
         ]
     ]

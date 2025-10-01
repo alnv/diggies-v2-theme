@@ -19,6 +19,13 @@ return [
             'maxItems' => 3,
             'elementLabel' => '%s. Card',
             'fields' => [
+                'white_card' => [
+                    'label' => ['White Card Hintergrund', ''],
+                    'inputType' => 'checkbox',
+                    'eval' => [
+                        'tl_class' => 'w50 m12'
+                    ]
+                ],
                 'image' => [
                     'label' => ['Bild', ''],
                     'inputType' => 'fileTree',
