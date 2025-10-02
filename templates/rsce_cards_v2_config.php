@@ -13,7 +13,7 @@ return [
             ]
         ],
         'white_container' => [
-            'label' => ['White Section', ''],
+            'label' => ['White Container', ''],
             'inputType' => 'checkbox',
             'eval' => [
                 'tl_class' => 'w50 m12'

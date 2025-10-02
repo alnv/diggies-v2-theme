@@ -19,6 +19,7 @@
     flex-direction: column;
     align-items: center;
     gap: 12px;
+    border-radius: 24px;
 }
 
 .section_cards_v1-title {
@@ -65,4 +66,5 @@
 .white_card {
   background: var(--Colors-Neutral-neutral-0);
   border: 1px solid var(--Colors-Neutral-neutral-100);
+  border-radius: 24px;
 }

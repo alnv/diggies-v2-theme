@@ -80,7 +80,7 @@
 
 @media (min-width: 768px) {
     .reviews_section {
-        padding: 20px;
+        padding: 20px 0;
         display: flex;
         justify-content: center;
     }
@@ -89,6 +89,7 @@
         gap: 64px;
         padding: 120px 110px;
         max-width: 1400px;
+        width: calc(100% - 260px);
     }
 
     .reviews_section-top_wrapper {

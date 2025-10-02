@@ -226,6 +226,13 @@ return [
             ],
             'options' => ['primary_link', 'secondary_link']
         ],
+            'link_arrow' => [
+            'label' => ['Add Arrow', ''],
+            'inputType' => 'checkbox',
+            'eval' => [
+                'tl_class' => 'w50 m12'
+            ]
+        ],
         'section_bg' => [
             'label' => ['White Background for Section', ''],
             'inputType' => 'checkbox',
