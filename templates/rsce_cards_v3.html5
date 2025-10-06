@@ -14,7 +14,7 @@
                     <?php if ($card->image): ?>
                         {{image::<?= $card->image ?>?alt=&class=section_cards_v3-img <?= $card->text_box_empty ? 'circled' : '' ?>  <?= $card->img_sm ? 'img_sm' : '' ?>}}
                     <?php endif; ?>
-                    <div class="card_v3-content <?= $card->center_content ? 'center' : '' ?> <?= $card->text_box_empty ? 'is-hidden' : '' ?>">
+                    <div class="card_v3-content<?= $card->center_content ? ' center' : '' ?><?= $card->text_box_empty ? ' is-hidden' : '' ?>">
                         <div class="card_v3-text_box">
                             <div class="card_v3-title_box">
                                 <?php if ($card->counter): ?>

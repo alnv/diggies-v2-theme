@@ -91,10 +91,6 @@ button {
   border: none;
 }
 
-.section_cards_v2-container {
-
-}
-
 @media (min-width: 768px) {
   // section {
   //   padding-left: 0;
@@ -177,6 +173,7 @@ button {
   display: flex;
   align-items: center;
   gap: 16px;
+  padding: 0;
 }
 
 .is-hidden {
@@ -1213,6 +1210,15 @@ button {
     font-weight: 400;
     margin-top: 4px;
 }
+
+.blue {
+  background: var(--Colors-Primary-primary-100);
+}
+
+.orange {
+  background: var(--Colors-Secondary-orange-100);
+}
+
 
 .desktop {
   display: none;

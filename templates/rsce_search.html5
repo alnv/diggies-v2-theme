@@ -1,4 +1,4 @@
-<section <?php if ($this->templateId): ?> id="<?= $this->templateId ?>"<?php endif; ?> class="section_search <?= $this->white_section ? 'white_section' : '' ?>">
+<section <?php if ($this->templateId): ?> id="<?= $this->templateId ?>"<?php endif; ?> class="section_search <?= $this->white_section ? 'white_section' : '' ?><?= $card->bg_color ?: ' default' ?>">
     <div class="section_search-top_box">
         <?php if (!empty($this->headline) && $this->headline['value']): ?>
             <<?= $this->headline['unit'] ?> class="section_search-title"><?= $this->headline['value'] ?></<?= $this->headline['unit'] ?>>
@@ -8,45 +8,76 @@
         <?php endif; ?>
     </div>
     <div class="section_search-search_box">
-        <div class="section_search-search_input">
-            <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M13 6.5C13 7.9375 12.5312 9.28125 11.75 10.3438L15.6875 14.3125C16.0938 14.6875 16.0938 15.3438 15.6875 15.7188C15.3125 16.125 14.6562 16.125 14.2812 15.7188L10.3125 11.75C9.25 12.5625 7.90625 13 6.5 13C2.90625 13 0 10.0938 0 6.5C0 2.9375 2.90625 0 6.5 0C10.0625 0 13 2.9375 13 6.5ZM6.5 11C8.09375 11 9.5625 10.1562 10.375 8.75C11.1875 7.375 11.1875 5.65625 10.375 4.25C9.5625 2.875 8.09375 2 6.5 2C4.875 2 3.40625 2.875 2.59375 4.25C1.78125 5.65625 1.78125 7.375 2.59375 8.75C3.40625 10.1562 4.875 11 6.5 11Z" fill="#867F7C"/>
-            </svg>
-            <input type="text" name="search" id="" placeholder="Suche..." class="section_search-search_input">
-        </div>
-        <div class="section_search-filters_box">
-            <div class="filter_btn mobile">
-                <svg width="16" height="14" viewBox="0 0 16 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M0 1.3125C0 0.59375 0.5625 0 1.28125 0H14.6875C15.4062 0 16 0.59375 16 1.3125C16 1.625 15.875 1.90625 15.6875 2.125L10.5 8.53125V13C10.5 13.5625 10.0312 14 9.46875 14C9.25 14 9.03125 13.9375 8.84375 13.7812L5.96875 11.5C5.65625 11.25 5.5 10.9062 5.5 10.5312V8.53125L0.28125 2.125C0.09375 1.90625 0 1.625 0 1.3125ZM1.71875 1.5L6.8125 7.78125C6.9375 7.9375 7 8.09375 7 8.25V10.4062L9 12V8.25C9 8.09375 9.03125 7.9375 9.15625 7.78125L14.2812 1.5H1.71875Z" fill="#1A0A03"/>
+        <div class="filter-form">
+            <div class="filter_form-input_search">
+                <label for="autoComplete" class="search-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M17 10.5C17 11.9375 16.5312 13.2812 15.75 14.3438L19.6875 18.3125C20.0938 18.6875 20.0938 19.3438 19.6875 19.7188C19.3125 20.125 18.6562 20.125 18.2812 19.7188L14.3125 15.75C13.25 16.5625 11.9062 17 10.5 17C6.90625 17 4 14.0938 4 10.5C4 6.9375 6.90625 4 10.5 4C14.0625 4 17 6.9375 17 10.5ZM10.5 15C12.0938 15 13.5625 14.1562 14.375 12.75C15.1875 11.375 15.1875 9.65625 14.375 8.25C13.5625 6.875 12.0938 6 10.5 6C8.875 6 7.40625 6.875 6.59375 8.25C5.78125 9.65625 5.78125 11.375 6.59375 12.75C7.40625 14.1562 8.875 15 10.5 15Z"
+                            fill="#867F7C" />
+                    </svg>
+
+                </label>
+                <input class="search-input" id="autoComplete" type="search" dir="ltr" @keyup="search"
+                    v-model="params.search" spellcheck=false autocorrect="off" autocomplete="off"
+                    autocapitalize="off" tabindex="1" v-bind:class="{searching: loading}"
+                    placeholder="Suche...">
+                <button class="search-button mobile" @click="triggerFetch" type="button">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M17 10.5C17 11.9375 16.5312 13.2812 15.75 14.3438L19.6875 18.3125C20.0938 18.6875 20.0938 19.3438 19.6875 19.7188C19.3125 20.125 18.6562 20.125 18.2812 19.7188L14.3125 15.75C13.25 16.5625 11.9062 17 10.5 17C6.90625 17 4 14.0938 4 10.5C4 6.9375 6.90625 4 10.5 4C14.0625 4 17 6.9375 17 10.5ZM10.5 15C12.0938 15 13.5625 14.1562 14.375 12.75C15.1875 11.375 15.1875 9.65625 14.375 8.25C13.5625 6.875 12.0938 6 10.5 6C8.875 6 7.40625 6.875 6.59375 8.25C5.78125 9.65625 5.78125 11.375 6.59375 12.75C7.40625 14.1562 8.875 15 10.5 15Z"
+                            fill="white" />
+                    </svg>
+                </button>
+            </div>
+            <button class="filter_btn mobile">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M4 6.3125C4 5.59375 4.5625 5 5.28125 5H18.6875C19.4062 5 20 5.59375 20 6.3125C20 6.625 19.875 6.90625 19.6875 7.125L14.5 13.5312V18C14.5 18.5625 14.0312 19 13.4688 19C13.25 19 13.0312 18.9375 12.8438 18.7812L9.96875 16.5C9.65625 16.25 9.5 15.9062 9.5 15.5312V13.5312L4.28125 7.125C4.09375 6.90625 4 6.625 4 6.3125ZM5.71875 6.5L10.8125 12.7812C10.9375 12.9375 11 13.0938 11 13.25V15.4062L13 17V13.25C13 13.0938 13.0312 12.9375 13.1562 12.7812L18.2812 6.5H5.71875Z"
+                        fill="#1A0A03" />
                 </svg>
-            </div>
-            <div class="section_search-filters_wrapper desktop">
-                <select class="section_search-select" name="" id="">
-                    <option value="Klassenstufe">Klassenstufe</option>
-                    <option value="Klassenstufe">Klassenstufe</option>
-                </select>
-                <select class="section_search-select" name="" id="">
-                    <option value="Klassenstufe">Klassenstufe</option>
-                    <option value="Klassenstufe">Klassenstufe</option>
-                </select>
-                <select class="section_search-select" name="" id="">
-                    <option value="Klassenstufe">Klassenstufe</option>
-                    <option value="Klassenstufe">Klassenstufe</option>
-                </select>
-                <select class="section_search-select" name="" id="">
-                    <option value="Klassenstufe">Klassenstufe</option>
-                    <option value="Klassenstufe">Klassenstufe</option>
-                </select>
-            </div>
-            <div class="section_search-checkbox_wrapper desktop">
-                <div class="section_search-checkbox_container">
-                    <input class="checkbox" type="checkbox" name="" id="">
-                    <svg width="12" height="9" viewBox="0 0 12 9" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M11.0859 0.914062C11.2969 1.14844 11.2969 1.5 11.0859 1.71094L4.89844 7.89844C4.66406 8.13281 4.3125 8.13281 4.10156 7.89844L0.914062 4.71094C0.679688 4.5 0.679688 4.14844 0.914062 3.9375C1.125 3.70312 1.47656 3.70312 1.6875 3.9375L4.47656 6.72656L10.2891 0.914062C10.5 0.703125 10.8516 0.703125 11.0625 0.914062H11.0859Z" fill="white"/>
+            </button>
+            <button class="search-button desktop" @click="triggerFetch" type="button">
+                Suchen
+            </button>
+        </div>
+        <?php if($this->filter): ?>
+            <div class="section_search-filters_box">
+                <div class="filter_btn mobile">
+                    <svg width="16" height="14" viewBox="0 0 16 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 1.3125C0 0.59375 0.5625 0 1.28125 0H14.6875C15.4062 0 16 0.59375 16 1.3125C16 1.625 15.875 1.90625 15.6875 2.125L10.5 8.53125V13C10.5 13.5625 10.0312 14 9.46875 14C9.25 14 9.03125 13.9375 8.84375 13.7812L5.96875 11.5C5.65625 11.25 5.5 10.9062 5.5 10.5312V8.53125L0.28125 2.125C0.09375 1.90625 0 1.625 0 1.3125ZM1.71875 1.5L6.8125 7.78125C6.9375 7.9375 7 8.09375 7 8.25V10.4062L9 12V8.25C9 8.09375 9.03125 7.9375 9.15625 7.78125L14.2812 1.5H1.71875Z" fill="#1A0A03"/>
                     </svg>
                 </div>
-                <p class="section_search-checkbox_text">Zeige nur diggies mit Vorschau</p>
+                <div class="section_search-filters_wrapper desktop">
+                    <select class="section_search-select" name="" id="">
+                        <option value="Klassenstufe">Klassenstufe</option>
+                        <option value="Klassenstufe">Klassenstufe</option>
+                    </select>
+                    <select class="section_search-select" name="" id="">
+                        <option value="Klassenstufe">Klassenstufe</option>
+                        <option value="Klassenstufe">Klassenstufe</option>
+                    </select>
+                    <select class="section_search-select" name="" id="">
+                        <option value="Klassenstufe">Klassenstufe</option>
+                        <option value="Klassenstufe">Klassenstufe</option>
+                    </select>
+                    <select class="section_search-select" name="" id="">
+                        <option value="Klassenstufe">Klassenstufe</option>
+                        <option value="Klassenstufe">Klassenstufe</option>
+                    </select>
+                </div>
+                <div class="section_search-checkbox_wrapper desktop">
+                    <div class="section_search-checkbox_container">
+                        <input class="checkbox" type="checkbox" name="" id="">
+                        <svg width="12" height="9" viewBox="0 0 12 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M11.0859 0.914062C11.2969 1.14844 11.2969 1.5 11.0859 1.71094L4.89844 7.89844C4.66406 8.13281 4.3125 8.13281 4.10156 7.89844L0.914062 4.71094C0.679688 4.5 0.679688 4.14844 0.914062 3.9375C1.125 3.70312 1.47656 3.70312 1.6875 3.9375L4.47656 6.72656L10.2891 0.914062C10.5 0.703125 10.8516 0.703125 11.0625 0.914062H11.0859Z" fill="white"/>
+                        </svg>
+                    </div>
+                    <p class="section_search-checkbox_text">Zeige nur diggies mit Vorschau</p>
+                </div>
             </div>
-        </div>
+        <?php endif; ?>
     </div>
 </section>

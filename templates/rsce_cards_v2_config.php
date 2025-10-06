@@ -64,6 +64,13 @@ return [
                         'extensions' => ($GLOBALS['TL_CONFIG']['validImageTypes'] ?? '')
                     ]
                 ],
+                'white_card' => [
+                    'label' => ['White Card Hintergrund', ''],
+                    'inputType' => 'checkbox',
+                    'eval' => [
+                        'tl_class' => 'w50 m12'
+                    ]
+                ],
                 'headline' => [
                     'label' => ['Überschrift', ''],
                     'inputType' => 'inputUnit',

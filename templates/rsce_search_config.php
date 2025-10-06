@@ -12,6 +12,22 @@ return [
                 'tl_class' => 'w50 m12'
             ]
         ],
+        'bg_color' => [
+            'label' => ['Background Color', ''],
+            'inputType' => 'select',
+            'eval' => [
+                'tl_class' => 'w50',
+                'includeBlankOption' => true
+            ],
+            'options' => ['blue', 'orange']
+        ],
+        'filter' => [
+            'label' => ['Add Filter', ''],
+            'inputType' => 'checkbox',
+            'eval' => [
+                'tl_class' => 'w50 m12'
+            ]
+        ],
         'headline' => [
             'label' => ['Überschrift', ''],
             'inputType' => 'inputUnit',

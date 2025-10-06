@@ -10,7 +10,7 @@
         </div>
         <div id="<?= $this->columns ?>" class="section_cards_v2-cards_wrapper">
             <?php foreach ($this->cards as $card): ?>
-                <div class="section_cards_v2-card">
+                <div class="section_cards_v2-card <?= $card->white_card ? 'white_bg' : ''?>">
                     <?php if ($card->image): ?>
                         {{image::<?= $card->image ?>?alt=&class=card-img ?>}}
                     <?php endif; ?>

@@ -50,6 +50,7 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
+  align-items: center;
 }
 
 .section_faq-faqs_questions_wrapper {
@@ -125,7 +126,5 @@
   }
 
   .section_faq-links_wrapper {
-    width: 100%;
-    // flex-direction: row;
   }
 }
