@@ -77,6 +77,13 @@ return [
                         'tl_class' => 'w50 m12'
                     ]
                 ],
+                'not_collapsed' => [
+                    'label' => ['Not collapsed content', ''],
+                    'inputType' => 'checkbox',
+                    'eval' => [
+                        'tl_class' => 'w50 m12'
+                    ]
+                ],
                 'text' => [
                     'label' => ['Text', ''],
                     'inputType' => 'textarea',

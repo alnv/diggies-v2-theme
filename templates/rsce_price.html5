@@ -37,7 +37,7 @@
                                     <p class="price"><?= $card->price ?></p>
                                 <?php endif; ?>
                                 <?php if ($card->price_description): ?>
-                                    <p class="price_description"><?= \strip_tags($card->price_description, '<a><br><strong>') ?></p>
+                                    <div class="price_description"><?= $card->price_description ?></div>
                                 <?php endif; ?>
                             </div>
                         </div>

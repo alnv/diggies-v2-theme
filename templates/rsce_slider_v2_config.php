@@ -126,7 +126,6 @@ return [
                 'tags' => [
                     'label' => ['Lesson Tags', ''],
                     'inputType' => 'list',
-                    'minItems' => 1,
                     'maxItems' => 3,
                     'elementLabel' => '%s. Tag',
                     'fields' => [
@@ -225,6 +224,13 @@ return [
                 'includeBlankOption' => true
             ],
             'options' => ['primary_link', 'secondary_link']
+        ],
+        'arrow' => [
+            'label' => ['Add Arrow', ''],
+            'inputType' => 'checkbox',
+            'eval' => [
+                'tl_class' => 'w50 m12'
+            ]
         ],
         'templateId' => [
             'label' => ['ID', ''],

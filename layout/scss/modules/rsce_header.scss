@@ -56,6 +56,11 @@ header {
   align-items: center;
   gap: 12px;
 
+  .link {
+    padding: 8px 16px;
+    border-radius: 80px;
+  }
+
   .link p {
     text-align: center;
     font-size: 16px;
@@ -70,7 +75,9 @@ header {
   padding: 8px;
   justify-content: center;
   align-items: center;
-  border-radius: 56px;
+  height: 100%;
+  aspect-ratio: 1;
+  border-radius: 50%;
   border: 1.5px solid var(--Colors-Neutral-neutral-200);
 }
 

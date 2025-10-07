@@ -19,13 +19,13 @@
                 <?php if (!empty($objBlock->headline) && $objBlock->headline['value']): ?>
                 <<?= $objBlock->headline['unit'] ?> class="text_box-question_text"><?= $objBlock->headline['value'] ?></<?= $objBlock->headline['unit'] ?>>
                 <?php endif; ?>
-                <p class="text_box-answer <?= $objBlock->collapsible ? 'is-hidden' : '' ?>"><?= \strip_tags($objBlock->text, ['<strong><a>']) ?></p>
+                <p class="text_box-answer<?= $objBlock->collapsible && !$objBlock->not_collapsed ? ' is-hidden' : '' ?>"><?= \strip_tags($objBlock->text, ['<strong><a>']) ?></p>
             </div>
-            <button class="question_wrapper-check_answer_btn <?= $objBlock->collapsible ? '' : 'is-hidden' ?>">
-                <svg class="icon-plus" alt="plus icon" aria-label="check answer" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <button class="question_wrapper-check_answer_btn<?= $objBlock->collapsible ? '' : ' is-hidden' ?>">
+                <svg class="icon-plus<?= $objBlock->not_collapsed ? ' is-hidden' : ''?>" alt="plus icon" aria-label="check answer" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M10.875 4.9375V8.875H14.8125C15.2773 8.875 15.6875 9.28516 15.6875 9.75C15.6875 10.2422 15.2773 10.625 14.8125 10.625H10.875V14.5625C10.875 15.0547 10.4648 15.4375 10 15.4375C9.50781 15.4375 9.125 15.0547 9.125 14.5625V10.625H5.1875C4.69531 10.625 4.3125 10.2422 4.3125 9.75C4.3125 9.28516 4.69531 8.875 5.1875 8.875H9.125V4.9375C9.125 4.47266 9.50781 4.0625 10 4.0625C10.4648 4.0625 10.875 4.47266 10.875 4.9375Z" fill="white"/>
                 </svg>
-                <svg class="icon-minus is-hidden" width="12" height="2" viewBox="0 0 12 2" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <svg class="icon-minus<?= $objBlock->not_collapsed ? '' : ' is-hidden'?>" width="12" height="2" viewBox="0 0 12 2" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M11.6875 1.04492C11.6875 1.53711 11.2773 1.91992 10.8125 1.91992H1.1875C0.695312 1.91992 0.3125 1.53711 0.3125 1.04492C0.3125 0.580078 0.695312 0.169922 1.1875 0.169922H10.8125C11.2773 0.169922 11.6875 0.580078 11.6875 1.04492Z" fill="white"/>
                 </svg>
             </button>

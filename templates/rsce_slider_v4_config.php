@@ -226,7 +226,7 @@ return [
             ],
             'options' => ['primary_link', 'secondary_link']
         ],
-            'link_arrow' => [
+        'link_arrow' => [
             'label' => ['Add Arrow', ''],
             'inputType' => 'checkbox',
             'eval' => [

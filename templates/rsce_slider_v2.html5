@@ -45,11 +45,11 @@ $uniqueId = uniqid('slider_');
                             <p class="slide_info-card_type"><?= $card->card_type ?></p>
                         <?php endif; ?>
                         <div class="slide_info-text_box">
-                            <?php if ($card->headline): ?>
-                                <p class="slide_info-headline"><?= $card->headline ?></p>
-                            <?php endif; ?>
                             <?php if ($card->date): ?>
                                 <p class="slide_info-date"><?= $card->date ?></p>
+                            <?php endif; ?>
+                            <?php if ($card->headline): ?>
+                                <p class="slide_info-headline"><?= $card->headline ?></p>
                             <?php endif; ?>
                             <?php if ($card->description): ?>
                                 <p class="slide_info-description"><?= $card->description ?></p>
@@ -159,6 +159,11 @@ $uniqueId = uniqid('slider_');
     <?php if ($this->linkText && $this->linkUrl): ?>
         <a href="<?= $this->linkUrl ?>" class="link <?= $this->linkClass === 'secondary_link' ? 'secondary_link' : 'primary_link' ?>">
             <p class="<?= $this->linkClass === 'secondary_link' ? 'secondary_link' : 'primary_link' ?>-text"><?= $this->linkText ?></p>
+            <?php if ($this->arrow): ?>
+                <svg width="13" height="12" viewBox="0 0 13 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12.3516 6.62109L7.97656 10.9961C7.64844 11.3516 7.07422 11.3516 6.74609 10.9961C6.39062 10.668 6.39062 10.0938 6.74609 9.76562L9.61719 6.86719H1.25C0.757812 6.86719 0.375 6.48438 0.375 5.99219C0.375 5.52734 0.757812 5.11719 1.25 5.11719H9.61719L6.74609 2.24609C6.39062 1.91797 6.39062 1.34375 6.74609 1.01562C7.07422 0.660156 7.64844 0.660156 7.97656 1.01562L12.3516 5.39062C12.707 5.71875 12.707 6.29297 12.3516 6.62109Z" fill="#4660E9"/>
+                </svg>
+            <?php endif; ?>
         </a>
     <?php endif; ?>
 </section>
