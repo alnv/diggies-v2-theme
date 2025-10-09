@@ -12,6 +12,13 @@ return [
                 'tl_class' => 'w50 m12'
             ]
         ],
+        'right_img' => [
+            'label' => ['Right Image', ''],
+            'inputType' => 'checkbox',
+            'eval' => [
+                'tl_class' => 'w50 m12'
+            ]
+        ],
         'image' => [
             'label' => ['Bild', ''],
             'inputType' => 'fileTree',

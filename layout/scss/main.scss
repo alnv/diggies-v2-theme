@@ -1219,6 +1219,13 @@ button {
   background: var(--Colors-Secondary-orange-100);
 }
 
+.reverse {
+  flex-direction: row-reverse;
+}
+
+.col-reverse {
+  flex-direction: column-reverse;
+}
 
 .desktop {
   display: none;

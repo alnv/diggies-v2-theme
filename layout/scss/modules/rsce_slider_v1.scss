@@ -96,3 +96,15 @@
         margin-top: 80px;
     }
 }
+
+@media (min-width: 1440px) {
+    .section_slider_v1 .splide_desktop {
+        width: 150%;
+    }
+}
+
+@media (min-width: 1600px) {
+    .section_slider_v1 .splide_desktop {
+        width: 100%;
+    }
+}

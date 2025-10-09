@@ -1,6 +1,6 @@
 <section class="section_banner <?= $this->white_section ? 'white_section' : '' ?>">
     <div class="section_banner-banner_wrapper <?= $this->background ?> <?= $this->image ? '' : 'default_img' ?>">
-        <div class="banner_wrapper-content">
+        <div class="banner_wrapper-content<?= $this->right_img ? ' reverse' : ''?>">
             <?php if ($this->image): ?>
                 {{image::<?= $this->image ?>?alt=&class=section_banner-img desktop}}
             <?php endif; ?>

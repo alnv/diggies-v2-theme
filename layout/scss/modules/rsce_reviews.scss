@@ -43,10 +43,15 @@
     line-height: 1.5;
 }
 
+.reviews_section .splide {
+    width: 100%;
+}
+
 .reviews_section-card {
     display: flex;
     flex-direction: column;
     gap: 40px;
+    width: 100%;
 }
 
 .reviews_section-content{
@@ -122,5 +127,9 @@
     .reviews_section-user_image {
         width: 64px;
         height: 64px;
+    }
+
+    .reviews_section-card, .reviews_section .splide {
+        width: auto;
     }
 }

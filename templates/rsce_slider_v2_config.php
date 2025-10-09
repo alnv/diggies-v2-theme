@@ -150,7 +150,6 @@ return [
                 'links' => [
                     'label' => ['Links', ''],
                     'inputType' => 'list',
-                    'minItems' => 1,
                     'maxItems' => 2,
                     'elementLabel' => '%s. Link',
                     'fields' => [
