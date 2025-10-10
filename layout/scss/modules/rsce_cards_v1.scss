@@ -20,6 +20,7 @@
     align-items: center;
     gap: 12px;
     border-radius: 24px;
+    padding: 24px;
 }
 
 .section_cards_v1-title {
@@ -39,7 +40,7 @@
     line-height: 1.5;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
     .section_cards_v1 {
         padding: 120px 0;
     }
@@ -54,8 +55,8 @@
     }
 
     .section_cards_v1-card {
-        padding: 31px 34px;
         height: 100%;
+        gap: 20px;
     }
 
     .section_cards_v1-title {

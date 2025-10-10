@@ -42,7 +42,7 @@
   }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
   .section_banner {
     padding: 32px 0 !important;
     margin: 0 auto;
@@ -66,5 +66,9 @@
 
   .banner_wrapper-content:has(.section_banner-img) {
     max-width: 100%;
+
+    .section_banner-img {
+      width: 50%;
+    }
   }
 }

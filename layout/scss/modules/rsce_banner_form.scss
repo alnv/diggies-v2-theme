@@ -213,7 +213,7 @@ input::placeholder, textarea::placeholder {
     }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
     .banner_form {
         padding: 64px 0;
         width: calc(100% - 260px);

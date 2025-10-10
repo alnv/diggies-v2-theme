@@ -17,9 +17,14 @@
 
 .logo_img {
   height: 100px;
+  width: 100px;
 }
 
-@media (min-width: 768px) {
+a {
+  color: rgb(0, 0, 0);
+}
+
+@media (min-width: 1024px) {
   .section_slider_logo {
     gap: 64px;
     padding: 120px 0;

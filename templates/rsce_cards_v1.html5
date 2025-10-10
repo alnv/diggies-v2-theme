@@ -3,7 +3,7 @@
         <?php foreach ($this->cards as $card): ?>
             <div class="section_cards_v1-card <?php if ($card->white_card) echo 'white_card' ?>">
                 <?php if ($card->image): ?>
-                    {{image::<?= $card->image ?>?alt=&class=section_cards_v1-img desktop ?>}}
+                    {{image::<?= $card->image ?>?alt=&class=section_cards_v1-img?>}}
                 <?php endif; ?>
                 <?php if (!empty($card->headline) && $card->headline['value']): ?>
                     <<?= $card->headline['unit'] ?> class="section_cards_v1-title"><?= $card->headline['value'] ?></<?= $card->headline['unit'] ?>>

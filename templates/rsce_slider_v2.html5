@@ -1,6 +1,3 @@
-<script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
-<link href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" rel="stylesheet">
-
 <?php
 $uniqueId = uniqid('slider_');
 ?>
@@ -126,11 +123,11 @@ $uniqueId = uniqid('slider_');
                                         <p class="slide_info-card_type"><?= $card->card_type ?></p>
                                     <?php endif; ?>
                                     <div class="slide_info-text_box">
-                                        <?php if ($card->headline): ?>
-                                            <p class="slide_info-headline"><?= $card->headline ?></p>
-                                        <?php endif; ?>
                                         <?php if ($card->date): ?>
                                             <p class="slide_info-date"><?= $card->date ?></p>
+                                        <?php endif; ?>
+                                        <?php if ($card->headline): ?>
+                                            <p class="slide_info-headline"><?= $card->headline ?></p>
                                         <?php endif; ?>
                                         <?php if ($card->description): ?>
                                             <p class="slide_info-description"><?= $card->description ?></p>
@@ -138,9 +135,9 @@ $uniqueId = uniqid('slider_');
                                     </div>
                                     <div class="slide_info-links_wrapper">
                                         <?php foreach ($card->links as $link): ?>
-                                            <?php if ($link->text && $link->url): ?>
-                                                <a href="<?= $link->url ?>" class="link <?= $link->class === 'secondary_link' ? 'secondary_link' : 'primary_link' ?>">
-                                                    <p class="<?= $link->class === 'secondary_link' ? 'secondary_link' : 'primary_link' ?>-text"><?= $link->text ?></p>
+                                            <?php if ($link->link_text && $link->url): ?>
+                                                <a href="<?= $link->url ?>" class="link <?= $link->link_class === 'secondary_link' ? 'secondary_link' : 'primary_link' ?>">
+                                                    <p class="<?= $link->link_class === 'secondary_link' ? 'secondary_link' : 'primary_link' ?>-text"><?= $link->link_text ?></p>
                                                     <?php if ($link->image): ?>
                                                         {{image::<?= $link->image ?>?alt=&class=section_hero-img}}
                                                     <?php endif; ?>

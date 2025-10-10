@@ -1,4 +1,11 @@
-<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<?php
+use Contao\Combiner;
+
+$objCombiner = new Combiner();
+$objCombiner->add('layout/js/vue/vue.min.js');
+$GLOBALS['TL_JAVASCRIPT']['vue-header'] = $objCombiner->getCombinedFile();
+?>
+
 <header id="headerApp">
   <!-- doppelt -> entfernen -->
   <nav class="navigation">
@@ -142,18 +149,17 @@
   </div>
 </header>
 <script>
-  (function () {
-    const { createApp, ref } = Vue;
-
-    createApp({
-      setup() {
-        const isOpenModal = ref(false);
-        const burgerIcon = document.querySelector(".navigation-burger_wrapper");
-        const toggle = () => {
-          isOpenModal.value = !isOpenModal.value;
-        };
-        return { isOpenModal, toggle };
+  new Vue({
+    el: "#headerApp",
+    data() {
+      return {
+        isOpenModal: false,
+      };
+    },
+    methods: {
+      toggle() {
+        this.isOpenModal = !this.isOpenModal;
       },
-    }).mount("#headerApp");
-  })();
+    },
+  });
 </script>
