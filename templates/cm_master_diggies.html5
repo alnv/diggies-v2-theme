@@ -30,6 +30,10 @@ $objPage->og_image = !empty($this->images) ? $this->images[0]['uuid'] : '';
 $objPage->description = strip_tags($this->teaser);
 
 $GLOBALS['TL_HEAD']['search:type'] = '<meta name="search:type" content="diggie"/>';
+
+
+$uniqueId = uniqid('slider_');
+
 ?>
 
 <div class="ce_diggie_master block">

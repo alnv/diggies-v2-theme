@@ -21,7 +21,6 @@ class GetPageLayoutListener
         $objCombiner->add('layout/js/splide/splide.min.scss');
 
         $GLOBALS['TL_CSS']['base'] = $objCombiner->getCombinedFile();
-
         $GLOBALS['TL_HEAD']['main'] = $this->getMainTheme();
     }
 
