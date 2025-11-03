@@ -69,42 +69,46 @@ $uniqueId = uniqid('slider_');
 
 <script>
     (function () {
-        if (document.querySelector('.splide_v3_<?= $uniqueId ?>') != null) {
-            const splide_v3 = new Splide( '.splide_v3_<?= $uniqueId ?>', {
-                arrows: false,
-                omitEnd: true,
-                perPage: 1,
-                pagination: false,
-                gap: '20px',
-                breakpoints: {
-                    1024: {
+        document.addEventListener('DOMContentLoaded', function () {
+            if (typeof Splide !== undefined) {
+                if (document.querySelector('.splide_v3_<?= $uniqueId ?>') != null) {
+                    const splide_v3 = new Splide( '.splide_v3_<?= $uniqueId ?>', {
+                        arrows: false,
+                        omitEnd: true,
                         perPage: 1,
-                        gap: '10px',
-                        pagination: true
-                    },
-                },
-            } );
+                        pagination: false,
+                        gap: '20px',
+                        breakpoints: {
+                            1024: {
+                                perPage: 1,
+                                gap: '10px',
+                                pagination: true
+                            },
+                        },
+                    } );
 
-            const splide_v3_aside = new Splide( '.splide_aside_v3<?= $uniqueId ?>', {
-                direction: 'ttb',
-                arrows: false,
-                omitEnd: true,
-                isNavigation: true,
-                perPage: 5,
-                pagination: false,
-                height: '500px',
-                autoHeight: true,
-                gap: '20px',
-                slideFocus: true
-            } ).mount();
+                    const splide_v3_aside = new Splide( '.splide_aside_v3<?= $uniqueId ?>', {
+                        direction: 'ttb',
+                        arrows: false,
+                        omitEnd: true,
+                        isNavigation: true,
+                        perPage: 5,
+                        pagination: false,
+                        height: '500px',
+                        autoHeight: true,
+                        gap: '20px',
+                        slideFocus: true
+                    } ).mount();
 
-            splide_v3.sync(splide_v3_aside).mount();
+                    splide_v3.sync(splide_v3_aside).mount();
 
-            document.querySelectorAll('.splide_aside_v3<?= $uniqueId ?> .splide__slide').forEach((slide, index) => {
-                slide.addEventListener('click', () => {
-                    splide_v3.go(index);
-                });
-            });
-        }
+                    document.querySelectorAll('.splide_aside_v3<?= $uniqueId ?> .splide__slide').forEach((slide, index) => {
+                        slide.addEventListener('click', () => {
+                            splide_v3.go(index);
+                        });
+                    });
+                }
+            }
+        });
     })();
 </script>

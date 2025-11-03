@@ -14,9 +14,13 @@ class GetPageLayoutListener
     public function __invoke(PageModel $pageModel, LayoutModel $layout, PageRegular $pageRegular): void
     {
 
-        StylesCombiner::addStyle('layout/scss/fonts.scss', $pageModel->rootId);
-        StylesCombiner::addStyle('layout/scss/normalize.scss', $pageModel->rootId);
-        StylesCombiner::addStyle('layout/scss/theme.scss', $pageModel->rootId);
+        $objCombiner = new Combiner();
+        $objCombiner->add('layout/scss/fonts.scss');
+        $objCombiner->add('layout/scss/normalize.scss');
+        $objCombiner->add('layout/scss/theme.scss');
+        $objCombiner->add('layout/js/splide/splide.min.scss');
+
+        $GLOBALS['TL_CSS']['base'] = $objCombiner->getCombinedFile();
 
         $GLOBALS['TL_HEAD']['main'] = $this->getMainTheme();
     }

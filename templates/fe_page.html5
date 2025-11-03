@@ -19,21 +19,6 @@
 
     <?= $this->viewport ?>
     <?= $this->framework ?>
-
-    <?php
-      use Contao\Combiner;
-
-      $objCombiner = new Combiner();
-
-      // Splide CSS
-      $objCombiner->add('files/splide/splide.min.css');
-      $GLOBALS['TL_CSS']['splide'] = $objCombiner->getCombinedFile();
-
-      // Splide JS
-      $objCombiner = new Combiner();
-      $objCombiner->add('files/splide/splide.min.js');
-      $GLOBALS['TL_JAVASCRIPT']['splide'] = $objCombiner->getCombinedFile();
-    ?>
     <?= $this->stylesheets ?>
     <?= $this->mooScripts ?>
     <?= $this->head ?>

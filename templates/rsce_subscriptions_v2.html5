@@ -4,17 +4,6 @@ use Alnv\ContaoCatalogManagerBundle\Views\Master;
 use Contao\FrontendTemplate;
 use Contao\StringUtil;
 
-if ($this->asSlider && !isset($GLOBALS['TL_HEAD']['splidejs'])) {
-    $objCombiner = new \Combiner();
-    $objCombiner->add('layout/js/splide/splide.min.js');
-    $objCombiner->add('layout/js/splide/splide-extension-auto-scroll.min.js');
-    $GLOBALS['TL_HEAD']['splidejs'] = '<script src="' . $objCombiner->getCombinedFile() . '"></script>';
-
-    $objCombiner = new \Combiner();
-    $objCombiner->add('layout/js/splide/splide.min.css');
-    $GLOBALS['TL_HEAD']['splidecss'] = '<link href="' . $objCombiner->getCombinedFile() . '" rel="stylesheet"/>';
-}
-
 ?>
 
 <?php if (!empty($this->items)): ?>
@@ -49,23 +38,27 @@ if ($this->asSlider && !isset($GLOBALS['TL_HEAD']['splidejs'])) {
         </div>
         <script>
             (function () {
-                let objSlider = new Splide('#subscriptions-<?= $this->id ?>', {
-                    type: 'loop',
-                    perPage: 1,
-                    perMove: 1,
-                    mediaQuery: 'min',
-                    // focus: 2,
-                    breakpoints: {
-                        768: {
-                            perPage: 2,
-                            // focus: 'center'
-                        },
-                        1024: {
-                            perPage: 3
-                        }
+                document.addEventListener('DOMContentLoaded', function () {
+                    if (typeof Splide !== undefined) {
+                        let objSlider = new Splide('#subscriptions-<?= $this->id ?>', {
+                            type: 'loop',
+                            perPage: 1,
+                            perMove: 1,
+                            mediaQuery: 'min',
+                            // focus: 2,
+                            breakpoints: {
+                                768: {
+                                    perPage: 2,
+                                    // focus: 'center'
+                                },
+                                1024: {
+                                    perPage: 3
+                                }
+                            }
+                        });
+                        objSlider.mount();
                     }
                 });
-                objSlider.mount();
             })();
         </script>
     <?php else: ?>

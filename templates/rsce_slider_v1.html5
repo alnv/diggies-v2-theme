@@ -76,60 +76,64 @@
 
 <script>
     (function () {
-        var splideMobile = new Splide( '.splide_mobile', {
-            arrows: false,
-            omitEnd: true,
-            perPage: 1,
-            perMove: 1,
-            pagination: false,
-        } );
+        document.addEventListener('DOMContentLoaded', function () {
+            if (typeof Splide !== undefined) {
+                var splideMobile = new Splide( '.splide_mobile', {
+                    arrows: false,
+                    omitEnd: true,
+                    perPage: 1,
+                    perMove: 1,
+                    pagination: false,
+                } );
 
-        splideMobile.mount();
+                splideMobile.mount();
 
-        const slides = document.querySelectorAll('.desktop .splide__slide');
-        const sliderLeft = <?= $this->slider_left ? 'true' : 'false' ?>;
+                const slides = document.querySelectorAll('.desktop .splide__slide');
+                const sliderLeft = <?= $this->slider_left ? 'true' : 'false' ?>;
 
-        const paddingDesktop = sliderLeft
-            ? { left: '7rem', right: 0 }
-            : { left: 0, right: '7rem' };
+                const paddingDesktop = sliderLeft
+                    ? { left: '7rem', right: 0 }
+                    : { left: 0, right: '7rem' };
 
-        const start = sliderLeft ? slides.length - 1 : 0;
+                const start = sliderLeft ? slides.length - 1 : 0;
 
-        const splideDesktop = new Splide('.splide_desktop', {
-            arrows: false,
-            omitEnd: true,
-            perPage: 1,
-            perMove: 1,
-            pagination: false,
-            padding: paddingDesktop,
-            start: start,
-            gap: '20px',
+                const splideDesktop = new Splide('.splide_desktop', {
+                    arrows: false,
+                    omitEnd: true,
+                    perPage: 1,
+                    perMove: 1,
+                    pagination: false,
+                    padding: paddingDesktop,
+                    start: start,
+                    gap: '20px',
+                });
+
+                splideDesktop.mount();
+
+                const updateArrows = (splide, prevBtn, nextBtn) => {
+                    const current = splide.index;
+                    const total = splide.length;
+                    const perPage = splide.options.perPage || 1;
+
+                    prevBtn.disabled = current === 0;
+                    nextBtn.disabled = current === total - perPage;
+                };
+
+                const prevDesktop = document.querySelector('.desktop .custom_arrow--prev');
+                const nextDesktop = document.querySelector('.desktop .custom_arrow--next');
+                const prevMobile = document.querySelector('.mobile .custom_arrow--prev');
+                const nextMobile = document.querySelector('.mobile .custom_arrow--next');
+
+                prevDesktop.addEventListener('click', () => splideDesktop.go('-1'));
+                nextDesktop.addEventListener('click', () => splideDesktop.go('+1'));
+                prevMobile.addEventListener('click', () => splideMobile.go('-1'));
+                nextMobile.addEventListener('click', () => splideMobile.go('+1'));
+                
+                updateArrows(splideDesktop, prevDesktop, nextDesktop);
+
+                splideDesktop.on('mounted move', () => updateArrows(splideDesktop, prevDesktop, nextDesktop));
+                splideMobile.on('mounted move', () => updateArrows(splideMobile, prevMobile, nextMobile));
+            }
         });
-
-        splideDesktop.mount();
-
-        const updateArrows = (splide, prevBtn, nextBtn) => {
-            const current = splide.index;
-            const total = splide.length;
-            const perPage = splide.options.perPage || 1;
-
-            prevBtn.disabled = current === 0;
-            nextBtn.disabled = current === total - perPage;
-        };
-
-        const prevDesktop = document.querySelector('.desktop .custom_arrow--prev');
-        const nextDesktop = document.querySelector('.desktop .custom_arrow--next');
-        const prevMobile = document.querySelector('.mobile .custom_arrow--prev');
-        const nextMobile = document.querySelector('.mobile .custom_arrow--next');
-
-        prevDesktop.addEventListener('click', () => splideDesktop.go('-1'));
-        nextDesktop.addEventListener('click', () => splideDesktop.go('+1'));
-        prevMobile.addEventListener('click', () => splideMobile.go('-1'));
-        nextMobile.addEventListener('click', () => splideMobile.go('+1'));
-        
-        updateArrows(splideDesktop, prevDesktop, nextDesktop);
-
-        splideDesktop.on('mounted move', () => updateArrows(splideDesktop, prevDesktop, nextDesktop));
-        splideMobile.on('mounted move', () => updateArrows(splideMobile, prevMobile, nextMobile));
     })();
 </script>

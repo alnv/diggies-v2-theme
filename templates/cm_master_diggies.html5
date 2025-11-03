@@ -1,29 +1,16 @@
-<script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
-<link href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" rel="stylesheet">
-
 <?php
 
 global $objPage;
 
-use App\Helpers\StylesCombiner;
 use App\Library\Labels;
 use Ausi\SlugGenerator\SlugGenerator;
 use Ausi\SlugGenerator\SlugOptions;
-use Contao\Combiner;
-use Contao\PageModel;
 use Contao\FrontendTemplate;
 use Alnv\ContaoCatalogManagerBundle\Helper\Toolkit;
 use Alnv\ContaoCatalogManagerBundle\Helper\Getters;
 use Alnv\ContaoCatalogManagerBundle\Views\Listing;
 
 $arrPageFilters = Getters::getPageFiltersByPageId($objPage->id);
-$objCombiner = new Combiner();
-$objCombiner->add('layout/js/splide/splide.min.js');
-$GLOBALS['TL_HEAD']['splidejs'] = '<script src="' . $objCombiner->getCombinedFile() . '"></script>';
-
-$objCombiner = new Combiner();
-$objCombiner->add('layout/js/splide/splide.min.css');
-$GLOBALS['TL_HEAD']['splidecss'] = '<link href="' . $objCombiner->getCombinedFile() . '" rel="stylesheet"/>';
 
 $objGenerator = new SlugGenerator((new SlugOptions())
     ->setValidChars('a-z0-9')

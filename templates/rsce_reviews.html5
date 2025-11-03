@@ -72,53 +72,54 @@ $uniqueId = uniqid('slider_');
     </div>
 </section>
 
-<script src="/layout/js/splide.min.js"></script>
-<link href="/layout/css/splide.min.css" rel="stylesheet">
-
 <script>
     (function () {
-        if (document.querySelector('.splide_<?= $uniqueId ?>') != null) {
-            const splide_v2 = new Splide( '.splide_<?= $uniqueId ?>', {
-                arrows: false,
-                omitEnd: true,
-                perPage: 2,
-                perMove: 1,
-                pagination: false,
-                gap: '20px',
-                breakpoints: {
-                    768: {
-                        perPage: 1,
-                        gap: '10px',
-                    },
-                },
-            } ).mount();
+        document.addEventListener('DOMContentLoaded', function () {
+            if (typeof Splide !== undefined) {
+                if (document.querySelector('.splide_<?= $uniqueId ?>') != null) {
+                    const splide_v2 = new Splide( '.splide_<?= $uniqueId ?>', {
+                        arrows: false,
+                        omitEnd: true,
+                        perPage: 2,
+                        perMove: 1,
+                        pagination: false,
+                        gap: '20px',
+                        breakpoints: {
+                            768: {
+                                perPage: 1,
+                                gap: '10px',
+                            },
+                        },
+                    } ).mount();
 
-            const updateArrows = (splide, prevBtn, nextBtn) => {
-                const current = splide.index;
-                const total = splide.length;
-                const perPage = splide.options.perPage || 1;
+                    const updateArrows = (splide, prevBtn, nextBtn) => {
+                        const current = splide.index;
+                        const total = splide.length;
+                        const perPage = splide.options.perPage || 1;
 
-                prevBtn.disabled = current === 0;
-                nextBtn.disabled = current === total - perPage;
-            };
+                        prevBtn.disabled = current === 0;
+                        nextBtn.disabled = current === total - perPage;
+                    };
 
-            const prevBtn = document.querySelector('#<?= $uniqueId ?> .custom_arrow_v2--prev');
-            const nextBtn = document.querySelector('#<?= $uniqueId ?> .custom_arrow_v2--next');
+                    const prevBtn = document.querySelector('#<?= $uniqueId ?> .custom_arrow_v2--prev');
+                    const nextBtn = document.querySelector('#<?= $uniqueId ?> .custom_arrow_v2--next');
 
-            prevBtn.addEventListener('click', () => splide_v2.go('-1'));
-            nextBtn.addEventListener('click', () => splide_v2.go('+1'));
+                    prevBtn.addEventListener('click', () => splide_v2.go('-1'));
+                    nextBtn.addEventListener('click', () => splide_v2.go('+1'));
 
-            updateArrows(splide_v2, prevBtn, nextBtn);
+                    updateArrows(splide_v2, prevBtn, nextBtn);
 
-            splide_v2.on('mounted move', () => updateArrows(splide_v2, prevBtn, nextBtn));
+                    splide_v2.on('mounted move', () => updateArrows(splide_v2, prevBtn, nextBtn));
 
-            const prevBtnMobile = document.querySelector('#<?= $uniqueId ?>.mobile .custom_arrow_v2--prev');
-            const nextBtnMobile = document.querySelector('#<?= $uniqueId ?>.mobile .custom_arrow_v2--next');
+                    const prevBtnMobile = document.querySelector('#<?= $uniqueId ?>.mobile .custom_arrow_v2--prev');
+                    const nextBtnMobile = document.querySelector('#<?= $uniqueId ?>.mobile .custom_arrow_v2--next');
 
-            prevBtnMobile.addEventListener('click', () => splide_v2.go('-1'));
-            nextBtnMobile.addEventListener('click', () => splide_v2.go('+1'));
+                    prevBtnMobile.addEventListener('click', () => splide_v2.go('-1'));
+                    nextBtnMobile.addEventListener('click', () => splide_v2.go('+1'));
 
-            splide_v2.on('mounted move', () => updateArrows(splide_v2, prevBtnMobile, nextBtnMobile));
-        }
+                    splide_v2.on('mounted move', () => updateArrows(splide_v2, prevBtnMobile, nextBtnMobile));
+                }
+            }
+        });
     })();
 </script>

@@ -32,8 +32,12 @@ class ParseFrontendTemplateListener
             $GLOBALS['TL_CSS']['theme'] = StylesCombiner::getCombiner($objPage->rootId)->getCombinedFile();
 
             $objCombiner = new Combiner();
+            $objCombiner->add('layout/js/splide/splide.min.js');
+            $GLOBALS['TL_HEAD']['splidejs'] = '<script src="' . $objCombiner->getCombinedFile() . '"></script>';
+            
+            $objCombiner = new Combiner();
             $objCombiner->add('layout/js/main.js');
-            $GLOBALS['TL_BODY'][] = '<script src="' . $objCombiner->getCombinedFile() . '"></script>';
+            $GLOBALS['TL_BODY']['main'] = '<script src="' . $objCombiner->getCombinedFile() . '"></script>';
 
             $objCombiner = new Combiner();
             $objCombiner->add('layout/scss/print.scss');
