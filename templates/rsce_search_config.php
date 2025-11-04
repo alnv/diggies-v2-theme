@@ -28,6 +28,13 @@ return [
                 'tl_class' => 'w50 m12'
             ]
         ],
+        'search_icon' => [
+            'label' => ['Icon search', ''],
+            'inputType' => 'checkbox',
+            'eval' => [
+                'tl_class' => 'w50 m12'
+            ]
+        ],
         'headline' => [
             'label' => ['Überschrift', ''],
             'inputType' => 'inputUnit',

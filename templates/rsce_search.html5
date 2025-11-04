@@ -1,4 +1,4 @@
-<section <?php if ($this->templateId): ?> id="<?= $this->templateId ?>"<?php endif; ?> class="section_search <?= $this->white_section ? 'white_section' : '' ?><?= $card->bg_color ?: ' default' ?>">
+<section <?php if ($this->templateId): ?> id="<?= $this->templateId ?>"<?php endif; ?> class="section_search <?= $this->white_section ? 'white_section' : '' ?><?= $this->bg_color ?: ' default' ?>">
     <div class="section_search-top_box">
         <?php if (!empty($this->headline) && $this->headline['value']): ?>
             <<?= $this->headline['unit'] ?> class="section_search-title"><?= $this->headline['value'] ?></<?= $this->headline['unit'] ?>>
@@ -23,7 +23,7 @@
                     v-model="params.search" spellcheck=false autocorrect="off" autocomplete="off"
                     autocapitalize="off" tabindex="1" v-bind:class="{searching: loading}"
                     placeholder="Suche...">
-                <button class="search-button mobile" @click="triggerFetch" type="button">
+                <button class="search-button<?= $this->search_icon ? '' : ' mobile' ?>" @click="triggerFetch" type="button">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -39,7 +39,7 @@
                         fill="#1A0A03" />
                 </svg>
             </button>
-            <button class="search-button desktop" @click="triggerFetch" type="button">
+            <button class="search-button<?= $this->search_icon ? ' is-hidden' : ' desktop' ?>" @click="triggerFetch" type="button">
                 Suchen
             </button>
         </div>

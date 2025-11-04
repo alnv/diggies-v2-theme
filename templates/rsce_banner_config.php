@@ -93,7 +93,7 @@ return [
                 'tl_class' => 'w50',
                 'includeBlankOption' => true
             ],
-            'options' => ['rose', 'yellow', 'violett']
+            'options' => ['rose', 'yellow', 'violett', 'green']
         ],
         'templateId' => [
             'label' => ['ID', ''],

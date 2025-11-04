@@ -2,9 +2,12 @@
 
 global $objPage;
 
+use App\Helpers\StylesCombiner;
 use App\Library\Labels;
 use Ausi\SlugGenerator\SlugGenerator;
 use Ausi\SlugGenerator\SlugOptions;
+use Contao\Combiner;
+use Contao\PageModel;
 use Contao\FrontendTemplate;
 use Alnv\ContaoCatalogManagerBundle\Helper\Toolkit;
 use Alnv\ContaoCatalogManagerBundle\Helper\Getters;
@@ -30,10 +33,6 @@ $objPage->og_image = !empty($this->images) ? $this->images[0]['uuid'] : '';
 $objPage->description = strip_tags($this->teaser);
 
 $GLOBALS['TL_HEAD']['search:type'] = '<meta name="search:type" content="diggie"/>';
-
-
-$uniqueId = uniqid('slider_');
-
 ?>
 
 <div class="ce_diggie_master block">

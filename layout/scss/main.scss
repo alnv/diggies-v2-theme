@@ -19,12 +19,14 @@
   --Colors-Neutral-neutral-400: #867f7c;
   --Colors-Primary-primary-100: #dadffb;
   --diggies-colors-functional-true-neon-green-500: #1cd74a;
+  --diggies-colors-secondary-lime-lime-50: #eaffcf;
   --Colors-Neutral-neutral-600: #57534f;
   --Colors-Neutral-neutral-50: #f7f2ea;
   --Colors-Neutral-neutral-300: #a8a29d;
   --Colors-Supporting-pastel-pink: #ffdef6;
   --diggies-colors-functional-false-mustard-300: #ffec99;
   --Colors-Secondary-orange-100: #ffe9dd;
+  --diggies-colors-Neutral-PureWhite: #fff;
 }
 
 html {
@@ -151,6 +153,9 @@ button {
 }
 .violett {
   background-color: var(--Colors-Supporting-pastel-purple);
+}
+.green {
+  background: var(--diggies-colors-secondary-lime-lime-50);
 }
 
 .no-br {

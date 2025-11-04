@@ -190,6 +190,12 @@
   }
 }
 
+.custom_arrow {
+  padding: 12px;
+  width: 52px;
+  height: 52px;
+}
+
 @media (min-width: 1024px) {
   .section_slider_v2 {
     padding: 120px 0;
@@ -199,6 +205,9 @@
   .section_slider_v2-top_wrapper {
     padding: 0;
     justify-content: space-between;
+    width: calc(100% - 260px);
+    max-width: 1400px;
+    margin: 0 auto;
   }
 
   .section_slider_v2-info_box {
