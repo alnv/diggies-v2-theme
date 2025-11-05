@@ -1,0 +1,121 @@
+<section <?php if ($this->templateId): ?> id="
+    <?= $this->templateId ?>"
+    <?php endif; ?> class="section_cards_switcher
+    <?= $this->white_section ? ' white_section' : '' ?>">
+    <div class="section_cards_switcher-switcher_wrapper">
+        <div class="switcher_background"></div>
+        <?php foreach ($this->switchers as $switch): ?>
+        <p id="<?= $switch->switcherId ?>"
+            class="switcher_wrapper-switcher_text<?= $switch->switcher_active ? ' active' : '' ?>">
+            <?= $switch->switcherText ?>
+        </p>
+        <?php endforeach; ?>
+    </div>
+    <div class="section_cards_switcher-top_wrapper">
+        <?php if (!empty($this->title) && $this->title['value']): ?>
+        <<?= $this->title['unit'] ?> class="section_cards_switcher-title">
+            <?= $card->title['value'] ?>
+        </<?= $card->title['unit'] ?>>
+        <?php endif; ?>
+        <?php if ($this->description): ?>
+        <div class="section_cards_switcher-description">
+            <?= $this->description ?>
+        </div>
+        <?php endif; ?>
+    </div>
+    <div id="<?= $this->columns ?>" class="section_cards_switcher-cards_wrapper">
+        <?php foreach ($this->cards as $card): ?>
+        <?php if ($card->card_id): ?>
+        <div id="card_<?= $card->card_id ?>" class="section_cards_switcher-card is-hidden">
+            <?php if ($card->image): ?>
+            {{image::<?= $card->image ?>?alt=&class=section_cards_switcher-img}}
+            <?php elseif ($card->videoSrc): ?>
+            <div class="section_cards_switcher-video" ondblclick="goFullscreen(this)">
+                <iframe class="vimeo"
+                    src="https://player.vimeo.com/video/<?= $card->videoSrc ?>?autoplay=0&muted=1&loop=1"
+                    title="Vimeo video player" frameborder="0" allow="fullscreen; picture-in-picture" allowfullscreen>
+                </iframe>
+            </div>
+            <?php endif; ?>
+            <div class="card-content_box">
+                <?php if (!empty($card->headline) && $card->headline['value']): ?>
+                <<?= $card->headline['unit'] ?> class="card-title">
+                    <?= $card->headline['value'] ?>
+                </<?= $card->headline['unit'] ?>>
+                <?php endif; ?>
+                <?php if ($card->text): ?>
+                <div class="card-description">
+                    <?= $card->text ?>
+                </div>
+                <?php endif; ?>
+            </div>
+        </div>
+        <?php endif; ?>
+        <?php endforeach; ?>
+    </div>
+    <?php if ($this->linkText && $this->linkUrl): ?>
+    <a href="<?= $this->linkUrl ?>" class="secondary_link link">
+        <p class="secondary_link-text">
+            <?= $this->linkText ?>
+        </p>
+    </a>
+    <?php endif; ?>
+</section>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const wrapper = document.querySelector('.section_cards_switcher-switcher_wrapper');
+        const buttons = wrapper.querySelectorAll('.switcher_wrapper-switcher_text');
+        const bg = wrapper.querySelector('.switcher_background');
+        let active, activeId, activeCards;
+
+        function moveBackgroundTo(el) {
+            const rect = el.getBoundingClientRect();
+            const wrapperRect = wrapper.getBoundingClientRect();
+            const offsetLeft = rect.left - wrapperRect.left;
+            const width = rect.width;
+
+            bg.style.transform = `translateX(${offsetLeft}px)`;
+            bg.style.width = `${width}px`;
+        }
+
+        function goFullscreen(el) {
+            const iframe = el.querySelector('iframe');
+            if (iframe.requestFullscreen) {
+                iframe.requestFullscreen();
+            } else if (iframe.webkitRequestFullscreen) {
+                iframe.webkitRequestFullscreen();
+            } else if (iframe.msRequestFullscreen) {
+                iframe.msRequestFullscreen();
+            }
+        }
+
+        function toggleCards(active) {
+            activeId = active.id;
+            activeCards = document.querySelectorAll(`#card_${activeId}`);
+
+            activeCards.forEach(el => {
+                el.classList.toggle('is-hidden');
+            })
+        }
+
+        active = wrapper.querySelector('.switcher_wrapper-switcher_text.active');
+        if (active) {
+            moveBackgroundTo(active);
+            toggleCards(active);
+        }
+
+        buttons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                buttons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                moveBackgroundTo(btn);
+                if (activeCards) {
+                    activeCards.forEach(el => {
+                        el.classList.toggle('is-hidden');
+                    })
+                }
+                toggleCards(btn);
+            });
+        });
+    });
+</script>
